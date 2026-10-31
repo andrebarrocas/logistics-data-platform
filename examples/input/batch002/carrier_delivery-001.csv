@@ -1,0 +1,2 @@
+event_id,shipment_key,package_key,carrier_alias,delivery_state,event_time,updated_at,revision,verified
+CAR-EVT-000001,SHP-000001,, Aster Parcel ,delivered,2026-01-03T14:00:00Z,2026-01-07T10:00:00Z,2,true

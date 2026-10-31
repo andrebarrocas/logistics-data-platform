@@ -1,0 +1,4 @@
+cost_id,shipment_key,carrier_alias,amount_minor,currency,cost_type,incurred_at,updated_at,revision,operation
+COST-000001,SHP-000001,AP-001,1209,EUR,linehaul,2026-01-02T10:00:01Z,2026-01-02T10:05:01Z,1,upsert
+COST-000002,SHP-000002,MF-002,4812,EUR,linehaul,2026-01-02T10:00:02Z,2026-01-02T10:05:02Z,1,upsert
+COST-000003,SHP-000003,VC-003,3086,EUR,linehaul,2026-01-02T10:00:03Z,2026-01-02T10:05:03Z,1,upsert

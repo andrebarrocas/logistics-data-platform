@@ -1,0 +1,78 @@
+{
+  "verified_at": "2026-10-29T11:02:19Z",
+  "application_source_sha256": "369ef956a6b854531b26535b6ea460214cb5c3c5544a869d7ca708bc061ecff3",
+  "source_fingerprint_method": "SHA-256 of sorted src/logistics_platform .py/.sql paths, each UTF-8 path followed by NUL, file bytes, and NUL",
+  "checkout": "fresh detached Git worktree from origin/main",
+  "scope": "Local application, real local Spark, CLI, installed distribution, mocked AWS contracts, and static infrastructure validation. No live AWS execution.",
+  "test_runs": [
+    {
+      "profile": "python-sql-mocked-aws",
+      "command": "PYTHONPATH=src python -m pytest -q -m 'not spark' --junitxml=work/core-results.xml",
+      "tests": 95,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "duration_seconds": 58.829,
+      "junit": "reports/tests/2026-10-29-core.xml"
+    },
+    {
+      "profile": "real-local-spark",
+      "command": "SPARK_LOCAL_IP=127.0.0.1 PYTHONPATH=src python -m pytest -q -m spark --junitxml=work/spark-results.xml",
+      "tests": 9,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "duration_seconds": 154.06,
+      "junit": "reports/tests/2026-10-29-spark.xml"
+    }
+  ],
+  "total_tests_passed": 104,
+  "demo": {
+    "input_shipments": 1000,
+    "seed": 42,
+    "statuses": ["published", "published", "noop"],
+    "checkpoints": [1, 2, 2],
+    "shipment_facts": 1000,
+    "active_ssot_shipments": 999,
+    "event_facts": 2001,
+    "cost_facts": 1000,
+    "amount_minor_by_currency": {"EUR": 4991568},
+    "exported_products": 24,
+    "export_verification": "passed schema, row-count, byte-size and SHA-256 checks for every file",
+    "evidence": "reports/tests/2026-10-29-demo.json"
+  },
+  "incidents": {
+    "shipments_per_scenario": 12,
+    "passed": ["schema_drift", "duplicate_file", "partial_cost", "ambiguous_alias", "historical_correction", "late_event", "foreign_key_spike", "country_drift"]
+  },
+  "installed_wheel": {
+    "environment": "separate virtual environment with wheel-installed dependencies",
+    "input_shipments": 100,
+    "demo_statuses": ["published", "published", "noop"],
+    "verified_export_products": 24,
+    "status": "passed"
+  },
+  "checks": {
+    "ruff": "passed",
+    "formatting": "33 files passed",
+    "mypy_src_and_scripts": "19 source files passed",
+    "redshift_dialect_parsing": "18 statements passed; not warehouse execution",
+    "sdist_and_wheel_build": "passed",
+    "terraform_formatting": "passed",
+    "terraform_readonly_init": "passed",
+    "terraform_validate": "passed"
+  },
+  "ci_repair": {
+    "original_result": "Python and Spark succeeded; Linux Terraform validation failed on provider checksum",
+    "remediation": "Regenerated signed platform lock entries for darwin_arm64 and linux_amd64; retained readonly CI locking",
+    "added_acceptance": "Build wheel, install into separate environment, run CLI demo, validate complete 24-product export, upload evidence",
+    "current_status_source": "https://github.com/andrebarrocas/logistics-data-platform/actions/workflows/ci.yml"
+  },
+  "cloud_acceptance": {
+    "terraform_apply": "not_run",
+    "deployed_glue": "not_run",
+    "live_redshift_load": "not_run",
+    "redshift_benchmarks": "not_run"
+  },
+  "artifact_notes": "Public JUnit copies omit hostnames. Historical local benchmark artifacts were not rerun or relabeled. Correctness-test durations are not performance claims."
+}

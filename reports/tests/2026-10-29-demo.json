@@ -1,0 +1,26 @@
+[
+  {
+    "run_id": "c9f60b36-3feb-4dff-ad3a-8dec767387df",
+    "batch_id": "batch001",
+    "status": "published",
+    "watermark": 1,
+    "duration_seconds": 48.734954,
+    "failed_checks": []
+  },
+  {
+    "run_id": "ad3b5101-08ad-492b-b0c2-0ffb7c943241",
+    "batch_id": "batch002",
+    "status": "published",
+    "watermark": 2,
+    "duration_seconds": 17.222205,
+    "failed_checks": []
+  },
+  {
+    "run_id": "8a3ec185-84ac-456b-b5d5-28bb17ebdb1c",
+    "batch_id": "batch002",
+    "status": "noop",
+    "watermark": 2,
+    "duration_seconds": 0.027188,
+    "failed_checks": []
+  }
+]

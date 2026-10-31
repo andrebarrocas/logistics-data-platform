@@ -1,0 +1,79 @@
+name: correctness-and-contracts
+on:
+  push:
+  pull_request:
+permissions:
+  contents: read
+concurrency:
+  group: correctness-${{ github.ref }}
+  cancel-in-progress: true
+jobs:
+  python-sql:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+          cache: pip
+      - run: python -m pip install -e '.[dev,aws]'
+      - run: ruff check src tests scripts jobs
+      - run: ruff format --check src tests scripts jobs
+      - run: mypy src
+      - run: pytest -m 'not spark' --junitxml=work/test-results.xml
+      - run: python scripts/validate_redshift_sql.py
+      - name: Build distributable packages
+        run: python -m build
+      - name: Install and exercise the shipped wheel
+        run: |
+          python -m venv work/wheel-env
+          work/wheel-env/bin/python -m pip install dist/*.whl
+          work/wheel-env/bin/logistics demo --output work/wheel-demo --shipments 100 --seed 42 > work/wheel-demo.json
+          work/wheel-env/bin/logistics export --database work/wheel-demo/warehouse.duckdb --output work/wheel-release --release-id ci-verified-0002
+          python scripts/verify_demo.py --demo-report work/wheel-demo.json --release-manifest work/wheel-release/release.json
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: unit-sql-quality-results
+          path: |
+            work/test-results.xml
+            work/wheel-demo.json
+            work/wheel-release/release.json
+  spark:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    env:
+      SPARK_LOCAL_IP: 127.0.0.1
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+          cache: pip
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+      - run: python -m pip install -e '.[dev,aws,spark]'
+      - run: pytest -m spark --junitxml=work/spark-results.xml
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: spark-results
+          path: work/spark-results.xml
+  terraform:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    defaults:
+      run:
+        working-directory: infra
+    steps:
+      - uses: actions/checkout@v4
+      - uses: hashicorp/setup-terraform@v3
+        with:
+          terraform_version: 1.10.5
+      - run: terraform fmt -check -recursive
+      - run: terraform init -backend=false -input=false -lockfile=readonly
+      - run: terraform validate -no-color
+# CI has no AWS credentials and never applies Terraform or runs paid benchmarks.

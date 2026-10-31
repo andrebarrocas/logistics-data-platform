@@ -1,0 +1,131 @@
+{
+  "verified_at": "2026-10-04T18:27:51Z",
+  "scope": "Independently synthetic portfolio repository. Local tests and mock AWS contracts are distinct from live cloud execution.",
+  "environment": {
+    "python": "3.11.14",
+    "os": "Darwin",
+    "architecture": "arm64",
+    "java": "17.0.20.1",
+    "terraform": "1.10.5",
+    "aws_provider": "5.100.0",
+    "dependencies": {
+      "duckdb": "1.4.1",
+      "numpy": "2.2.6",
+      "pyspark": "3.5.4",
+      "pytest": "8.4.2",
+      "ruff": "0.13.2",
+      "mypy": "1.18.2",
+      "boto3": "1.40.40",
+      "botocore": "1.40.76",
+      "sqlglot": "27.27.0"
+    }
+  },
+  "test_runs": [
+    {
+      "profile": "local-python-sql-and-mocked-aws",
+      "command": "pytest -q -m 'not spark' --junitxml=work/test-results.xml",
+      "status": "passed",
+      "tests": 95,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "duration_seconds": 17.91,
+      "junit": "reports/tests/test-results.xml"
+    },
+    {
+      "profile": "real-local-spark",
+      "command": "SPARK_LOCAL_IP=127.0.0.1 pytest -q -m spark --junitxml=work/spark-results.xml",
+      "status": "passed",
+      "tests": 9,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "duration_seconds": 61.453,
+      "junit": "reports/tests/spark-results.xml"
+    }
+  ],
+  "total_tests_passed": 104,
+  "checks": [
+    {
+      "command": "ruff check src tests scripts jobs",
+      "status": "passed"
+    },
+    {
+      "command": "ruff format --check src tests scripts jobs",
+      "status": "passed",
+      "files": 32
+    },
+    {
+      "command": "mypy src",
+      "status": "passed",
+      "modules": 15
+    },
+    {
+      "command": "python scripts/validate_redshift_sql.py",
+      "status": "passed",
+      "parsed_redshift_statements": 18,
+      "limitation": "Dialect parsing and mocked SQL submission do not execute a Redshift stored procedure."
+    },
+    {
+      "command": "terraform -chdir=infra fmt -check -recursive",
+      "status": "passed"
+    },
+    {
+      "command": "terraform -chdir=infra validate -no-color",
+      "status": "passed",
+      "warnings": 0
+    },
+    {
+      "command": "python -m build",
+      "status": "passed",
+      "artifacts": [
+        "sdist",
+        "wheel"
+      ]
+    },
+    {
+      "command": "python scripts/build_glue_zip.py",
+      "status": "passed"
+    },
+    {
+      "command": "Install built wheel without dependencies into isolated target; run checked-in full/incremental fixtures and repeat batch 2",
+      "status": "passed",
+      "evidence": "reports/tests/installed-wheel.json"
+    }
+  ],
+  "tested_behaviors": [
+    "deterministic entity resolution and ambiguous aliases",
+    "schema evolution and malformed contracts",
+    "full loads, CDC, tombstones, incremental cursors and bounded backfills",
+    "idempotent replay and immutable publication",
+    "SCD Type 1/2, backdated corrections and late-arriving references/events",
+    "referential integrity, state precedence, counts and exact signed cost reconciliation",
+    "eight synthetic incident/recovery exercises",
+    "distributed raw-to-release full/incremental Spark integration",
+    "all 24 Spark/local SQL product parity",
+    "bounded Spark release shards and UTC timestamp transport",
+    "Redshift failure recovery and mocked transactional publication"
+  ],
+  "local_benchmark": {
+    "status": "measured",
+    "rows": 1000000,
+    "repetitions_per_variant": 7,
+    "report": "reports/benchmarks/local/results.json",
+    "limitation": "Warm in-memory isolated SQL workload; not full-pipeline throughput or Redshift evidence."
+  },
+  "cloud_acceptance": {
+    "status": "not_run",
+    "terraform_apply": "not_run",
+    "deployed_glue_job": "not_run",
+    "redshift_stored_procedure": "not_run",
+    "redshift_benchmarks": "not_run",
+    "reason": "No AWS deployment or existing workgroup was supplied for this execution. No paid resources were created.",
+    "instructions": "docs/aws-deployment.md"
+  },
+  "ci_workflow": {
+    "status": "configured_not_run_on_github",
+    "path": ".github/workflows/ci.yml"
+  },
+  "requirements_lock_sha256": "1369ca3105e7a73f1b545f25791539853b1eb46f9710a96120358890216812f3",
+  "artifact_notes": "JUnit hostnames removed for public distribution; test names, outcomes and durations are preserved. Test durations are not performance benchmarks."
+}

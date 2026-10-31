@@ -1,0 +1,5 @@
+{"carrier_alias":"ASTER","event":{"id":"PKG-EVT-000001","occurred_at":"2026-01-02T09:00:01+00:00","state":"collected"},"package_key":"PKG-000001","revision":1,"shipment_key":"SHP-000001","updated_at":"2026-01-02T09:03:01Z"}
+{"carrier_alias":"MERIDIAN","event":{"id":"PKG-EVT-000002","occurred_at":"2026-01-02T09:00:02+00:00","state":"collected"},"package_key":"PKG-000002","revision":1,"shipment_key":"SHP-000002","updated_at":"2026-01-02T09:03:02Z"}
+{"carrier_alias":"VALE","event":{"id":"PKG-EVT-000003","occurred_at":"2026-01-02T09:00:03+00:00","state":"collected"},"package_key":"PKG-000003","revision":1,"shipment_key":"SHP-000003","updated_at":"2026-01-02T09:03:03Z"}
+{"carrier_alias":"ASTER","event":{"id":"PKG-EVT-000004","occurred_at":"2026-01-02T09:00:04+00:00","state":"collected"},"package_key":"PKG-000004","revision":1,"shipment_key":"SHP-000004","updated_at":"2026-01-02T09:03:04Z"}
+{"carrier_alias":"MERIDIAN","event":{"id":"PKG-EVT-000005","occurred_at":"2026-01-02T09:00:05+00:00","state":"collected"},"package_key":"PKG-000005","revision":1,"shipment_key":"SHP-000005","updated_at":"2026-01-02T09:03:05Z"}

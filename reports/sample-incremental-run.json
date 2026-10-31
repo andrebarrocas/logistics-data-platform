@@ -1,0 +1,2169 @@
+{
+  "run_id": "11515e9d-af89-4623-8d30-8a2f83980347",
+  "batch_id": "batch002",
+  "status": "published",
+  "quality": [
+    {
+      "rule_id": "ING_MANIFEST_CONTROLS",
+      "dataset": "platform",
+      "severity": "error",
+      "status": "pass",
+      "observed": {
+        "shipment_ops": {
+          "files": 1,
+          "rows": 1
+        },
+        "carrier_delivery": {
+          "files": 1,
+          "rows": 1
+        },
+        "package_events": {
+          "files": 1,
+          "rows": 1
+        },
+        "transport_costs": {
+          "files": 2,
+          "rows": 1
+        },
+        "reference_master": {
+          "files": 1,
+          "rows": 1
+        }
+      },
+      "expected": {
+        "carrier_delivery": {
+          "files": 1,
+          "rows": 1
+        },
+        "package_events": {
+          "files": 1,
+          "rows": 1
+        },
+        "reference_master": {
+          "files": 1,
+          "rows": 1
+        },
+        "shipment_ops": {
+          "files": 1,
+          "rows": 1
+        },
+        "transport_costs": {
+          "amount_minor": {
+            "EUR": 1334
+          },
+          "files": 2,
+          "rows": 1
+        }
+      },
+      "failed_count": 0,
+      "checked_count": 1,
+      "details": {},
+      "run_id": "11515e9d-af89-4623-8d30-8a2f83980347",
+      "batch_id": "batch002",
+      "evaluated_at": "2026-10-04T13:24:52.336380+00:00"
+    },
+    {
+      "rule_id": "REC_COST_RAW",
+      "dataset": "platform",
+      "severity": "error",
+      "status": "pass",
+      "observed": {
+        "EUR": 1334
+      },
+      "expected": {
+        "EUR": 1334
+      },
+      "failed_count": 0,
+      "checked_count": 1,
+      "details": {},
+      "run_id": "11515e9d-af89-4623-8d30-8a2f83980347",
+      "batch_id": "batch002",
+      "evaluated_at": "2026-10-04T13:24:52.336380+00:00"
+    },
+    {
+      "rule_id": "ING_DUPLICATE_FILE",
+      "dataset": "platform",
+      "severity": "warning",
+      "status": "pass",
+      "observed": 0,
+      "expected": 0,
+      "failed_count": 0,
+      "checked_count": 1,
+      "details": {},
+      "run_id": "11515e9d-af89-4623-8d30-8a2f83980347",
+      "batch_id": "batch002",
+      "evaluated_at": "2026-10-04T13:24:52.336380+00:00"
+    },
+    {
+      "rule_id": "SRC_DUPLICATE_VERSION",
+      "dataset": "platform",
+      "severity": "warning",
+      "status": "pass",
+      "observed": 0,
+      "expected": 0,
+      "failed_count": 0,
+      "checked_count": 1,
+      "details": {},
+      "run_id": "11515e9d-af89-4623-8d30-8a2f83980347",
+      "batch_id": "batch002",
+      "evaluated_at": "2026-10-04T13:24:52.336380+00:00"
+    },
+    {
+      "rule_id": "REC_COST_BRIDGE",
+      "dataset": "platform",
+      "severity": "error",
+      "status": "pass",
+      "observed": 1334,
+      "expected": 1334,
+      "failed_count": 0,
+      "checked_count": 1,
+      "details": {
+        "new_evidence_amount_minor": 1334,
+        "duplicate_or_replayed_amount_minor": 0,
+        "note": "New evidence includes superseded revisions; current-state totals are independently reconciled in SQL."
+      },
+      "run_id": "11515e9d-af89-4623-8d30-8a2f83980347",
+      "batch_id": "batch002",
+      "evaluated_at": "2026-10-04T13:24:52.336380+00:00"
+    },
+    {
+      "rule_id": "CAN_UNRESOLVED_IDENTITY",
+      "dataset": "platform",
+      "severity": "error",
+      "status": "pass",
+      "observed": 0.0,
+      "expected": 0.25,
+      "failed_count": 0,
+      "checked_count": 1,
+      "details": {
+        "unresolved": 0,
+        "attempted": 36
+      },
+      "run_id": "11515e9d-af89-4623-8d30-8a2f83980347",
+      "batch_id": "batch002",
+      "evaluated_at": "2026-10-04T13:24:52.336380+00:00"
+    },
+    {
+      "rule_id": "DIM_INTERVAL_OVERLAP",
+      "dataset": "platform",
+      "severity": "error",
+      "status": "pass",
+      "observed": 0,
+      "expected": 0,
+      "failed_count": 0,
+      "checked_count": 1,
+      "details": "Business-valid intervals must not overlap.",
+      "run_id": "11515e9d-af89-4623-8d30-8a2f83980347",
+      "batch_id": "batch002",
+      "evaluated_at": "2026-10-04T13:24:52.336380+00:00"
+    },
+    {
+      "rule_id": "DIM_SK_COLLISION",
+      "dataset": "platform",
+      "severity": "error",
+      "status": "pass",
+      "observed": 0,
+      "expected": 0,
+      "failed_count": 0,
+      "checked_count": 1,
+      "details": "A deterministic surrogate collision blocks publication.",
+      "run_id": "11515e9d-af89-4623-8d30-8a2f83980347",
+      "batch_id": "batch002",
+      "evaluated_at": "2026-10-04T13:24:52.336380+00:00"
+    },
+    {
+      "rule_id": "DIM_INVALID_INTERVAL",
+      "dataset": "platform",
+      "severity": "error",
+      "status": "pass",
+      "observed": 0,
+      "expected": 0,
+      "failed_count": 0,
+      "checked_count": 1,
+      "details": "Every dimension interval is nonempty and half-open.",
+      "run_id": "11515e9d-af89-4623-8d30-8a2f83980347",
+      "batch_id": "batch002",
+      "evaluated_at": "2026-10-04T13:24:52.336380+00:00"
+    },
+    {
+      "rule_id": "GRAIN_FACT_SHIPMENT",
+      "dataset": "platform",
+      "severity": "error",
+      "status": "pass",
+      "observed": 0,
+      "expected": 0,
+      "failed_count": 0,
+      "checked_count": 1,
+      "details": "Unique declared grain in fact_shipment.",
+      "run_id": "11515e9d-af89-4623-8d30-8a2f83980347",
+      "batch_id": "batch002",
+      "evaluated_at": "2026-10-04T13:24:52.336380+00:00"
+    },
+    {
+      "rule_id": "FK_FACT_SHIPMENT_CARRIER_SK",
+      "dataset": "platform",
+      "severity": "error",
+      "status": "pass",
+      "observed": 0,
+      "expected": 0,
+      "failed_count": 0,
+      "checked_count": 1,
+      "details": "Key 0 must resolve to the explicit unknown member; all other keys must resolve.",
+      "run_id": "11515e9d-af89-4623-8d30-8a2f83980347",
+      "batch_id": "batch002",
+      "evaluated_at": "2026-10-04T13:24:52.336380+00:00"
+    },
+    {
+      "rule_id": "FK_FACT_SHIPMENT_ROUTE_SK",
+      "dataset": "platform",
+      "severity": "error",
+      "status": "pass",
+      "observed": 0,
+      "expected": 0,
+      "failed_count": 0,
+      "checked_count": 1,
+      "details": "Key 0 must resolve to the explicit unknown member; all other keys must resolve.",
+      "run_id": "11515e9d-af89-4623-8d30-8a2f83980347",
+      "batch_id": "batch002",
+      "evaluated_at": "2026-10-04T13:24:52.336380+00:00"
+    },
+    {
+      "rule_id": "FK_FACT_SHIPMENT_SERVICE_LEVEL_SK",
+      "dataset": "platform",
+      "severity": "error",
+      "status": "pass",
+      "observed": 0,
+      "expected": 0,
+      "failed_count": 0,
+      "checked_count": 1,
+      "details": "Key 0 must resolve to the explicit unknown member; all other keys must resolve.",
+      "run_id": "11515e9d-af89-4623-8d30-8a2f83980347",
+      "batch_id": "batch002",
+      "evaluated_at": "2026-10-04T13:24:52.336380+00:00"
+    },
+    {
+      "rule_id": "FK_FACT_SHIPMENT_COUNTRY_SK",
+      "dataset": "platform",
+      "severity": "error",
+      "status": "pass",
+      "observed": 0,
+      "expected": 0,
+      "failed_count": 0,
+      "checked_count": 1,
+      "details": "Key 0 must resolve to the explicit unknown member; all other keys must resolve.",
+      "run_id": "11515e9d-af89-4623-8d30-8a2f83980347",
+      "batch_id": "batch002",
+      "evaluated_at": "2026-10-04T13:24:52.336380+00:00"
+    },
+    {
+      "rule_id": "FK_FACT_SHIPMENT_REGION_SK",
+      "dataset": "platform",
+      "severity": "error",
+      "status": "pass",
+      "observed": 0,
+      "expected": 0,
+      "failed_count": 0,
+      "checked_count": 1,
+      "details": "Key 0 must resolve to the explicit unknown member; all other keys must resolve.",
+      "run_id": "11515e9d-af89-4623-8d30-8a2f83980347",
+      "batch_id": "batch002",
+      "evaluated_at": "2026-10-04T13:24:52.336380+00:00"
+    },
+    {
+      "rule_id": "FK_FACT_SHIPMENT_ORIGIN_FACILITY_SK",
+      "dataset": "platform",
+      "severity": "error",
+      "status": "pass",
+      "observed": 0,
+      "expected": 0,
+      "failed_count": 0,
+      "checked_count": 1,
+      "details": "Key 0 must resolve to the explicit unknown member; all other keys must resolve.",
+      "run_id": "11515e9d-af89-4623-8d30-8a2f83980347",
+      "batch_id": "batch002",
+      "evaluated_at": "2026-10-04T13:24:52.336380+00:00"
+    },
+    {
+      "rule_id": "FK_FACT_SHIPMENT_DESTINATION_FACILITY_SK",
+      "dataset": "platform",
+      "severity": "error",
+      "status": "pass",
+      "observed": 0,
+      "expected": 0,
+      "failed_count": 0,
+      "checked_count": 1,
+      "details": "Key 0 must resolve to the explicit unknown member; all other keys must resolve.",
+      "run_id": "11515e9d-af89-4623-8d30-8a2f83980347",
+      "batch_id": "batch002",
+      "evaluated_at": "2026-10-04T13:24:52.336380+00:00"
+    },
+    {
+      "rule_id": "FK_FACT_SHIPMENT_DESTINATION_REGION_SK",
+      "dataset": "platform",
+      "severity": "error",
+      "status": "pass",
+      "observed": 0,
+      "expected": 0,
+      "failed_count": 0,
+      "checked_count": 1,
+      "details": "Key 0 must resolve to the explicit unknown member; all other keys must resolve.",
+      "run_id": "11515e9d-af89-4623-8d30-8a2f83980347",
+      "batch_id": "batch002",
+      "evaluated_at": "2026-10-04T13:24:52.336380+00:00"
+    },
+    {
+      "rule_id": "FK_FACT_SHIPMENT_ORIGIN_COUNTRY_SK",
+      "dataset": "platform",
+      "severity": "error",
+      "status": "pass",
+      "observed": 0,
+      "expected": 0,
+      "failed_count": 0,
+      "checked_count": 1,
+      "details": "Key 0 must resolve to the explicit unknown member; all other keys must resolve.",
+      "run_id": "11515e9d-af89-4623-8d30-8a2f83980347",
+      "batch_id": "batch002",
+      "evaluated_at": "2026-10-04T13:24:52.336380+00:00"
+    },
+    {
+      "rule_id": "FK_FACT_SHIPMENT_DESTINATION_COUNTRY_SK",
+      "dataset": "platform",
+      "severity": "error",
+      "status": "pass",
+      "observed": 0,
+      "expected": 0,
+      "failed_count": 0,
+      "checked_count": 1,
+      "details": "Key 0 must resolve to the explicit unknown member; all other keys must resolve.",
+      "run_id": "11515e9d-af89-4623-8d30-8a2f83980347",
+      "batch_id": "batch002",
+      "evaluated_at": "2026-10-04T13:24:52.336380+00:00"
+    },
+    {
+      "rule_id": "GRAIN_FACT_DELIVERY_EVENT",
+      "dataset": "platform",
+      "severity": "error",
+      "status": "pass",
+      "observed": 0,
+      "expected": 0,
+      "failed_count": 0,
+      "checked_count": 1,
+      "details": "Unique declared grain in fact_delivery_event.",
+      "run_id": "11515e9d-af89-4623-8d30-8a2f83980347",
+      "batch_id": "batch002",
+      "evaluated_at": "2026-10-04T13:24:52.336380+00:00"
+    },
+    {
+      "rule_id": "FK_FACT_DELIVERY_EVENT_CARRIER_SK",
+      "dataset": "platform",
+      "severity": "error",
+      "status": "pass",
+      "observed": 0,
+      "expected": 0,
+      "failed_count": 0,
+      "checked_count": 1,
+      "details": "Key 0 must resolve to the explicit unknown member; all other keys must resolve.",
+      "run_id": "11515e9d-af89-4623-8d30-8a2f83980347",
+      "batch_id": "batch002",
+      "evaluated_at": "2026-10-04T13:24:52.336380+00:00"
+    },
+    {
+      "rule_id": "FK_FACT_DELIVERY_EVENT_ROUTE_SK",
+      "dataset": "platform",
+      "severity": "error",
+      "status": "pass",
+      "observed": 0,
+      "expected": 0,
+      "failed_count": 0,
+      "checked_count": 1,
+      "details": "Key 0 must resolve to the explicit unknown member; all other keys must resolve.",
+      "run_id": "11515e9d-af89-4623-8d30-8a2f83980347",
+      "batch_id": "batch002",
+      "evaluated_at": "2026-10-04T13:24:52.336380+00:00"
+    },
+    {
+      "rule_id": "FK_FACT_DELIVERY_EVENT_SERVICE_LEVEL_SK",
+      "dataset": "platform",
+      "severity": "error",
+      "status": "pass",
+      "observed": 0,
+      "expected": 0,
+      "failed_count": 0,
+      "checked_count": 1,
+      "details": "Key 0 must resolve to the explicit unknown member; all other keys must resolve.",
+      "run_id": "11515e9d-af89-4623-8d30-8a2f83980347",
+      "batch_id": "batch002",
+      "evaluated_at": "2026-10-04T13:24:52.336380+00:00"
+    },
+    {
+      "rule_id": "FK_FACT_DELIVERY_EVENT_COUNTRY_SK",
+      "dataset": "platform",
+      "severity": "error",
+      "status": "pass",
+      "observed": 0,
+      "expected": 0,
+      "failed_count": 0,
+      "checked_count": 1,
+      "details": "Key 0 must resolve to the explicit unknown member; all other keys must resolve.",
+      "run_id": "11515e9d-af89-4623-8d30-8a2f83980347",
+      "batch_id": "batch002",
+      "evaluated_at": "2026-10-04T13:24:52.336380+00:00"
+    },
+    {
+      "rule_id": "FK_FACT_DELIVERY_EVENT_REGION_SK",
+      "dataset": "platform",
+      "severity": "error",
+      "status": "pass",
+      "observed": 0,
+      "expected": 0,
+      "failed_count": 0,
+      "checked_count": 1,
+      "details": "Key 0 must resolve to the explicit unknown member; all other keys must resolve.",
+      "run_id": "11515e9d-af89-4623-8d30-8a2f83980347",
+      "batch_id": "batch002",
+      "evaluated_at": "2026-10-04T13:24:52.336380+00:00"
+    },
+    {
+      "rule_id": "FK_FACT_DELIVERY_EVENT_ORIGIN_FACILITY_SK",
+      "dataset": "platform",
+      "severity": "error",
+      "status": "pass",
+      "observed": 0,
+      "expected": 0,
+      "failed_count": 0,
+      "checked_count": 1,
+      "details": "Key 0 must resolve to the explicit unknown member; all other keys must resolve.",
+      "run_id": "11515e9d-af89-4623-8d30-8a2f83980347",
+      "batch_id": "batch002",
+      "evaluated_at": "2026-10-04T13:24:52.336380+00:00"
+    },
+    {
+      "rule_id": "FK_FACT_DELIVERY_EVENT_DESTINATION_FACILITY_SK",
+      "dataset": "platform",
+      "severity": "error",
+      "status": "pass",
+      "observed": 0,
+      "expected": 0,
+      "failed_count": 0,
+      "checked_count": 1,
+      "details": "Key 0 must resolve to the explicit unknown member; all other keys must resolve.",
+      "run_id": "11515e9d-af89-4623-8d30-8a2f83980347",
+      "batch_id": "batch002",
+      "evaluated_at": "2026-10-04T13:24:52.336380+00:00"
+    },
+    {
+      "rule_id": "FK_FACT_DELIVERY_EVENT_DESTINATION_REGION_SK",
+      "dataset": "platform",
+      "severity": "error",
+      "status": "pass",
+      "observed": 0,
+      "expected": 0,
+      "failed_count": 0,
+      "checked_count": 1,
+      "details": "Key 0 must resolve to the explicit unknown member; all other keys must resolve.",
+      "run_id": "11515e9d-af89-4623-8d30-8a2f83980347",
+      "batch_id": "batch002",
+      "evaluated_at": "2026-10-04T13:24:52.336380+00:00"
+    },
+    {
+      "rule_id": "FK_FACT_DELIVERY_EVENT_ORIGIN_COUNTRY_SK",
+      "dataset": "platform",
+      "severity": "error",
+      "status": "pass",
+      "observed": 0,
+      "expected": 0,
+      "failed_count": 0,
+      "checked_count": 1,
+      "details": "Key 0 must resolve to the explicit unknown member; all other keys must resolve.",
+      "run_id": "11515e9d-af89-4623-8d30-8a2f83980347",
+      "batch_id": "batch002",
+      "evaluated_at": "2026-10-04T13:24:52.336380+00:00"
+    },
+    {
+      "rule_id": "FK_FACT_DELIVERY_EVENT_DESTINATION_COUNTRY_SK",
+      "dataset": "platform",
+      "severity": "error",
+      "status": "pass",
+      "observed": 0,
+      "expected": 0,
+      "failed_count": 0,
+      "checked_count": 1,
+      "details": "Key 0 must resolve to the explicit unknown member; all other keys must resolve.",
+      "run_id": "11515e9d-af89-4623-8d30-8a2f83980347",
+      "batch_id": "batch002",
+      "evaluated_at": "2026-10-04T13:24:52.336380+00:00"
+    },
+    {
+      "rule_id": "GRAIN_FACT_TRANSPORTATION_COST",
+      "dataset": "platform",
+      "severity": "error",
+      "status": "pass",
+      "observed": 0,
+      "expected": 0,
+      "failed_count": 0,
+      "checked_count": 1,
+      "details": "Unique declared grain in fact_transportation_cost.",
+      "run_id": "11515e9d-af89-4623-8d30-8a2f83980347",
+      "batch_id": "batch002",
+      "evaluated_at": "2026-10-04T13:24:52.336380+00:00"
+    },
+    {
+      "rule_id": "FK_FACT_TRANSPORTATION_COST_CARRIER_SK",
+      "dataset": "platform",
+      "severity": "error",
+      "status": "pass",
+      "observed": 0,
+      "expected": 0,
+      "failed_count": 0,
+      "checked_count": 1,
+      "details": "Key 0 must resolve to the explicit unknown member; all other keys must resolve.",
+      "run_id": "11515e9d-af89-4623-8d30-8a2f83980347",
+      "batch_id": "batch002",
+      "evaluated_at": "2026-10-04T13:24:52.336380+00:00"
+    },
+    {
+      "rule_id": "FK_FACT_TRANSPORTATION_COST_ROUTE_SK",
+      "dataset": "platform",
+      "severity": "error",
+      "status": "pass",
+      "observed": 0,
+      "expected": 0,
+      "failed_count": 0,
+      "checked_count": 1,
+      "details": "Key 0 must resolve to the explicit unknown member; all other keys must resolve.",
+      "run_id": "11515e9d-af89-4623-8d30-8a2f83980347",
+      "batch_id": "batch002",
+      "evaluated_at": "2026-10-04T13:24:52.336380+00:00"
+    },
+    {
+      "rule_id": "FK_FACT_TRANSPORTATION_COST_SERVICE_LEVEL_SK",
+      "dataset": "platform",
+      "severity": "error",
+      "status": "pass",
+      "observed": 0,
+      "expected": 0,
+      "failed_count": 0,
+      "checked_count": 1,
+      "details": "Key 0 must resolve to the explicit unknown member; all other keys must resolve.",
+      "run_id": "11515e9d-af89-4623-8d30-8a2f83980347",
+      "batch_id": "batch002",
+      "evaluated_at": "2026-10-04T13:24:52.336380+00:00"
+    },
+    {
+      "rule_id": "FK_FACT_TRANSPORTATION_COST_COUNTRY_SK",
+      "dataset": "platform",
+      "severity": "error",
+      "status": "pass",
+      "observed": 0,
+      "expected": 0,
+      "failed_count": 0,
+      "checked_count": 1,
+      "details": "Key 0 must resolve to the explicit unknown member; all other keys must resolve.",
+      "run_id": "11515e9d-af89-4623-8d30-8a2f83980347",
+      "batch_id": "batch002",
+      "evaluated_at": "2026-10-04T13:24:52.336380+00:00"
+    },
+    {
+      "rule_id": "FK_FACT_TRANSPORTATION_COST_REGION_SK",
+      "dataset": "platform",
+      "severity": "error",
+      "status": "pass",
+      "observed": 0,
+      "expected": 0,
+      "failed_count": 0,
+      "checked_count": 1,
+      "details": "Key 0 must resolve to the explicit unknown member; all other keys must resolve.",
+      "run_id": "11515e9d-af89-4623-8d30-8a2f83980347",
+      "batch_id": "batch002",
+      "evaluated_at": "2026-10-04T13:24:52.336380+00:00"
+    },
+    {
+      "rule_id": "FK_FACT_TRANSPORTATION_COST_ORIGIN_FACILITY_SK",
+      "dataset": "platform",
+      "severity": "error",
+      "status": "pass",
+      "observed": 0,
+      "expected": 0,
+      "failed_count": 0,
+      "checked_count": 1,
+      "details": "Key 0 must resolve to the explicit unknown member; all other keys must resolve.",
+      "run_id": "11515e9d-af89-4623-8d30-8a2f83980347",
+      "batch_id": "batch002",
+      "evaluated_at": "2026-10-04T13:24:52.336380+00:00"
+    },
+    {
+      "rule_id": "FK_FACT_TRANSPORTATION_COST_DESTINATION_FACILITY_SK",
+      "dataset": "platform",
+      "severity": "error",
+      "status": "pass",
+      "observed": 0,
+      "expected": 0,
+      "failed_count": 0,
+      "checked_count": 1,
+      "details": "Key 0 must resolve to the explicit unknown member; all other keys must resolve.",
+      "run_id": "11515e9d-af89-4623-8d30-8a2f83980347",
+      "batch_id": "batch002",
+      "evaluated_at": "2026-10-04T13:24:52.336380+00:00"
+    },
+    {
+      "rule_id": "FK_FACT_TRANSPORTATION_COST_DESTINATION_REGION_SK",
+      "dataset": "platform",
+      "severity": "error",
+      "status": "pass",
+      "observed": 0,
+      "expected": 0,
+      "failed_count": 0,
+      "checked_count": 1,
+      "details": "Key 0 must resolve to the explicit unknown member; all other keys must resolve.",
+      "run_id": "11515e9d-af89-4623-8d30-8a2f83980347",
+      "batch_id": "batch002",
+      "evaluated_at": "2026-10-04T13:24:52.336380+00:00"
+    },
+    {
+      "rule_id": "FK_FACT_TRANSPORTATION_COST_ORIGIN_COUNTRY_SK",
+      "dataset": "platform",
+      "severity": "error",
+      "status": "pass",
+      "observed": 0,
+      "expected": 0,
+      "failed_count": 0,
+      "checked_count": 1,
+      "details": "Key 0 must resolve to the explicit unknown member; all other keys must resolve.",
+      "run_id": "11515e9d-af89-4623-8d30-8a2f83980347",
+      "batch_id": "batch002",
+      "evaluated_at": "2026-10-04T13:24:52.336380+00:00"
+    },
+    {
+      "rule_id": "FK_FACT_TRANSPORTATION_COST_DESTINATION_COUNTRY_SK",
+      "dataset": "platform",
+      "severity": "error",
+      "status": "pass",
+      "observed": 0,
+      "expected": 0,
+      "failed_count": 0,
+      "checked_count": 1,
+      "details": "Key 0 must resolve to the explicit unknown member; all other keys must resolve.",
+      "run_id": "11515e9d-af89-4623-8d30-8a2f83980347",
+      "batch_id": "batch002",
+      "evaluated_at": "2026-10-04T13:24:52.336380+00:00"
+    },
+    {
+      "rule_id": "DATE_FK_FACT_SHIPMENT_CREATED_DATE_SK",
+      "dataset": "platform",
+      "severity": "error",
+      "status": "pass",
+      "observed": 0,
+      "expected": 0,
+      "failed_count": 0,
+      "checked_count": 1,
+      "details": "Every role-playing date resolves, including explicit unknown key 0.",
+      "run_id": "11515e9d-af89-4623-8d30-8a2f83980347",
+      "batch_id": "batch002",
+      "evaluated_at": "2026-10-04T13:24:52.336380+00:00"
+    },
+    {
+      "rule_id": "DATE_FK_FACT_SHIPMENT_PROMISED_DATE_SK",
+      "dataset": "platform",
+      "severity": "error",
+      "status": "pass",
+      "observed": 0,
+      "expected": 0,
+      "failed_count": 0,
+      "checked_count": 1,
+      "details": "Every role-playing date resolves, including explicit unknown key 0.",
+      "run_id": "11515e9d-af89-4623-8d30-8a2f83980347",
+      "batch_id": "batch002",
+      "evaluated_at": "2026-10-04T13:24:52.336380+00:00"
+    },
+    {
+      "rule_id": "DATE_FK_FACT_SHIPMENT_DELIVERED_DATE_SK",
+      "dataset": "platform",
+      "severity": "error",
+      "status": "pass",
+      "observed": 0,
+      "expected": 0,
+      "failed_count": 0,
+      "checked_count": 1,
+      "details": "Every role-playing date resolves, including explicit unknown key 0.",
+      "run_id": "11515e9d-af89-4623-8d30-8a2f83980347",
+      "batch_id": "batch002",
+      "evaluated_at": "2026-10-04T13:24:52.336380+00:00"
+    },
+    {
+      "rule_id": "DATE_FK_FACT_DELIVERY_EVENT_EVENT_DATE_SK",
+      "dataset": "platform",
+      "severity": "error",
+      "status": "pass",
+      "observed": 0,
+      "expected": 0,
+      "failed_count": 0,
+      "checked_count": 1,
+      "details": "Every role-playing date resolves, including explicit unknown key 0.",
+      "run_id": "11515e9d-af89-4623-8d30-8a2f83980347",
+      "batch_id": "batch002",
+      "evaluated_at": "2026-10-04T13:24:52.336380+00:00"
+    },
+    {
+      "rule_id": "DATE_FK_FACT_TRANSPORTATION_COST_INCURRED_DATE_SK",
+      "dataset": "platform",
+      "severity": "error",
+      "status": "pass",
+      "observed": 0,
+      "expected": 0,
+      "failed_count": 0,
+      "checked_count": 1,
+      "details": "Every role-playing date resolves, including explicit unknown key 0.",
+      "run_id": "11515e9d-af89-4623-8d30-8a2f83980347",
+      "batch_id": "batch002",
+      "evaluated_at": "2026-10-04T13:24:52.336380+00:00"
+    },
+    {
+      "rule_id": "ASOF_SHIPMENT_CARRIER_SK",
+      "dataset": "platform",
+      "severity": "error",
+      "status": "pass",
+      "observed": 0,
+      "expected": 0,
+      "failed_count": 0,
+      "checked_count": 1,
+      "details": "Fact attribution must identify the same canonical entity in the applicable half-open interval.",
+      "run_id": "11515e9d-af89-4623-8d30-8a2f83980347",
+      "batch_id": "batch002",
+      "evaluated_at": "2026-10-04T13:24:52.336380+00:00"
+    },
+    {
+      "rule_id": "ASOF_EVENT_CARRIER_SK",
+      "dataset": "platform",
+      "severity": "error",
+      "status": "pass",
+      "observed": 0,
+      "expected": 0,
+      "failed_count": 0,
+      "checked_count": 1,
+      "details": "Fact attribution must identify the same canonical entity in the applicable half-open interval.",
+      "run_id": "11515e9d-af89-4623-8d30-8a2f83980347",
+      "batch_id": "batch002",
+      "evaluated_at": "2026-10-04T13:24:52.336380+00:00"
+    },
+    {
+      "rule_id": "ASOF_COST_CARRIER_SK",
+      "dataset": "platform",
+      "severity": "error",
+      "status": "pass",
+      "observed": 0,
+      "expected": 0,
+      "failed_count": 0,
+      "checked_count": 1,
+      "details": "Fact attribution must identify the same canonical entity in the applicable half-open interval.",
+      "run_id": "11515e9d-af89-4623-8d30-8a2f83980347",
+      "batch_id": "batch002",
+      "evaluated_at": "2026-10-04T13:24:52.336380+00:00"
+    },
+    {
+      "rule_id": "ASOF_SHIPMENT_ORIGIN_FACILITY_SK",
+      "dataset": "platform",
+      "severity": "error",
+      "status": "pass",
+      "observed": 0,
+      "expected": 0,
+      "failed_count": 0,
+      "checked_count": 1,
+      "details": "Fact attribution must identify the same canonical entity in the applicable half-open interval.",
+      "run_id": "11515e9d-af89-4623-8d30-8a2f83980347",
+      "batch_id": "batch002",
+      "evaluated_at": "2026-10-04T13:24:52.336380+00:00"
+    },
+    {
+      "rule_id": "ASOF_EVENT_ORIGIN_FACILITY_SK",
+      "dataset": "platform",
+      "severity": "error",
+      "status": "pass",
+      "observed": 0,
+      "expected": 0,
+      "failed_count": 0,
+      "checked_count": 1,
+      "details": "Fact attribution must identify the same canonical entity in the applicable half-open interval.",
+      "run_id": "11515e9d-af89-4623-8d30-8a2f83980347",
+      "batch_id": "batch002",
+      "evaluated_at": "2026-10-04T13:24:52.336380+00:00"
+    },
+    {
+      "rule_id": "ASOF_COST_ORIGIN_FACILITY_SK",
+      "dataset": "platform",
+      "severity": "error",
+      "status": "pass",
+      "observed": 0,
+      "expected": 0,
+      "failed_count": 0,
+      "checked_count": 1,
+      "details": "Fact attribution must identify the same canonical entity in the applicable half-open interval.",
+      "run_id": "11515e9d-af89-4623-8d30-8a2f83980347",
+      "batch_id": "batch002",
+      "evaluated_at": "2026-10-04T13:24:52.336380+00:00"
+    },
+    {
+      "rule_id": "ASOF_SHIPMENT_DESTINATION_FACILITY_SK",
+      "dataset": "platform",
+      "severity": "error",
+      "status": "pass",
+      "observed": 0,
+      "expected": 0,
+      "failed_count": 0,
+      "checked_count": 1,
+      "details": "Fact attribution must identify the same canonical entity in the applicable half-open interval.",
+      "run_id": "11515e9d-af89-4623-8d30-8a2f83980347",
+      "batch_id": "batch002",
+      "evaluated_at": "2026-10-04T13:24:52.336380+00:00"
+    },
+    {
+      "rule_id": "ASOF_EVENT_DESTINATION_FACILITY_SK",
+      "dataset": "platform",
+      "severity": "error",
+      "status": "pass",
+      "observed": 0,
+      "expected": 0,
+      "failed_count": 0,
+      "checked_count": 1,
+      "details": "Fact attribution must identify the same canonical entity in the applicable half-open interval.",
+      "run_id": "11515e9d-af89-4623-8d30-8a2f83980347",
+      "batch_id": "batch002",
+      "evaluated_at": "2026-10-04T13:24:52.336380+00:00"
+    },
+    {
+      "rule_id": "ASOF_COST_DESTINATION_FACILITY_SK",
+      "dataset": "platform",
+      "severity": "error",
+      "status": "pass",
+      "observed": 0,
+      "expected": 0,
+      "failed_count": 0,
+      "checked_count": 1,
+      "details": "Fact attribution must identify the same canonical entity in the applicable half-open interval.",
+      "run_id": "11515e9d-af89-4623-8d30-8a2f83980347",
+      "batch_id": "batch002",
+      "evaluated_at": "2026-10-04T13:24:52.336380+00:00"
+    },
+    {
+      "rule_id": "ASOF_SHIPMENT_ROUTE_SK",
+      "dataset": "platform",
+      "severity": "error",
+      "status": "pass",
+      "observed": 0,
+      "expected": 0,
+      "failed_count": 0,
+      "checked_count": 1,
+      "details": "Fact attribution must identify the same canonical entity in the applicable half-open interval.",
+      "run_id": "11515e9d-af89-4623-8d30-8a2f83980347",
+      "batch_id": "batch002",
+      "evaluated_at": "2026-10-04T13:24:52.336380+00:00"
+    },
+    {
+      "rule_id": "ASOF_EVENT_ROUTE_SK",
+      "dataset": "platform",
+      "severity": "error",
+      "status": "pass",
+      "observed": 0,
+      "expected": 0,
+      "failed_count": 0,
+      "checked_count": 1,
+      "details": "Fact attribution must identify the same canonical entity in the applicable half-open interval.",
+      "run_id": "11515e9d-af89-4623-8d30-8a2f83980347",
+      "batch_id": "batch002",
+      "evaluated_at": "2026-10-04T13:24:52.336380+00:00"
+    },
+    {
+      "rule_id": "ASOF_COST_ROUTE_SK",
+      "dataset": "platform",
+      "severity": "error",
+      "status": "pass",
+      "observed": 0,
+      "expected": 0,
+      "failed_count": 0,
+      "checked_count": 1,
+      "details": "Fact attribution must identify the same canonical entity in the applicable half-open interval.",
+      "run_id": "11515e9d-af89-4623-8d30-8a2f83980347",
+      "batch_id": "batch002",
+      "evaluated_at": "2026-10-04T13:24:52.336380+00:00"
+    },
+    {
+      "rule_id": "ASOF_SHIPMENT_COUNTRY_SK",
+      "dataset": "platform",
+      "severity": "error",
+      "status": "pass",
+      "observed": 0,
+      "expected": 0,
+      "failed_count": 0,
+      "checked_count": 1,
+      "details": "Fact attribution must identify the same canonical entity in the applicable half-open interval.",
+      "run_id": "11515e9d-af89-4623-8d30-8a2f83980347",
+      "batch_id": "batch002",
+      "evaluated_at": "2026-10-04T13:24:52.336380+00:00"
+    },
+    {
+      "rule_id": "ASOF_EVENT_COUNTRY_SK",
+      "dataset": "platform",
+      "severity": "error",
+      "status": "pass",
+      "observed": 0,
+      "expected": 0,
+      "failed_count": 0,
+      "checked_count": 1,
+      "details": "Fact attribution must identify the same canonical entity in the applicable half-open interval.",
+      "run_id": "11515e9d-af89-4623-8d30-8a2f83980347",
+      "batch_id": "batch002",
+      "evaluated_at": "2026-10-04T13:24:52.336380+00:00"
+    },
+    {
+      "rule_id": "ASOF_COST_COUNTRY_SK",
+      "dataset": "platform",
+      "severity": "error",
+      "status": "pass",
+      "observed": 0,
+      "expected": 0,
+      "failed_count": 0,
+      "checked_count": 1,
+      "details": "Fact attribution must identify the same canonical entity in the applicable half-open interval.",
+      "run_id": "11515e9d-af89-4623-8d30-8a2f83980347",
+      "batch_id": "batch002",
+      "evaluated_at": "2026-10-04T13:24:52.336380+00:00"
+    },
+    {
+      "rule_id": "ASOF_SHIPMENT_REGION_SK",
+      "dataset": "platform",
+      "severity": "error",
+      "status": "pass",
+      "observed": 0,
+      "expected": 0,
+      "failed_count": 0,
+      "checked_count": 1,
+      "details": "Fact attribution must identify the same canonical entity in the applicable half-open interval.",
+      "run_id": "11515e9d-af89-4623-8d30-8a2f83980347",
+      "batch_id": "batch002",
+      "evaluated_at": "2026-10-04T13:24:52.336380+00:00"
+    },
+    {
+      "rule_id": "ASOF_EVENT_REGION_SK",
+      "dataset": "platform",
+      "severity": "error",
+      "status": "pass",
+      "observed": 0,
+      "expected": 0,
+      "failed_count": 0,
+      "checked_count": 1,
+      "details": "Fact attribution must identify the same canonical entity in the applicable half-open interval.",
+      "run_id": "11515e9d-af89-4623-8d30-8a2f83980347",
+      "batch_id": "batch002",
+      "evaluated_at": "2026-10-04T13:24:52.336380+00:00"
+    },
+    {
+      "rule_id": "ASOF_COST_REGION_SK",
+      "dataset": "platform",
+      "severity": "error",
+      "status": "pass",
+      "observed": 0,
+      "expected": 0,
+      "failed_count": 0,
+      "checked_count": 1,
+      "details": "Fact attribution must identify the same canonical entity in the applicable half-open interval.",
+      "run_id": "11515e9d-af89-4623-8d30-8a2f83980347",
+      "batch_id": "batch002",
+      "evaluated_at": "2026-10-04T13:24:52.336380+00:00"
+    },
+    {
+      "rule_id": "ASOF_SHIPMENT_DESTINATION_REGION_SK",
+      "dataset": "platform",
+      "severity": "error",
+      "status": "pass",
+      "observed": 0,
+      "expected": 0,
+      "failed_count": 0,
+      "checked_count": 1,
+      "details": "Fact attribution must identify the same canonical entity in the applicable half-open interval.",
+      "run_id": "11515e9d-af89-4623-8d30-8a2f83980347",
+      "batch_id": "batch002",
+      "evaluated_at": "2026-10-04T13:24:52.336380+00:00"
+    },
+    {
+      "rule_id": "ASOF_EVENT_DESTINATION_REGION_SK",
+      "dataset": "platform",
+      "severity": "error",
+      "status": "pass",
+      "observed": 0,
+      "expected": 0,
+      "failed_count": 0,
+      "checked_count": 1,
+      "details": "Fact attribution must identify the same canonical entity in the applicable half-open interval.",
+      "run_id": "11515e9d-af89-4623-8d30-8a2f83980347",
+      "batch_id": "batch002",
+      "evaluated_at": "2026-10-04T13:24:52.336380+00:00"
+    },
+    {
+      "rule_id": "ASOF_COST_DESTINATION_REGION_SK",
+      "dataset": "platform",
+      "severity": "error",
+      "status": "pass",
+      "observed": 0,
+      "expected": 0,
+      "failed_count": 0,
+      "checked_count": 1,
+      "details": "Fact attribution must identify the same canonical entity in the applicable half-open interval.",
+      "run_id": "11515e9d-af89-4623-8d30-8a2f83980347",
+      "batch_id": "batch002",
+      "evaluated_at": "2026-10-04T13:24:52.336380+00:00"
+    },
+    {
+      "rule_id": "ASOF_SHIPMENT_SERVICE_LEVEL_SK",
+      "dataset": "platform",
+      "severity": "error",
+      "status": "pass",
+      "observed": 0,
+      "expected": 0,
+      "failed_count": 0,
+      "checked_count": 1,
+      "details": "Fact attribution must identify the same canonical entity in the applicable half-open interval.",
+      "run_id": "11515e9d-af89-4623-8d30-8a2f83980347",
+      "batch_id": "batch002",
+      "evaluated_at": "2026-10-04T13:24:52.336380+00:00"
+    },
+    {
+      "rule_id": "ASOF_EVENT_SERVICE_LEVEL_SK",
+      "dataset": "platform",
+      "severity": "error",
+      "status": "pass",
+      "observed": 0,
+      "expected": 0,
+      "failed_count": 0,
+      "checked_count": 1,
+      "details": "Fact attribution must identify the same canonical entity in the applicable half-open interval.",
+      "run_id": "11515e9d-af89-4623-8d30-8a2f83980347",
+      "batch_id": "batch002",
+      "evaluated_at": "2026-10-04T13:24:52.336380+00:00"
+    },
+    {
+      "rule_id": "ASOF_COST_SERVICE_LEVEL_SK",
+      "dataset": "platform",
+      "severity": "error",
+      "status": "pass",
+      "observed": 0,
+      "expected": 0,
+      "failed_count": 0,
+      "checked_count": 1,
+      "details": "Fact attribution must identify the same canonical entity in the applicable half-open interval.",
+      "run_id": "11515e9d-af89-4623-8d30-8a2f83980347",
+      "batch_id": "batch002",
+      "evaluated_at": "2026-10-04T13:24:52.336380+00:00"
+    },
+    {
+      "rule_id": "ASOF_SHIPMENT_ORIGIN_COUNTRY_SK",
+      "dataset": "platform",
+      "severity": "error",
+      "status": "pass",
+      "observed": 0,
+      "expected": 0,
+      "failed_count": 0,
+      "checked_count": 1,
+      "details": "Fact attribution must identify the same canonical entity in the applicable half-open interval.",
+      "run_id": "11515e9d-af89-4623-8d30-8a2f83980347",
+      "batch_id": "batch002",
+      "evaluated_at": "2026-10-04T13:24:52.336380+00:00"
+    },
+    {
+      "rule_id": "ASOF_EVENT_ORIGIN_COUNTRY_SK",
+      "dataset": "platform",
+      "severity": "error",
+      "status": "pass",
+      "observed": 0,
+      "expected": 0,
+      "failed_count": 0,
+      "checked_count": 1,
+      "details": "Fact attribution must identify the same canonical entity in the applicable half-open interval.",
+      "run_id": "11515e9d-af89-4623-8d30-8a2f83980347",
+      "batch_id": "batch002",
+      "evaluated_at": "2026-10-04T13:24:52.336380+00:00"
+    },
+    {
+      "rule_id": "ASOF_COST_ORIGIN_COUNTRY_SK",
+      "dataset": "platform",
+      "severity": "error",
+      "status": "pass",
+      "observed": 0,
+      "expected": 0,
+      "failed_count": 0,
+      "checked_count": 1,
+      "details": "Fact attribution must identify the same canonical entity in the applicable half-open interval.",
+      "run_id": "11515e9d-af89-4623-8d30-8a2f83980347",
+      "batch_id": "batch002",
+      "evaluated_at": "2026-10-04T13:24:52.336380+00:00"
+    },
+    {
+      "rule_id": "ASOF_SHIPMENT_DESTINATION_COUNTRY_SK",
+      "dataset": "platform",
+      "severity": "error",
+      "status": "pass",
+      "observed": 0,
+      "expected": 0,
+      "failed_count": 0,
+      "checked_count": 1,
+      "details": "Fact attribution must identify the same canonical entity in the applicable half-open interval.",
+      "run_id": "11515e9d-af89-4623-8d30-8a2f83980347",
+      "batch_id": "batch002",
+      "evaluated_at": "2026-10-04T13:24:52.336380+00:00"
+    },
+    {
+      "rule_id": "ASOF_EVENT_DESTINATION_COUNTRY_SK",
+      "dataset": "platform",
+      "severity": "error",
+      "status": "pass",
+      "observed": 0,
+      "expected": 0,
+      "failed_count": 0,
+      "checked_count": 1,
+      "details": "Fact attribution must identify the same canonical entity in the applicable half-open interval.",
+      "run_id": "11515e9d-af89-4623-8d30-8a2f83980347",
+      "batch_id": "batch002",
+      "evaluated_at": "2026-10-04T13:24:52.336380+00:00"
+    },
+    {
+      "rule_id": "ASOF_COST_DESTINATION_COUNTRY_SK",
+      "dataset": "platform",
+      "severity": "error",
+      "status": "pass",
+      "observed": 0,
+      "expected": 0,
+      "failed_count": 0,
+      "checked_count": 1,
+      "details": "Fact attribution must identify the same canonical entity in the applicable half-open interval.",
+      "run_id": "11515e9d-af89-4623-8d30-8a2f83980347",
+      "batch_id": "batch002",
+      "evaluated_at": "2026-10-04T13:24:52.336380+00:00"
+    },
+    {
+      "rule_id": "REFERENCE_ATTRIBUTE_VALUE",
+      "dataset": "platform",
+      "severity": "error",
+      "status": "pass",
+      "observed": 0,
+      "expected": 0,
+      "failed_count": 0,
+      "checked_count": 1,
+      "details": "Reference attributes have required relationship keys, positive integral service days, and finite nonnegative route distance.",
+      "run_id": "11515e9d-af89-4623-8d30-8a2f83980347",
+      "batch_id": "batch002",
+      "evaluated_at": "2026-10-04T13:24:52.336380+00:00"
+    },
+    {
+      "rule_id": "REFERENCE_COUNTRY_ORPHAN",
+      "dataset": "platform",
+      "severity": "error",
+      "status": "pass",
+      "observed": 0,
+      "expected": 0,
+      "failed_count": 0,
+      "checked_count": 1,
+      "details": "Facility country must exist at the facility version start.",
+      "run_id": "11515e9d-af89-4623-8d30-8a2f83980347",
+      "batch_id": "batch002",
+      "evaluated_at": "2026-10-04T13:24:52.336380+00:00"
+    },
+    {
+      "rule_id": "REFERENCE_REGION_ORPHAN",
+      "dataset": "platform",
+      "severity": "error",
+      "status": "pass",
+      "observed": 0,
+      "expected": 0,
+      "failed_count": 0,
+      "checked_count": 1,
+      "details": "Facility region must exist at the facility version start.",
+      "run_id": "11515e9d-af89-4623-8d30-8a2f83980347",
+      "batch_id": "batch002",
+      "evaluated_at": "2026-10-04T13:24:52.336380+00:00"
+    },
+    {
+      "rule_id": "ROUTE_ENDPOINT_DISAGREEMENT",
+      "dataset": "platform",
+      "severity": "error",
+      "status": "pass",
+      "observed": 0,
+      "expected": 0,
+      "failed_count": 0,
+      "checked_count": 1,
+      "details": "The assigned directed route must agree with shipment origin and destination.",
+      "run_id": "11515e9d-af89-4623-8d30-8a2f83980347",
+      "batch_id": "batch002",
+      "evaluated_at": "2026-10-04T13:24:52.336380+00:00"
+    },
+    {
+      "rule_id": "INVALID_STATE_VALUE",
+      "dataset": "platform",
+      "severity": "error",
+      "status": "pass",
+      "observed": 0,
+      "expected": 0,
+      "failed_count": 0,
+      "checked_count": 1,
+      "details": "States use the closed normalized vocabulary.",
+      "run_id": "11515e9d-af89-4623-8d30-8a2f83980347",
+      "batch_id": "batch002",
+      "evaluated_at": "2026-10-04T13:24:52.336380+00:00"
+    },
+    {
+      "rule_id": "STATE_AUTHORITY_TIE",
+      "dataset": "platform",
+      "severity": "error",
+      "status": "pass",
+      "observed": 0,
+      "expected": 0,
+      "failed_count": 0,
+      "checked_count": 1,
+      "details": "Different states at the highest equal authority and occurrence require explicit resolution.",
+      "run_id": "11515e9d-af89-4623-8d30-8a2f83980347",
+      "batch_id": "batch002",
+      "evaluated_at": "2026-10-04T13:24:52.336380+00:00"
+    },
+    {
+      "rule_id": "SHIPMENT_IMPOSSIBLE_TIME",
+      "dataset": "platform",
+      "severity": "error",
+      "status": "pass",
+      "observed": 0,
+      "expected": 0,
+      "failed_count": 0,
+      "checked_count": 1,
+      "details": "Promised and actual delivery cannot precede shipment creation.",
+      "run_id": "11515e9d-af89-4623-8d30-8a2f83980347",
+      "batch_id": "batch002",
+      "evaluated_at": "2026-10-04T13:24:52.336380+00:00"
+    },
+    {
+      "rule_id": "EVENT_BEFORE_CREATION",
+      "dataset": "platform",
+      "severity": "error",
+      "status": "pass",
+      "observed": 0,
+      "expected": 0,
+      "failed_count": 0,
+      "checked_count": 1,
+      "details": "Late arrival is permitted; impossible business chronology is not.",
+      "run_id": "11515e9d-af89-4623-8d30-8a2f83980347",
+      "batch_id": "batch002",
+      "evaluated_at": "2026-10-04T13:24:52.336380+00:00"
+    },
+    {
+      "rule_id": "PACKAGE_NEGATIVE_WEIGHT",
+      "dataset": "platform",
+      "severity": "error",
+      "status": "pass",
+      "observed": 0,
+      "expected": 0,
+      "failed_count": 0,
+      "checked_count": 1,
+      "details": "Optional unknown weight stays null; negative weight is invalid.",
+      "run_id": "11515e9d-af89-4623-8d30-8a2f83980347",
+      "batch_id": "batch002",
+      "evaluated_at": "2026-10-04T13:24:52.336380+00:00"
+    },
+    {
+      "rule_id": "PACKAGE_SHIPMENT_ORPHAN",
+      "dataset": "platform",
+      "severity": "error",
+      "status": "pass",
+      "observed": 0,
+      "expected": 0,
+      "failed_count": 0,
+      "checked_count": 1,
+      "details": "Accepted package membership requires a known shipment.",
+      "run_id": "11515e9d-af89-4623-8d30-8a2f83980347",
+      "batch_id": "batch002",
+      "evaluated_at": "2026-10-04T13:24:52.336380+00:00"
+    },
+    {
+      "rule_id": "SHIPMENT_ORDER_ORPHAN",
+      "dataset": "platform",
+      "severity": "error",
+      "status": "pass",
+      "observed": 0,
+      "expected": 0,
+      "failed_count": 0,
+      "checked_count": 1,
+      "details": "Active shipments require a known order.",
+      "run_id": "11515e9d-af89-4623-8d30-8a2f83980347",
+      "batch_id": "batch002",
+      "evaluated_at": "2026-10-04T13:24:52.336380+00:00"
+    },
+    {
+      "rule_id": "EVENT_SHIPMENT_ORPHAN",
+      "dataset": "platform",
+      "severity": "error",
+      "status": "pass",
+      "observed": 0,
+      "expected": 0,
+      "failed_count": 0,
+      "checked_count": 1,
+      "details": "Delivery observations require accepted shipment identity.",
+      "run_id": "11515e9d-af89-4623-8d30-8a2f83980347",
+      "batch_id": "batch002",
+      "evaluated_at": "2026-10-04T13:24:52.336380+00:00"
+    },
+    {
+      "rule_id": "COST_SHIPMENT_ORPHAN",
+      "dataset": "platform",
+      "severity": "error",
+      "status": "pass",
+      "observed": 0,
+      "expected": 0,
+      "failed_count": 0,
+      "checked_count": 1,
+      "details": "Financial postings require accepted shipment identity.",
+      "run_id": "11515e9d-af89-4623-8d30-8a2f83980347",
+      "batch_id": "batch002",
+      "evaluated_at": "2026-10-04T13:24:52.336380+00:00"
+    },
+    {
+      "rule_id": "COST_CURRENCY",
+      "dataset": "platform",
+      "severity": "error",
+      "status": "pass",
+      "observed": 0,
+      "expected": 0,
+      "failed_count": 0,
+      "checked_count": 1,
+      "details": "No implicit conversion or currency substitution.",
+      "run_id": "11515e9d-af89-4623-8d30-8a2f83980347",
+      "batch_id": "batch002",
+      "evaluated_at": "2026-10-04T13:24:52.336380+00:00"
+    },
+    {
+      "rule_id": "COST_CANONICAL_RECONCILIATION",
+      "dataset": "platform",
+      "severity": "error",
+      "status": "pass",
+      "observed": 0,
+      "expected": 0,
+      "failed_count": 0,
+      "checked_count": 1,
+      "details": "Current accepted signed cost amount equals mart amount, in EUR minor units.",
+      "run_id": "11515e9d-af89-4623-8d30-8a2f83980347",
+      "batch_id": "batch002",
+      "evaluated_at": "2026-10-04T13:24:52.336380+00:00"
+    },
+    {
+      "rule_id": "SHIPMENT_COUNT_RECONCILIATION",
+      "dataset": "platform",
+      "severity": "error",
+      "status": "pass",
+      "observed": 0,
+      "expected": 0,
+      "failed_count": 0,
+      "checked_count": 1,
+      "details": "Shipment fact includes tombstones; SSOT filters them explicitly.",
+      "run_id": "11515e9d-af89-4623-8d30-8a2f83980347",
+      "batch_id": "batch002",
+      "evaluated_at": "2026-10-04T13:24:52.336380+00:00"
+    },
+    {
+      "rule_id": "EVENT_COUNT_RECONCILIATION",
+      "dataset": "platform",
+      "severity": "error",
+      "status": "pass",
+      "observed": 0,
+      "expected": 0,
+      "failed_count": 0,
+      "checked_count": 1,
+      "details": "Event projection must not multiply observations through temporal joins.",
+      "run_id": "11515e9d-af89-4623-8d30-8a2f83980347",
+      "batch_id": "batch002",
+      "evaluated_at": "2026-10-04T13:24:52.336380+00:00"
+    },
+    {
+      "rule_id": "INVALID_STATE_TRANSITION",
+      "dataset": "platform",
+      "severity": "error",
+      "status": "pass",
+      "observed": 0,
+      "expected": 0,
+      "failed_count": 0,
+      "checked_count": 1,
+      "details": "Explicit returned after delivered is allowed; terminal regression is an error.",
+      "run_id": "11515e9d-af89-4623-8d30-8a2f83980347",
+      "batch_id": "batch002",
+      "evaluated_at": "2026-10-04T13:24:52.336380+00:00"
+    },
+    {
+      "rule_id": "PENDING_REFERENCE",
+      "dataset": "platform",
+      "severity": "warning",
+      "status": "pass",
+      "observed": 0,
+      "expected": 0,
+      "failed_count": 0,
+      "checked_count": 1,
+      "details": "Identity is known but a descriptive dimension is absent at business time; products disclose degraded quality.",
+      "run_id": "11515e9d-af89-4623-8d30-8a2f83980347",
+      "batch_id": "batch002",
+      "evaluated_at": "2026-10-04T13:24:52.336380+00:00"
+    },
+    {
+      "rule_id": "CAN_ORDER_RELATION",
+      "dataset": "platform",
+      "severity": "error",
+      "status": "pass",
+      "observed": 0,
+      "expected": 0,
+      "failed_count": 0,
+      "checked_count": 1,
+      "details": {},
+      "run_id": "11515e9d-af89-4623-8d30-8a2f83980347",
+      "batch_id": "batch002",
+      "evaluated_at": "2026-10-04T13:24:52.336380+00:00"
+    },
+    {
+      "rule_id": "CAN_PACKAGE_RELATION",
+      "dataset": "platform",
+      "severity": "error",
+      "status": "pass",
+      "observed": 0,
+      "expected": 0,
+      "failed_count": 0,
+      "checked_count": 1,
+      "details": {},
+      "run_id": "11515e9d-af89-4623-8d30-8a2f83980347",
+      "batch_id": "batch002",
+      "evaluated_at": "2026-10-04T13:24:52.336380+00:00"
+    },
+    {
+      "rule_id": "CAN_EVENT_MEMBERSHIP",
+      "dataset": "platform",
+      "severity": "error",
+      "status": "pass",
+      "observed": 0,
+      "expected": 0,
+      "failed_count": 0,
+      "checked_count": 1,
+      "details": {},
+      "run_id": "11515e9d-af89-4623-8d30-8a2f83980347",
+      "batch_id": "batch002",
+      "evaluated_at": "2026-10-04T13:24:52.336380+00:00"
+    },
+    {
+      "rule_id": "CAN_EVENT_SHIPMENT",
+      "dataset": "platform",
+      "severity": "error",
+      "status": "pass",
+      "observed": 0,
+      "expected": 0,
+      "failed_count": 0,
+      "checked_count": 1,
+      "details": {},
+      "run_id": "11515e9d-af89-4623-8d30-8a2f83980347",
+      "batch_id": "batch002",
+      "evaluated_at": "2026-10-04T13:24:52.336380+00:00"
+    },
+    {
+      "rule_id": "CAN_COST_SHIPMENT",
+      "dataset": "platform",
+      "severity": "error",
+      "status": "pass",
+      "observed": 0,
+      "expected": 0,
+      "failed_count": 0,
+      "checked_count": 1,
+      "details": {},
+      "run_id": "11515e9d-af89-4623-8d30-8a2f83980347",
+      "batch_id": "batch002",
+      "evaluated_at": "2026-10-04T13:24:52.336380+00:00"
+    },
+    {
+      "rule_id": "CAN_EVENT_TIMESTAMP",
+      "dataset": "platform",
+      "severity": "error",
+      "status": "pass",
+      "observed": 0,
+      "expected": 0,
+      "failed_count": 0,
+      "checked_count": 1,
+      "details": {},
+      "run_id": "11515e9d-af89-4623-8d30-8a2f83980347",
+      "batch_id": "batch002",
+      "evaluated_at": "2026-10-04T13:24:52.336380+00:00"
+    },
+    {
+      "rule_id": "REF_BOUNDARY_CONFLICT",
+      "dataset": "platform",
+      "severity": "error",
+      "status": "pass",
+      "observed": 0,
+      "expected": 0,
+      "failed_count": 0,
+      "checked_count": 1,
+      "details": {},
+      "run_id": "11515e9d-af89-4623-8d30-8a2f83980347",
+      "batch_id": "batch002",
+      "evaluated_at": "2026-10-04T13:24:52.336380+00:00"
+    },
+    {
+      "rule_id": "REF_UNKNOWN_RATE",
+      "dataset": "platform",
+      "severity": "error",
+      "status": "pass",
+      "observed": 0.0,
+      "expected": 0.25,
+      "failed_count": 0,
+      "checked_count": 1,
+      "details": {},
+      "run_id": "11515e9d-af89-4623-8d30-8a2f83980347",
+      "batch_id": "batch002",
+      "evaluated_at": "2026-10-04T13:24:52.336380+00:00"
+    },
+    {
+      "rule_id": "VOL_CHANGE",
+      "dataset": "platform",
+      "severity": "warning",
+      "status": "pass",
+      "observed": 1.0,
+      "expected": {
+        "min": 0.5,
+        "max": 2.0
+      },
+      "failed_count": 0,
+      "checked_count": 1,
+      "details": {},
+      "run_id": "11515e9d-af89-4623-8d30-8a2f83980347",
+      "batch_id": "batch002",
+      "evaluated_at": "2026-10-04T13:24:52.336380+00:00"
+    }
+  ],
+  "resolutions": [
+    {
+      "entity_type": "carrier",
+      "source_system": "carrier_delivery",
+      "source_id": "CAR-EVT-000001",
+      "source_value": "Aster Parcel",
+      "effective_at": "2026-01-03T14:00:00.000000Z",
+      "outcome": "resolved",
+      "canonical_id": "2d632d06-1157-5c89-9071-cbbf47ab20d9",
+      "candidate_business_keys": [
+        "CAR-AP"
+      ],
+      "rules": [
+        "ER-SYN-0007"
+      ],
+      "decision_id": "62467d7e768783da38aedafc7a2db7b6778093d2715714b2b2f6cf72ef1849ea"
+    },
+    {
+      "entity_type": "carrier",
+      "source_system": "carrier_delivery",
+      "source_id": "CAR-EVT-000002",
+      "source_value": "MF-002",
+      "effective_at": "2026-01-03T13:00:02.000000Z",
+      "outcome": "resolved",
+      "canonical_id": "0f29e87f-7755-5be6-a03c-6a61e10da5a5",
+      "candidate_business_keys": [
+        "CAR-MF"
+      ],
+      "rules": [
+        "ER-SYN-0024"
+      ],
+      "decision_id": "1d21025381c32601bc551c2eff37c0dacd2e837bda9bf015c3395702a4fa6f5e"
+    },
+    {
+      "entity_type": "carrier",
+      "source_system": "carrier_delivery",
+      "source_id": "CAR-EVT-000003",
+      "source_value": "Vale Courier",
+      "effective_at": "2026-01-03T13:00:03.000000Z",
+      "outcome": "resolved",
+      "canonical_id": "991d3d03-01d2-5e8e-b81a-10c00bce7255",
+      "candidate_business_keys": [
+        "CAR-VC"
+      ],
+      "rules": [
+        "ER-SYN-0039"
+      ],
+      "decision_id": "53ea15b0e5eb2cf2f64498cbe736a08e4c50c4c9d53755014f9b0eb3cd1f27af"
+    },
+    {
+      "entity_type": "carrier",
+      "source_system": "carrier_delivery",
+      "source_id": "CAR-EVT-000004",
+      "source_value": "AP-001",
+      "effective_at": "2026-01-03T13:00:04.000000Z",
+      "outcome": "resolved",
+      "canonical_id": "2d632d06-1157-5c89-9071-cbbf47ab20d9",
+      "candidate_business_keys": [
+        "CAR-AP"
+      ],
+      "rules": [
+        "ER-SYN-0008"
+      ],
+      "decision_id": "8df8ff087954af39a33a1e7e30377ac522be60e4dc74ba849a75aade1d9c617c"
+    },
+    {
+      "entity_type": "carrier",
+      "source_system": "carrier_delivery",
+      "source_id": "CAR-EVT-000005",
+      "source_value": "Meridian Freight",
+      "effective_at": "2026-01-03T13:00:05.000000Z",
+      "outcome": "resolved",
+      "canonical_id": "0f29e87f-7755-5be6-a03c-6a61e10da5a5",
+      "candidate_business_keys": [
+        "CAR-MF"
+      ],
+      "rules": [
+        "ER-SYN-0023"
+      ],
+      "decision_id": "be93f56b6d5e34e351facb4d25ddfec9702dd72e0bec5890b95ec685a3521e67"
+    },
+    {
+      "entity_type": "carrier",
+      "source_system": "package_events",
+      "source_id": "PKG-EVT-000001",
+      "source_value": "ASTER",
+      "effective_at": "2026-01-02T09:00:01.000000Z",
+      "outcome": "resolved",
+      "canonical_id": "2d632d06-1157-5c89-9071-cbbf47ab20d9",
+      "candidate_business_keys": [
+        "CAR-AP"
+      ],
+      "rules": [
+        "ER-SYN-0010"
+      ],
+      "decision_id": "ec47aaf97a0fea7652566e6c184b749c2a481450c97171602446573506c5364f"
+    },
+    {
+      "entity_type": "carrier",
+      "source_system": "package_events",
+      "source_id": "PKG-EVT-000002",
+      "source_value": "MERIDIAN",
+      "effective_at": "2026-01-02T09:00:02.000000Z",
+      "outcome": "resolved",
+      "canonical_id": "0f29e87f-7755-5be6-a03c-6a61e10da5a5",
+      "candidate_business_keys": [
+        "CAR-MF"
+      ],
+      "rules": [
+        "ER-SYN-0026"
+      ],
+      "decision_id": "cde3f1aa6017cd0f272c1d730bf4b8e288953e03746ef0b6d69cbe025e18bcef"
+    },
+    {
+      "entity_type": "carrier",
+      "source_system": "package_events",
+      "source_id": "PKG-EVT-000003",
+      "source_value": "VALE",
+      "effective_at": "2026-01-02T09:00:03.000000Z",
+      "outcome": "resolved",
+      "canonical_id": "991d3d03-01d2-5e8e-b81a-10c00bce7255",
+      "candidate_business_keys": [
+        "CAR-VC"
+      ],
+      "rules": [
+        "ER-SYN-0042"
+      ],
+      "decision_id": "a41c527d222e86963a979c67f60de30d4a739ac0272efe91c9516f4431c55183"
+    },
+    {
+      "entity_type": "carrier",
+      "source_system": "package_events",
+      "source_id": "PKG-EVT-000004",
+      "source_value": "ASTER",
+      "effective_at": "2026-01-02T09:00:04.000000Z",
+      "outcome": "resolved",
+      "canonical_id": "2d632d06-1157-5c89-9071-cbbf47ab20d9",
+      "candidate_business_keys": [
+        "CAR-AP"
+      ],
+      "rules": [
+        "ER-SYN-0010"
+      ],
+      "decision_id": "3703cc19149db3aeb2df29d7aeb63ae48029111a801c80f9e7b2cf654f9fbc56"
+    },
+    {
+      "entity_type": "carrier",
+      "source_system": "package_events",
+      "source_id": "PKG-EVT-000005",
+      "source_value": "MERIDIAN",
+      "effective_at": "2026-01-02T09:00:05.000000Z",
+      "outcome": "resolved",
+      "canonical_id": "0f29e87f-7755-5be6-a03c-6a61e10da5a5",
+      "candidate_business_keys": [
+        "CAR-MF"
+      ],
+      "rules": [
+        "ER-SYN-0026"
+      ],
+      "decision_id": "0d74a0b81fb8f5916b0e73db1a9dc041feb1cd42cffbfa12119e2d5eb0327fc4"
+    },
+    {
+      "entity_type": "carrier",
+      "source_system": "package_events",
+      "source_id": "PKG-EXTREMELY-LATE-000001",
+      "source_value": "ASTER",
+      "effective_at": "2026-01-02T08:00:01.000000Z",
+      "outcome": "resolved",
+      "canonical_id": "2d632d06-1157-5c89-9071-cbbf47ab20d9",
+      "candidate_business_keys": [
+        "CAR-AP"
+      ],
+      "rules": [
+        "ER-SYN-0010"
+      ],
+      "decision_id": "dff254c60b59c0e2a4604a7389641a2e6a6dc832446c48f8f6533c65c4835a65"
+    },
+    {
+      "entity_type": "carrier",
+      "source_system": "transport_costs",
+      "source_id": "COST-000001",
+      "source_value": "AP-001",
+      "effective_at": "2026-01-02T10:00:01.000000Z",
+      "outcome": "resolved",
+      "canonical_id": "2d632d06-1157-5c89-9071-cbbf47ab20d9",
+      "candidate_business_keys": [
+        "CAR-AP"
+      ],
+      "rules": [
+        "ER-SYN-0016"
+      ],
+      "decision_id": "483dfc94b4f37041307f806206fa9416aaa2bd6c06d26dd623a3e5ee0cfef1ad"
+    },
+    {
+      "entity_type": "carrier",
+      "source_system": "transport_costs",
+      "source_id": "COST-000002",
+      "source_value": "MF-002",
+      "effective_at": "2026-01-02T10:00:02.000000Z",
+      "outcome": "resolved",
+      "canonical_id": "0f29e87f-7755-5be6-a03c-6a61e10da5a5",
+      "candidate_business_keys": [
+        "CAR-MF"
+      ],
+      "rules": [
+        "ER-SYN-0032"
+      ],
+      "decision_id": "d7b383028c5ec85d82bfe8404d429a52af4e9c530bedd8ae55218b6f2ef13e50"
+    },
+    {
+      "entity_type": "carrier",
+      "source_system": "transport_costs",
+      "source_id": "COST-000003",
+      "source_value": "VC-003",
+      "effective_at": "2026-01-02T10:00:03.000000Z",
+      "outcome": "resolved",
+      "canonical_id": "991d3d03-01d2-5e8e-b81a-10c00bce7255",
+      "candidate_business_keys": [
+        "CAR-VC"
+      ],
+      "rules": [
+        "ER-SYN-0048"
+      ],
+      "decision_id": "d720fd71b3e18db9699291bed09581cb56d5f87e0f29322ccf840e8560aa1694"
+    },
+    {
+      "entity_type": "carrier",
+      "source_system": "transport_costs",
+      "source_id": "COST-000004",
+      "source_value": "AP-001",
+      "effective_at": "2026-01-02T10:00:04.000000Z",
+      "outcome": "resolved",
+      "canonical_id": "2d632d06-1157-5c89-9071-cbbf47ab20d9",
+      "candidate_business_keys": [
+        "CAR-AP"
+      ],
+      "rules": [
+        "ER-SYN-0016"
+      ],
+      "decision_id": "c489b276a7f7f5e1983b218c43fe80d30448a571e6b6f0ccfc8b842b65d93349"
+    },
+    {
+      "entity_type": "carrier",
+      "source_system": "transport_costs",
+      "source_id": "COST-000005",
+      "source_value": "MF-002",
+      "effective_at": "2026-01-02T10:00:05.000000Z",
+      "outcome": "resolved",
+      "canonical_id": "0f29e87f-7755-5be6-a03c-6a61e10da5a5",
+      "candidate_business_keys": [
+        "CAR-MF"
+      ],
+      "rules": [
+        "ER-SYN-0032"
+      ],
+      "decision_id": "a9f0f18069e6c56ea44479a4ccc06a4569831dc696c00f80d618e1ce8968bba1"
+    },
+    {
+      "entity_type": "carrier",
+      "source_system": "shipment_ops",
+      "source_id": "OPS-SHP-000001",
+      "source_value": "ASTER",
+      "effective_at": "2026-01-02T08:00:01.000000Z",
+      "outcome": "resolved",
+      "canonical_id": "2d632d06-1157-5c89-9071-cbbf47ab20d9",
+      "candidate_business_keys": [
+        "CAR-AP"
+      ],
+      "rules": [
+        "ER-SYN-0002"
+      ],
+      "decision_id": "817621b6dd7574ba9a014dfe2a24ad8f16fbaa05728f4a9187c27b813368efce"
+    },
+    {
+      "entity_type": "facility",
+      "source_system": "shipment_ops",
+      "source_id": "OPS-SHP-000001",
+      "source_value": "FAC-LIS",
+      "effective_at": "2026-01-02T08:00:01.000000Z",
+      "outcome": "resolved",
+      "canonical_id": "7b046664-13ee-57de-abe1-6585c5939fc2",
+      "candidate_business_keys": [
+        "FAC-LIS"
+      ],
+      "rules": [
+        "ER-SYN-0049"
+      ],
+      "decision_id": "317a4543db8cf37ba604d05ff556e5fc96a1df89d103a849e98ac43d84fc660b"
+    },
+    {
+      "entity_type": "facility",
+      "source_system": "shipment_ops",
+      "source_id": "OPS-SHP-000001",
+      "source_value": "FAC-MAD",
+      "effective_at": "2026-01-02T08:00:01.000000Z",
+      "outcome": "resolved",
+      "canonical_id": "e3084871-ca27-5f17-a36a-0763add4e346",
+      "candidate_business_keys": [
+        "FAC-MAD"
+      ],
+      "rules": [
+        "ER-SYN-0050"
+      ],
+      "decision_id": "726b56a5531b49afe35051712aab16fa4c4c3aedd4af54e27f1786610ff980bb"
+    },
+    {
+      "entity_type": "service_level",
+      "source_system": "shipment_ops",
+      "source_id": "OPS-SHP-000001",
+      "source_value": "STD",
+      "effective_at": "2026-01-02T08:00:01.000000Z",
+      "outcome": "resolved",
+      "canonical_id": "24a2149f-b1a3-53ea-9e43-eb08e4c4ba35",
+      "candidate_business_keys": [
+        "SVC-STD"
+      ],
+      "rules": [
+        "ER-SYN-0053"
+      ],
+      "decision_id": "98cb5d0562d738d198628ddda0958249a1424860ad32b5703e00781368128796"
+    },
+    {
+      "entity_type": "carrier",
+      "source_system": "shipment_ops",
+      "source_id": "OPS-SHP-000002",
+      "source_value": "MERIDIAN",
+      "effective_at": "2026-01-02T08:00:02.000000Z",
+      "outcome": "resolved",
+      "canonical_id": "0f29e87f-7755-5be6-a03c-6a61e10da5a5",
+      "candidate_business_keys": [
+        "CAR-MF"
+      ],
+      "rules": [
+        "ER-SYN-0018"
+      ],
+      "decision_id": "76c1cb6bdb18c656d57b6a9811991a0215870770be0c7151cce2a77799abba91"
+    },
+    {
+      "entity_type": "facility",
+      "source_system": "shipment_ops",
+      "source_id": "OPS-SHP-000002",
+      "source_value": "FAC-LIS",
+      "effective_at": "2026-01-02T08:00:02.000000Z",
+      "outcome": "resolved",
+      "canonical_id": "7b046664-13ee-57de-abe1-6585c5939fc2",
+      "candidate_business_keys": [
+        "FAC-LIS"
+      ],
+      "rules": [
+        "ER-SYN-0049"
+      ],
+      "decision_id": "27be4a2834bbd9ff5f07ff920616af19f348ddfec920174d71fc694e4f7646be"
+    },
+    {
+      "entity_type": "facility",
+      "source_system": "shipment_ops",
+      "source_id": "OPS-SHP-000002",
+      "source_value": "FAC-MAD",
+      "effective_at": "2026-01-02T08:00:02.000000Z",
+      "outcome": "resolved",
+      "canonical_id": "e3084871-ca27-5f17-a36a-0763add4e346",
+      "candidate_business_keys": [
+        "FAC-MAD"
+      ],
+      "rules": [
+        "ER-SYN-0050"
+      ],
+      "decision_id": "c479f45d2b617e43388c98eae43d5d63596935686d7ce847bf90ca1d75678504"
+    },
+    {
+      "entity_type": "service_level",
+      "source_system": "shipment_ops",
+      "source_id": "OPS-SHP-000002",
+      "source_value": "STD",
+      "effective_at": "2026-01-02T08:00:02.000000Z",
+      "outcome": "resolved",
+      "canonical_id": "24a2149f-b1a3-53ea-9e43-eb08e4c4ba35",
+      "candidate_business_keys": [
+        "SVC-STD"
+      ],
+      "rules": [
+        "ER-SYN-0053"
+      ],
+      "decision_id": "f7404785d01e9a9dbee692783bf3cb4d5b9a56d19044075d4a512414372a9427"
+    },
+    {
+      "entity_type": "carrier",
+      "source_system": "shipment_ops",
+      "source_id": "OPS-SHP-000003",
+      "source_value": "VALE",
+      "effective_at": "2026-01-02T08:00:03.000000Z",
+      "outcome": "resolved",
+      "canonical_id": "991d3d03-01d2-5e8e-b81a-10c00bce7255",
+      "candidate_business_keys": [
+        "CAR-VC"
+      ],
+      "rules": [
+        "ER-SYN-0034"
+      ],
+      "decision_id": "aa032eb88c5d09c6f88a4b840f6141eb231936d4d057065af25d9ab92199a58b"
+    },
+    {
+      "entity_type": "facility",
+      "source_system": "shipment_ops",
+      "source_id": "OPS-SHP-000003",
+      "source_value": "FAC-LIS",
+      "effective_at": "2026-01-02T08:00:03.000000Z",
+      "outcome": "resolved",
+      "canonical_id": "7b046664-13ee-57de-abe1-6585c5939fc2",
+      "candidate_business_keys": [
+        "FAC-LIS"
+      ],
+      "rules": [
+        "ER-SYN-0049"
+      ],
+      "decision_id": "a4359279a43357eb40db3bef78837b6d67aa7f83ad538801473f93007ec3f52d"
+    },
+    {
+      "entity_type": "facility",
+      "source_system": "shipment_ops",
+      "source_id": "OPS-SHP-000003",
+      "source_value": "FAC-MAD",
+      "effective_at": "2026-01-02T08:00:03.000000Z",
+      "outcome": "resolved",
+      "canonical_id": "e3084871-ca27-5f17-a36a-0763add4e346",
+      "candidate_business_keys": [
+        "FAC-MAD"
+      ],
+      "rules": [
+        "ER-SYN-0050"
+      ],
+      "decision_id": "017326e59d1b64046edbe14f490386881f35f561af668ad8ef7ba558491e929a"
+    },
+    {
+      "entity_type": "service_level",
+      "source_system": "shipment_ops",
+      "source_id": "OPS-SHP-000003",
+      "source_value": "STD",
+      "effective_at": "2026-01-02T08:00:03.000000Z",
+      "outcome": "resolved",
+      "canonical_id": "24a2149f-b1a3-53ea-9e43-eb08e4c4ba35",
+      "candidate_business_keys": [
+        "SVC-STD"
+      ],
+      "rules": [
+        "ER-SYN-0053"
+      ],
+      "decision_id": "9a63ccccd2e9e61ae8122ab2814721906a9442743ad0d9cba2e81d93b8c3bcc1"
+    },
+    {
+      "entity_type": "carrier",
+      "source_system": "shipment_ops",
+      "source_id": "OPS-SHP-000004",
+      "source_value": "ASTER",
+      "effective_at": "2026-01-02T08:00:04.000000Z",
+      "outcome": "resolved",
+      "canonical_id": "2d632d06-1157-5c89-9071-cbbf47ab20d9",
+      "candidate_business_keys": [
+        "CAR-AP"
+      ],
+      "rules": [
+        "ER-SYN-0002"
+      ],
+      "decision_id": "d8fbbb6c36a8aff998f01cacabb9afe85b93121127bbce36cf8b164359d0d1da"
+    },
+    {
+      "entity_type": "facility",
+      "source_system": "shipment_ops",
+      "source_id": "OPS-SHP-000004",
+      "source_value": "FAC-LIS",
+      "effective_at": "2026-01-02T08:00:04.000000Z",
+      "outcome": "resolved",
+      "canonical_id": "7b046664-13ee-57de-abe1-6585c5939fc2",
+      "candidate_business_keys": [
+        "FAC-LIS"
+      ],
+      "rules": [
+        "ER-SYN-0049"
+      ],
+      "decision_id": "7c9c3a3d4a10487681fd4e1ccc491b1ddd90771884376b8bf7d3da4d4d99f806"
+    },
+    {
+      "entity_type": "facility",
+      "source_system": "shipment_ops",
+      "source_id": "OPS-SHP-000004",
+      "source_value": "FAC-MAD",
+      "effective_at": "2026-01-02T08:00:04.000000Z",
+      "outcome": "resolved",
+      "canonical_id": "e3084871-ca27-5f17-a36a-0763add4e346",
+      "candidate_business_keys": [
+        "FAC-MAD"
+      ],
+      "rules": [
+        "ER-SYN-0050"
+      ],
+      "decision_id": "5e12700cbb4e23ff30a15655b5513cc65a35c2412c9fa6944b5f934b9975ff75"
+    },
+    {
+      "entity_type": "service_level",
+      "source_system": "shipment_ops",
+      "source_id": "OPS-SHP-000004",
+      "source_value": "STD",
+      "effective_at": "2026-01-02T08:00:04.000000Z",
+      "outcome": "resolved",
+      "canonical_id": "24a2149f-b1a3-53ea-9e43-eb08e4c4ba35",
+      "candidate_business_keys": [
+        "SVC-STD"
+      ],
+      "rules": [
+        "ER-SYN-0053"
+      ],
+      "decision_id": "21abd6d8a77f2888b1e798483a9a99525e6bdde67773cf35c43ed81a65b1ca8f"
+    },
+    {
+      "entity_type": "carrier",
+      "source_system": "shipment_ops",
+      "source_id": "OPS-SHP-000005",
+      "source_value": "MERIDIAN",
+      "effective_at": "2026-01-02T08:00:05.000000Z",
+      "outcome": "resolved",
+      "canonical_id": "0f29e87f-7755-5be6-a03c-6a61e10da5a5",
+      "candidate_business_keys": [
+        "CAR-MF"
+      ],
+      "rules": [
+        "ER-SYN-0018"
+      ],
+      "decision_id": "ea3b841ad2460b8f1c6c7dd7d2e7f82197e7a6f3829b74b1b324a40acebf83b4"
+    },
+    {
+      "entity_type": "facility",
+      "source_system": "shipment_ops",
+      "source_id": "OPS-SHP-000005",
+      "source_value": "FAC-LIS",
+      "effective_at": "2026-01-02T08:00:05.000000Z",
+      "outcome": "resolved",
+      "canonical_id": "7b046664-13ee-57de-abe1-6585c5939fc2",
+      "candidate_business_keys": [
+        "FAC-LIS"
+      ],
+      "rules": [
+        "ER-SYN-0049"
+      ],
+      "decision_id": "29b9daae329b54c5618eaf34c44b5100a42c26da38b7a5e1e80a4758dcaf072b"
+    },
+    {
+      "entity_type": "facility",
+      "source_system": "shipment_ops",
+      "source_id": "OPS-SHP-000005",
+      "source_value": "FAC-MAD",
+      "effective_at": "2026-01-02T08:00:05.000000Z",
+      "outcome": "resolved",
+      "canonical_id": "e3084871-ca27-5f17-a36a-0763add4e346",
+      "candidate_business_keys": [
+        "FAC-MAD"
+      ],
+      "rules": [
+        "ER-SYN-0050"
+      ],
+      "decision_id": "a7d81dfd704d91475b80b0201265116103c5433099e4488f87896b9f09c767e4"
+    },
+    {
+      "entity_type": "service_level",
+      "source_system": "shipment_ops",
+      "source_id": "OPS-SHP-000005",
+      "source_value": "STD",
+      "effective_at": "2026-01-02T08:00:05.000000Z",
+      "outcome": "resolved",
+      "canonical_id": "24a2149f-b1a3-53ea-9e43-eb08e4c4ba35",
+      "candidate_business_keys": [
+        "SVC-STD"
+      ],
+      "rules": [
+        "ER-SYN-0053"
+      ],
+      "decision_id": "9935684943451cc4174802dbcbe1dabb312fde4966711c9e1b48d3ffa865f3f3"
+    }
+  ],
+  "started_at": "2026-10-04T13:24:52.193709+00:00",
+  "ingest_sequence": 2,
+  "receipts": [
+    {
+      "source": "shipment_ops",
+      "path": "shipment_ops-001.jsonl",
+      "sha256": "93ad8957365b51d230127735e5cee1c1fca6aaaadb05e53096796e11786ce7fd",
+      "rows": 1,
+      "duplicate": false
+    },
+    {
+      "source": "carrier_delivery",
+      "path": "carrier_delivery-001.csv",
+      "sha256": "6e3779cb83735a7e2bc1d5687a9d208d07bdf7d7529c9a112fba6e51bbd310f2",
+      "rows": 1,
+      "duplicate": false
+    },
+    {
+      "source": "package_events",
+      "path": "package_events-001.jsonl",
+      "sha256": "93773ca5279fd533a2de18542b040f3fc4d71f30b7bea9556713fd11a85557e1",
+      "rows": 1,
+      "duplicate": false
+    },
+    {
+      "source": "transport_costs",
+      "path": "transport_costs-001.csv",
+      "sha256": "c1e89a2c071b6e8f2a0dc1df41a1c364638eaeee7c3a4716c4a8cb46adb62b99",
+      "rows": 1,
+      "duplicate": false
+    },
+    {
+      "source": "transport_costs",
+      "path": "transport_costs-002.csv",
+      "sha256": "a64c7150b3ee1e654b639421470fcfd39b88c10e75b1f2db4849bfffe3a03798",
+      "rows": 0,
+      "duplicate": false
+    },
+    {
+      "source": "reference_master",
+      "path": "reference_master-001.jsonl",
+      "sha256": "2abecdeda52a5ddd619fd123636194bf954007de10d85c1f726aceef4ce5519c",
+      "rows": 1,
+      "duplicate": false
+    }
+  ],
+  "raw_cost_amount_minor": {
+    "EUR": 1334
+  },
+  "physical_rows": 5,
+  "accepted_revisions": 5,
+  "duplicate_rows": 0,
+  "watermark": 2,
+  "duration_seconds": 0.142688,
+  "ended_at": "2026-10-04T13:24:52.336380+00:00"
+}

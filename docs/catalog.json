@@ -1,0 +1,3955 @@
+{
+  "catalog_version": "1.0",
+  "project": "Multi-Carrier Logistics Canonical Data Platform",
+  "generated_at_utc": "2026-10-04T13:06:13.048998Z",
+  "execution_profile": "local DuckDB published warehouse",
+  "registration": "Portable JSON catalogue only; no automatic AWS Glue Data Catalog registration.",
+  "physical_nullability_note": "Nullability is read from DuckDB metadata. Nullable CTAS/view columns may have stronger semantic checks in the pipeline; no unobserved NOT NULL constraint is invented.",
+  "latest_attempt": {
+    "run_id": "181ef087-4486-42e3-834e-8e522d6570f7",
+    "batch_id": "batch002",
+    "status": "noop",
+    "ended_at_utc": "2026-10-04T12:50:49.556170+00:00"
+  },
+  "product_count": 24,
+  "products": [
+    {
+      "name": "canonical_order",
+      "object_type": "BASE TABLE",
+      "description": "Current accepted organization order identity and source attributes, including tombstones.",
+      "grain": "One current canonical order per organization-scoped order business key.",
+      "declared_unique_key": [
+        "canonical_id"
+      ],
+      "key_enforcement": "Pipeline quality checks; this field does not assert a physical PRIMARY KEY constraint.",
+      "owner": "Logistics Data Platform",
+      "freshness": {
+        "mode": "complete-batch publication",
+        "published_batch_id": "batch002",
+        "published_ingest_sequence": 2,
+        "published_run_id": "5843e411-4fc2-428e-8ea8-c0800c56a5e2",
+        "published_at_utc": "2026-10-04T12:50:42.930542Z",
+        "description": "Freshness is the last committed input batch, not a running service SLA or source event time."
+      },
+      "quality": {
+        "publication_status": "PASSED",
+        "blocking_failures": [],
+        "warnings": [],
+        "row_status_counts": null,
+        "meaning": "Recorded checks for the committed run; source truth beyond synthetic evidence is not asserted."
+      },
+      "lineage": {
+        "source_systems": [
+          "shipment_ops",
+          "reference_master"
+        ],
+        "raw": "Immutable manifested objects, identified by source and SHA-256 in file_receipts/evidence.",
+        "upstream_objects": [
+          "evidence",
+          "resolution_decisions"
+        ],
+        "audit_objects": [
+          "evidence",
+          "resolution_decisions",
+          "publication_history",
+          "pipeline_runs"
+        ],
+        "downstream_consumers": [
+          "Operations analysts",
+          "Finance analysts",
+          "Downstream data engineers"
+        ]
+      },
+      "row_count": 1000,
+      "schema": [
+        {
+          "name": "canonical_id",
+          "data_type": "VARCHAR",
+          "nullable": true,
+          "ordinal_position": 1
+        },
+        {
+          "name": "business_key",
+          "data_type": "VARCHAR",
+          "nullable": true,
+          "ordinal_position": 2
+        },
+        {
+          "name": "created_at",
+          "data_type": "TIMESTAMP",
+          "nullable": true,
+          "ordinal_position": 3
+        },
+        {
+          "name": "country_id",
+          "data_type": "VARCHAR",
+          "nullable": true,
+          "ordinal_position": 4
+        },
+        {
+          "name": "is_deleted",
+          "data_type": "BOOLEAN",
+          "nullable": true,
+          "ordinal_position": 5
+        },
+        {
+          "name": "source_id",
+          "data_type": "VARCHAR",
+          "nullable": true,
+          "ordinal_position": 6
+        },
+        {
+          "name": "revision",
+          "data_type": "BIGINT",
+          "nullable": true,
+          "ordinal_position": 7
+        },
+        {
+          "name": "raw_hash",
+          "data_type": "VARCHAR",
+          "nullable": true,
+          "ordinal_position": 8
+        },
+        {
+          "name": "run_id",
+          "data_type": "VARCHAR",
+          "nullable": true,
+          "ordinal_position": 9
+        }
+      ],
+      "example_sql": "SELECT business_key,created_at,is_deleted FROM canonical_order ORDER BY created_at;"
+    },
+    {
+      "name": "canonical_package",
+      "object_type": "BASE TABLE",
+      "description": "Current accepted package identity, owning shipment, weight, and deletion status.",
+      "grain": "One current canonical package per organization-scoped package business key.",
+      "declared_unique_key": [
+        "canonical_id"
+      ],
+      "key_enforcement": "Pipeline quality checks; this field does not assert a physical PRIMARY KEY constraint.",
+      "owner": "Logistics Data Platform",
+      "freshness": {
+        "mode": "complete-batch publication",
+        "published_batch_id": "batch002",
+        "published_ingest_sequence": 2,
+        "published_run_id": "5843e411-4fc2-428e-8ea8-c0800c56a5e2",
+        "published_at_utc": "2026-10-04T12:50:42.930542Z",
+        "description": "Freshness is the last committed input batch, not a running service SLA or source event time."
+      },
+      "quality": {
+        "publication_status": "PASSED",
+        "blocking_failures": [],
+        "warnings": [],
+        "row_status_counts": null,
+        "meaning": "Recorded checks for the committed run; source truth beyond synthetic evidence is not asserted."
+      },
+      "lineage": {
+        "source_systems": [
+          "shipment_ops"
+        ],
+        "raw": "Immutable manifested objects, identified by source and SHA-256 in file_receipts/evidence.",
+        "upstream_objects": [
+          "evidence"
+        ],
+        "audit_objects": [
+          "evidence",
+          "resolution_decisions",
+          "publication_history",
+          "pipeline_runs"
+        ],
+        "downstream_consumers": [
+          "Operations analysts",
+          "Finance analysts",
+          "Downstream data engineers"
+        ]
+      },
+      "row_count": 1000,
+      "schema": [
+        {
+          "name": "canonical_id",
+          "data_type": "VARCHAR",
+          "nullable": true,
+          "ordinal_position": 1
+        },
+        {
+          "name": "business_key",
+          "data_type": "VARCHAR",
+          "nullable": true,
+          "ordinal_position": 2
+        },
+        {
+          "name": "shipment_id",
+          "data_type": "VARCHAR",
+          "nullable": true,
+          "ordinal_position": 3
+        },
+        {
+          "name": "weight_grams",
+          "data_type": "BIGINT",
+          "nullable": true,
+          "ordinal_position": 4
+        },
+        {
+          "name": "is_deleted",
+          "data_type": "BOOLEAN",
+          "nullable": true,
+          "ordinal_position": 5
+        },
+        {
+          "name": "source_id",
+          "data_type": "VARCHAR",
+          "nullable": true,
+          "ordinal_position": 6
+        },
+        {
+          "name": "revision",
+          "data_type": "BIGINT",
+          "nullable": true,
+          "ordinal_position": 7
+        },
+        {
+          "name": "raw_hash",
+          "data_type": "VARCHAR",
+          "nullable": true,
+          "ordinal_position": 8
+        },
+        {
+          "name": "run_id",
+          "data_type": "VARCHAR",
+          "nullable": true,
+          "ordinal_position": 9
+        }
+      ],
+      "example_sql": "SELECT shipment_id,count(*) AS active_packages FROM canonical_package WHERE NOT is_deleted GROUP BY shipment_id;"
+    },
+    {
+      "name": "canonical_shipment",
+      "object_type": "BASE TABLE",
+      "description": "Auditable shipment identity and structure with the selected supported state and actual delivery milestone.",
+      "grain": "One current canonical shipment per organization-scoped shipment business key, including tombstones.",
+      "declared_unique_key": [
+        "canonical_id"
+      ],
+      "key_enforcement": "Pipeline quality checks; this field does not assert a physical PRIMARY KEY constraint.",
+      "owner": "Logistics Data Platform",
+      "freshness": {
+        "mode": "complete-batch publication",
+        "published_batch_id": "batch002",
+        "published_ingest_sequence": 2,
+        "published_run_id": "5843e411-4fc2-428e-8ea8-c0800c56a5e2",
+        "published_at_utc": "2026-10-04T12:50:42.930542Z",
+        "description": "Freshness is the last committed input batch, not a running service SLA or source event time."
+      },
+      "quality": {
+        "publication_status": "PASSED",
+        "blocking_failures": [],
+        "warnings": [],
+        "row_status_counts": null,
+        "meaning": "Recorded checks for the committed run; source truth beyond synthetic evidence is not asserted."
+      },
+      "lineage": {
+        "source_systems": [
+          "shipment_ops",
+          "carrier_delivery",
+          "package_events",
+          "reference_master"
+        ],
+        "raw": "Immutable manifested objects, identified by source and SHA-256 in file_receipts/evidence.",
+        "upstream_objects": [
+          "evidence",
+          "resolution_decisions",
+          "shipment_state_evidence",
+          "shipment_state_selection"
+        ],
+        "audit_objects": [
+          "evidence",
+          "resolution_decisions",
+          "publication_history",
+          "pipeline_runs"
+        ],
+        "downstream_consumers": [
+          "Operations analysts",
+          "Finance analysts",
+          "Downstream data engineers"
+        ]
+      },
+      "row_count": 1000,
+      "schema": [
+        {
+          "name": "canonical_id",
+          "data_type": "VARCHAR",
+          "nullable": true,
+          "ordinal_position": 1
+        },
+        {
+          "name": "business_key",
+          "data_type": "VARCHAR",
+          "nullable": true,
+          "ordinal_position": 2
+        },
+        {
+          "name": "order_id",
+          "data_type": "VARCHAR",
+          "nullable": true,
+          "ordinal_position": 3
+        },
+        {
+          "name": "carrier_id",
+          "data_type": "VARCHAR",
+          "nullable": true,
+          "ordinal_position": 4
+        },
+        {
+          "name": "origin_facility_id",
+          "data_type": "VARCHAR",
+          "nullable": true,
+          "ordinal_position": 5
+        },
+        {
+          "name": "destination_facility_id",
+          "data_type": "VARCHAR",
+          "nullable": true,
+          "ordinal_position": 6
+        },
+        {
+          "name": "route_id",
+          "data_type": "VARCHAR",
+          "nullable": true,
+          "ordinal_position": 7
+        },
+        {
+          "name": "country_id",
+          "data_type": "VARCHAR",
+          "nullable": true,
+          "ordinal_position": 8
+        },
+        {
+          "name": "service_level_id",
+          "data_type": "VARCHAR",
+          "nullable": true,
+          "ordinal_position": 9
+        },
+        {
+          "name": "created_at",
+          "data_type": "TIMESTAMP",
+          "nullable": true,
+          "ordinal_position": 10
+        },
+        {
+          "name": "promised_at",
+          "data_type": "TIMESTAMP",
+          "nullable": true,
+          "ordinal_position": 11
+        },
+        {
+          "name": "is_deleted",
+          "data_type": "BOOLEAN",
+          "nullable": true,
+          "ordinal_position": 12
+        },
+        {
+          "name": "source_id",
+          "data_type": "VARCHAR",
+          "nullable": true,
+          "ordinal_position": 13
+        },
+        {
+          "name": "revision",
+          "data_type": "BIGINT",
+          "nullable": true,
+          "ordinal_position": 14
+        },
+        {
+          "name": "updated_at",
+          "data_type": "TIMESTAMP",
+          "nullable": true,
+          "ordinal_position": 15
+        },
+        {
+          "name": "raw_hash",
+          "data_type": "VARCHAR",
+          "nullable": true,
+          "ordinal_position": 16
+        },
+        {
+          "name": "run_id",
+          "data_type": "VARCHAR",
+          "nullable": true,
+          "ordinal_position": 17
+        },
+        {
+          "name": "operational_state_occurred_at",
+          "data_type": "TIMESTAMP",
+          "nullable": true,
+          "ordinal_position": 18
+        },
+        {
+          "name": "state",
+          "data_type": "VARCHAR",
+          "nullable": true,
+          "ordinal_position": 19
+        },
+        {
+          "name": "state_source_system",
+          "data_type": "VARCHAR",
+          "nullable": true,
+          "ordinal_position": 20
+        },
+        {
+          "name": "state_observation_id",
+          "data_type": "VARCHAR",
+          "nullable": true,
+          "ordinal_position": 21
+        },
+        {
+          "name": "state_revision",
+          "data_type": "BIGINT",
+          "nullable": true,
+          "ordinal_position": 22
+        },
+        {
+          "name": "state_authority",
+          "data_type": "INTEGER",
+          "nullable": true,
+          "ordinal_position": 23
+        },
+        {
+          "name": "state_occurred_at",
+          "data_type": "TIMESTAMP",
+          "nullable": true,
+          "ordinal_position": 24
+        },
+        {
+          "name": "state_rule_id",
+          "data_type": "VARCHAR",
+          "nullable": true,
+          "ordinal_position": 25
+        },
+        {
+          "name": "actual_delivery_at",
+          "data_type": "TIMESTAMP",
+          "nullable": true,
+          "ordinal_position": 26
+        },
+        {
+          "name": "package_count",
+          "data_type": "BIGINT",
+          "nullable": true,
+          "ordinal_position": 27
+        }
+      ],
+      "example_sql": "SELECT business_key,state,state_source_system,state_observation_id,state_occurred_at FROM canonical_shipment;"
+    },
+    {
+      "name": "canonical_delivery_event",
+      "object_type": "BASE TABLE",
+      "description": "Current accepted interpretation of each source event; distinct observers remain separate observations.",
+      "grain": "One current revision per (source_system, event_id), excluding withdrawn observations.",
+      "declared_unique_key": [
+        "event_canonical_id"
+      ],
+      "key_enforcement": "Pipeline quality checks; this field does not assert a physical PRIMARY KEY constraint.",
+      "owner": "Logistics Data Platform",
+      "freshness": {
+        "mode": "complete-batch publication",
+        "published_batch_id": "batch002",
+        "published_ingest_sequence": 2,
+        "published_run_id": "5843e411-4fc2-428e-8ea8-c0800c56a5e2",
+        "published_at_utc": "2026-10-04T12:50:42.930542Z",
+        "description": "Freshness is the last committed input batch, not a running service SLA or source event time."
+      },
+      "quality": {
+        "publication_status": "PASSED",
+        "blocking_failures": [],
+        "warnings": [],
+        "row_status_counts": null,
+        "meaning": "Recorded checks for the committed run; source truth beyond synthetic evidence is not asserted."
+      },
+      "lineage": {
+        "source_systems": [
+          "carrier_delivery",
+          "package_events",
+          "reference_master"
+        ],
+        "raw": "Immutable manifested objects, identified by source and SHA-256 in file_receipts/evidence.",
+        "upstream_objects": [
+          "evidence",
+          "resolution_decisions"
+        ],
+        "audit_objects": [
+          "evidence",
+          "resolution_decisions",
+          "publication_history",
+          "pipeline_runs"
+        ],
+        "downstream_consumers": [
+          "Operations analysts",
+          "Finance analysts",
+          "Downstream data engineers"
+        ]
+      },
+      "row_count": 2001,
+      "schema": [
+        {
+          "name": "source_system",
+          "data_type": "VARCHAR",
+          "nullable": true,
+          "ordinal_position": 1
+        },
+        {
+          "name": "event_id",
+          "data_type": "VARCHAR",
+          "nullable": true,
+          "ordinal_position": 2
+        },
+        {
+          "name": "event_canonical_id",
+          "data_type": "VARCHAR",
+          "nullable": true,
+          "ordinal_position": 3
+        },
+        {
+          "name": "shipment_id",
+          "data_type": "VARCHAR",
+          "nullable": true,
+          "ordinal_position": 4
+        },
+        {
+          "name": "package_id",
+          "data_type": "VARCHAR",
+          "nullable": true,
+          "ordinal_position": 5
+        },
+        {
+          "name": "carrier_id",
+          "data_type": "VARCHAR",
+          "nullable": true,
+          "ordinal_position": 6
+        },
+        {
+          "name": "state",
+          "data_type": "VARCHAR",
+          "nullable": true,
+          "ordinal_position": 7
+        },
+        {
+          "name": "occurred_at",
+          "data_type": "TIMESTAMP",
+          "nullable": true,
+          "ordinal_position": 8
+        },
+        {
+          "name": "source_updated_at",
+          "data_type": "TIMESTAMP",
+          "nullable": true,
+          "ordinal_position": 9
+        },
+        {
+          "name": "verified",
+          "data_type": "BOOLEAN",
+          "nullable": true,
+          "ordinal_position": 10
+        },
+        {
+          "name": "revision",
+          "data_type": "BIGINT",
+          "nullable": true,
+          "ordinal_position": 11
+        },
+        {
+          "name": "raw_hash",
+          "data_type": "VARCHAR",
+          "nullable": true,
+          "ordinal_position": 12
+        },
+        {
+          "name": "run_id",
+          "data_type": "VARCHAR",
+          "nullable": true,
+          "ordinal_position": 13
+        }
+      ],
+      "example_sql": "SELECT source_system,state,count(*) AS observations FROM canonical_delivery_event GROUP BY source_system,state;"
+    },
+    {
+      "name": "canonical_transportation_cost",
+      "object_type": "BASE TABLE",
+      "description": "Current accepted interpretation of each cost posting, including explicit source tombstone flags.",
+      "grain": "One current revision per transport_costs cost_id; signed integer EUR minor units.",
+      "declared_unique_key": [
+        "cost_canonical_id"
+      ],
+      "key_enforcement": "Pipeline quality checks; this field does not assert a physical PRIMARY KEY constraint.",
+      "owner": "Logistics Data Platform",
+      "freshness": {
+        "mode": "complete-batch publication",
+        "published_batch_id": "batch002",
+        "published_ingest_sequence": 2,
+        "published_run_id": "5843e411-4fc2-428e-8ea8-c0800c56a5e2",
+        "published_at_utc": "2026-10-04T12:50:42.930542Z",
+        "description": "Freshness is the last committed input batch, not a running service SLA or source event time."
+      },
+      "quality": {
+        "publication_status": "PASSED",
+        "blocking_failures": [],
+        "warnings": [],
+        "row_status_counts": null,
+        "meaning": "Recorded checks for the committed run; source truth beyond synthetic evidence is not asserted."
+      },
+      "lineage": {
+        "source_systems": [
+          "transport_costs",
+          "reference_master"
+        ],
+        "raw": "Immutable manifested objects, identified by source and SHA-256 in file_receipts/evidence.",
+        "upstream_objects": [
+          "evidence",
+          "resolution_decisions"
+        ],
+        "audit_objects": [
+          "evidence",
+          "resolution_decisions",
+          "publication_history",
+          "pipeline_runs"
+        ],
+        "downstream_consumers": [
+          "Operations analysts",
+          "Finance analysts",
+          "Downstream data engineers"
+        ]
+      },
+      "row_count": 1000,
+      "schema": [
+        {
+          "name": "cost_id",
+          "data_type": "VARCHAR",
+          "nullable": true,
+          "ordinal_position": 1
+        },
+        {
+          "name": "cost_canonical_id",
+          "data_type": "VARCHAR",
+          "nullable": true,
+          "ordinal_position": 2
+        },
+        {
+          "name": "shipment_id",
+          "data_type": "VARCHAR",
+          "nullable": true,
+          "ordinal_position": 3
+        },
+        {
+          "name": "carrier_id",
+          "data_type": "VARCHAR",
+          "nullable": true,
+          "ordinal_position": 4
+        },
+        {
+          "name": "amount_minor",
+          "data_type": "BIGINT",
+          "nullable": true,
+          "ordinal_position": 5
+        },
+        {
+          "name": "currency",
+          "data_type": "VARCHAR",
+          "nullable": true,
+          "ordinal_position": 6
+        },
+        {
+          "name": "cost_type",
+          "data_type": "VARCHAR",
+          "nullable": true,
+          "ordinal_position": 7
+        },
+        {
+          "name": "incurred_at",
+          "data_type": "TIMESTAMP",
+          "nullable": true,
+          "ordinal_position": 8
+        },
+        {
+          "name": "revision",
+          "data_type": "BIGINT",
+          "nullable": true,
+          "ordinal_position": 9
+        },
+        {
+          "name": "source_updated_at",
+          "data_type": "TIMESTAMP",
+          "nullable": true,
+          "ordinal_position": 10
+        },
+        {
+          "name": "is_deleted",
+          "data_type": "BOOLEAN",
+          "nullable": true,
+          "ordinal_position": 11
+        },
+        {
+          "name": "raw_hash",
+          "data_type": "VARCHAR",
+          "nullable": true,
+          "ordinal_position": 12
+        },
+        {
+          "name": "run_id",
+          "data_type": "VARCHAR",
+          "nullable": true,
+          "ordinal_position": 13
+        }
+      ],
+      "example_sql": "SELECT currency,sum(amount_minor) AS current_amount_minor FROM canonical_transportation_cost WHERE NOT is_deleted GROUP BY currency;"
+    },
+    {
+      "name": "fact_shipment",
+      "object_type": "BASE TABLE",
+      "description": "Accumulating shipment snapshot with historical dimension attribution and selected state evidence.",
+      "grain": "One row per canonical shipment, including withdrawn shipment identities.",
+      "declared_unique_key": [
+        "shipment_id"
+      ],
+      "key_enforcement": "Pipeline quality checks; this field does not assert a physical PRIMARY KEY constraint.",
+      "owner": "Logistics Data Platform",
+      "freshness": {
+        "mode": "complete-batch publication",
+        "published_batch_id": "batch002",
+        "published_ingest_sequence": 2,
+        "published_run_id": "5843e411-4fc2-428e-8ea8-c0800c56a5e2",
+        "published_at_utc": "2026-10-04T12:50:42.930542Z",
+        "description": "Freshness is the last committed input batch, not a running service SLA or source event time."
+      },
+      "quality": {
+        "publication_status": "PASSED",
+        "blocking_failures": [],
+        "warnings": [],
+        "row_status_counts": null,
+        "meaning": "Recorded checks for the committed run; source truth beyond synthetic evidence is not asserted."
+      },
+      "lineage": {
+        "source_systems": [
+          "shipment_ops",
+          "carrier_delivery",
+          "package_events",
+          "reference_master"
+        ],
+        "raw": "Immutable manifested objects, identified by source and SHA-256 in file_receipts/evidence.",
+        "upstream_objects": [
+          "canonical_shipment",
+          "canonical_package",
+          "dim_carrier",
+          "dim_country",
+          "dim_facility",
+          "dim_region",
+          "dim_route",
+          "dim_service_level",
+          "dim_date"
+        ],
+        "audit_objects": [
+          "evidence",
+          "resolution_decisions",
+          "publication_history",
+          "pipeline_runs"
+        ],
+        "downstream_consumers": [
+          "Operations analysts",
+          "Finance analysts",
+          "Downstream data engineers"
+        ]
+      },
+      "row_count": 1000,
+      "schema": [
+        {
+          "name": "shipment_id",
+          "data_type": "VARCHAR",
+          "nullable": true,
+          "ordinal_position": 1
+        },
+        {
+          "name": "business_key",
+          "data_type": "VARCHAR",
+          "nullable": true,
+          "ordinal_position": 2
+        },
+        {
+          "name": "order_id",
+          "data_type": "VARCHAR",
+          "nullable": true,
+          "ordinal_position": 3
+        },
+        {
+          "name": "created_at",
+          "data_type": "TIMESTAMP",
+          "nullable": true,
+          "ordinal_position": 4
+        },
+        {
+          "name": "promised_at",
+          "data_type": "TIMESTAMP",
+          "nullable": true,
+          "ordinal_position": 5
+        },
+        {
+          "name": "actual_delivery_at",
+          "data_type": "TIMESTAMP",
+          "nullable": true,
+          "ordinal_position": 6
+        },
+        {
+          "name": "state",
+          "data_type": "VARCHAR",
+          "nullable": true,
+          "ordinal_position": 7
+        },
+        {
+          "name": "is_deleted",
+          "data_type": "BOOLEAN",
+          "nullable": true,
+          "ordinal_position": 8
+        },
+        {
+          "name": "package_count",
+          "data_type": "BIGINT",
+          "nullable": true,
+          "ordinal_position": 9
+        },
+        {
+          "name": "shipment_count",
+          "data_type": "BIGINT",
+          "nullable": true,
+          "ordinal_position": 10
+        },
+        {
+          "name": "state_source_system",
+          "data_type": "VARCHAR",
+          "nullable": true,
+          "ordinal_position": 11
+        },
+        {
+          "name": "state_observation_id",
+          "data_type": "VARCHAR",
+          "nullable": true,
+          "ordinal_position": 12
+        },
+        {
+          "name": "state_authority",
+          "data_type": "INTEGER",
+          "nullable": true,
+          "ordinal_position": 13
+        },
+        {
+          "name": "state_rule_id",
+          "data_type": "VARCHAR",
+          "nullable": true,
+          "ordinal_position": 14
+        },
+        {
+          "name": "carrier_id",
+          "data_type": "VARCHAR",
+          "nullable": true,
+          "ordinal_position": 15
+        },
+        {
+          "name": "origin_facility_id",
+          "data_type": "VARCHAR",
+          "nullable": true,
+          "ordinal_position": 16
+        },
+        {
+          "name": "destination_facility_id",
+          "data_type": "VARCHAR",
+          "nullable": true,
+          "ordinal_position": 17
+        },
+        {
+          "name": "route_id",
+          "data_type": "VARCHAR",
+          "nullable": true,
+          "ordinal_position": 18
+        },
+        {
+          "name": "country_id",
+          "data_type": "VARCHAR",
+          "nullable": true,
+          "ordinal_position": 19
+        },
+        {
+          "name": "service_level_id",
+          "data_type": "VARCHAR",
+          "nullable": true,
+          "ordinal_position": 20
+        },
+        {
+          "name": "carrier_sk",
+          "data_type": "BIGINT",
+          "nullable": true,
+          "ordinal_position": 21
+        },
+        {
+          "name": "origin_facility_sk",
+          "data_type": "BIGINT",
+          "nullable": true,
+          "ordinal_position": 22
+        },
+        {
+          "name": "destination_facility_sk",
+          "data_type": "BIGINT",
+          "nullable": true,
+          "ordinal_position": 23
+        },
+        {
+          "name": "route_sk",
+          "data_type": "BIGINT",
+          "nullable": true,
+          "ordinal_position": 24
+        },
+        {
+          "name": "country_sk",
+          "data_type": "BIGINT",
+          "nullable": true,
+          "ordinal_position": 25
+        },
+        {
+          "name": "region_sk",
+          "data_type": "BIGINT",
+          "nullable": true,
+          "ordinal_position": 26
+        },
+        {
+          "name": "destination_region_sk",
+          "data_type": "BIGINT",
+          "nullable": true,
+          "ordinal_position": 27
+        },
+        {
+          "name": "origin_country_sk",
+          "data_type": "BIGINT",
+          "nullable": true,
+          "ordinal_position": 28
+        },
+        {
+          "name": "destination_country_sk",
+          "data_type": "BIGINT",
+          "nullable": true,
+          "ordinal_position": 29
+        },
+        {
+          "name": "service_level_sk",
+          "data_type": "BIGINT",
+          "nullable": true,
+          "ordinal_position": 30
+        },
+        {
+          "name": "created_date_sk",
+          "data_type": "INTEGER",
+          "nullable": true,
+          "ordinal_position": 31
+        },
+        {
+          "name": "promised_date_sk",
+          "data_type": "INTEGER",
+          "nullable": true,
+          "ordinal_position": 32
+        },
+        {
+          "name": "delivered_date_sk",
+          "data_type": "INTEGER",
+          "nullable": true,
+          "ordinal_position": 33
+        },
+        {
+          "name": "raw_hash",
+          "data_type": "VARCHAR",
+          "nullable": true,
+          "ordinal_position": 34
+        },
+        {
+          "name": "run_id",
+          "data_type": "VARCHAR",
+          "nullable": true,
+          "ordinal_position": 35
+        }
+      ],
+      "example_sql": "SELECT state,sum(shipment_count) AS shipments FROM fact_shipment WHERE NOT is_deleted GROUP BY state;"
+    },
+    {
+      "name": "fact_delivery_event",
+      "object_type": "BASE TABLE",
+      "description": "Current source event observations attributed to dimensions at the event's business occurrence time.",
+      "grain": "One current accepted revision per namespaced source event ID; observers of one physical milestone remain separate.",
+      "declared_unique_key": [
+        "event_canonical_id"
+      ],
+      "key_enforcement": "Pipeline quality checks; this field does not assert a physical PRIMARY KEY constraint.",
+      "owner": "Logistics Data Platform",
+      "freshness": {
+        "mode": "complete-batch publication",
+        "published_batch_id": "batch002",
+        "published_ingest_sequence": 2,
+        "published_run_id": "5843e411-4fc2-428e-8ea8-c0800c56a5e2",
+        "published_at_utc": "2026-10-04T12:50:42.930542Z",
+        "description": "Freshness is the last committed input batch, not a running service SLA or source event time."
+      },
+      "quality": {
+        "publication_status": "PASSED",
+        "blocking_failures": [],
+        "warnings": [],
+        "row_status_counts": null,
+        "meaning": "Recorded checks for the committed run; source truth beyond synthetic evidence is not asserted."
+      },
+      "lineage": {
+        "source_systems": [
+          "carrier_delivery",
+          "package_events",
+          "shipment_ops",
+          "reference_master"
+        ],
+        "raw": "Immutable manifested objects, identified by source and SHA-256 in file_receipts/evidence.",
+        "upstream_objects": [
+          "canonical_delivery_event",
+          "canonical_shipment",
+          "dim_carrier",
+          "dim_country",
+          "dim_facility",
+          "dim_region",
+          "dim_route",
+          "dim_service_level",
+          "dim_date"
+        ],
+        "audit_objects": [
+          "evidence",
+          "resolution_decisions",
+          "publication_history",
+          "pipeline_runs"
+        ],
+        "downstream_consumers": [
+          "Operations analysts",
+          "Finance analysts",
+          "Downstream data engineers"
+        ]
+      },
+      "row_count": 2001,
+      "schema": [
+        {
+          "name": "source_system",
+          "data_type": "VARCHAR",
+          "nullable": true,
+          "ordinal_position": 1
+        },
+        {
+          "name": "event_id",
+          "data_type": "VARCHAR",
+          "nullable": true,
+          "ordinal_position": 2
+        },
+        {
+          "name": "event_canonical_id",
+          "data_type": "VARCHAR",
+          "nullable": true,
+          "ordinal_position": 3
+        },
+        {
+          "name": "shipment_id",
+          "data_type": "VARCHAR",
+          "nullable": true,
+          "ordinal_position": 4
+        },
+        {
+          "name": "package_id",
+          "data_type": "VARCHAR",
+          "nullable": true,
+          "ordinal_position": 5
+        },
+        {
+          "name": "carrier_id",
+          "data_type": "VARCHAR",
+          "nullable": true,
+          "ordinal_position": 6
+        },
+        {
+          "name": "state",
+          "data_type": "VARCHAR",
+          "nullable": true,
+          "ordinal_position": 7
+        },
+        {
+          "name": "occurred_at",
+          "data_type": "TIMESTAMP",
+          "nullable": true,
+          "ordinal_position": 8
+        },
+        {
+          "name": "source_updated_at",
+          "data_type": "TIMESTAMP",
+          "nullable": true,
+          "ordinal_position": 9
+        },
+        {
+          "name": "verified",
+          "data_type": "BOOLEAN",
+          "nullable": true,
+          "ordinal_position": 10
+        },
+        {
+          "name": "revision",
+          "data_type": "BIGINT",
+          "nullable": true,
+          "ordinal_position": 11
+        },
+        {
+          "name": "raw_hash",
+          "data_type": "VARCHAR",
+          "nullable": true,
+          "ordinal_position": 12
+        },
+        {
+          "name": "source_run_id",
+          "data_type": "VARCHAR",
+          "nullable": true,
+          "ordinal_position": 13
+        },
+        {
+          "name": "run_id",
+          "data_type": "VARCHAR",
+          "nullable": true,
+          "ordinal_position": 14
+        },
+        {
+          "name": "event_count",
+          "data_type": "BIGINT",
+          "nullable": true,
+          "ordinal_position": 15
+        },
+        {
+          "name": "source_recording_delay_seconds",
+          "data_type": "BIGINT",
+          "nullable": true,
+          "ordinal_position": 16
+        },
+        {
+          "name": "carrier_sk",
+          "data_type": "BIGINT",
+          "nullable": true,
+          "ordinal_position": 17
+        },
+        {
+          "name": "origin_facility_sk",
+          "data_type": "BIGINT",
+          "nullable": true,
+          "ordinal_position": 18
+        },
+        {
+          "name": "destination_facility_sk",
+          "data_type": "BIGINT",
+          "nullable": true,
+          "ordinal_position": 19
+        },
+        {
+          "name": "route_sk",
+          "data_type": "BIGINT",
+          "nullable": true,
+          "ordinal_position": 20
+        },
+        {
+          "name": "country_sk",
+          "data_type": "BIGINT",
+          "nullable": true,
+          "ordinal_position": 21
+        },
+        {
+          "name": "region_sk",
+          "data_type": "BIGINT",
+          "nullable": true,
+          "ordinal_position": 22
+        },
+        {
+          "name": "destination_region_sk",
+          "data_type": "BIGINT",
+          "nullable": true,
+          "ordinal_position": 23
+        },
+        {
+          "name": "origin_country_sk",
+          "data_type": "BIGINT",
+          "nullable": true,
+          "ordinal_position": 24
+        },
+        {
+          "name": "destination_country_sk",
+          "data_type": "BIGINT",
+          "nullable": true,
+          "ordinal_position": 25
+        },
+        {
+          "name": "service_level_sk",
+          "data_type": "BIGINT",
+          "nullable": true,
+          "ordinal_position": 26
+        },
+        {
+          "name": "event_date_sk",
+          "data_type": "INTEGER",
+          "nullable": true,
+          "ordinal_position": 27
+        }
+      ],
+      "example_sql": "SELECT source_system,max(source_recording_delay_seconds) AS max_source_delay_seconds FROM fact_delivery_event GROUP BY source_system;"
+    },
+    {
+      "name": "fact_transportation_cost",
+      "object_type": "BASE TABLE",
+      "description": "Current accepted financial postings with temporal attribution; superseded/deleted contributions are excluded.",
+      "grain": "One current nondeleted transport_costs cost_id, including separately identified signed credits.",
+      "declared_unique_key": [
+        "cost_canonical_id"
+      ],
+      "key_enforcement": "Pipeline quality checks; this field does not assert a physical PRIMARY KEY constraint.",
+      "owner": "Logistics Data Platform",
+      "freshness": {
+        "mode": "complete-batch publication",
+        "published_batch_id": "batch002",
+        "published_ingest_sequence": 2,
+        "published_run_id": "5843e411-4fc2-428e-8ea8-c0800c56a5e2",
+        "published_at_utc": "2026-10-04T12:50:42.930542Z",
+        "description": "Freshness is the last committed input batch, not a running service SLA or source event time."
+      },
+      "quality": {
+        "publication_status": "PASSED",
+        "blocking_failures": [],
+        "warnings": [],
+        "row_status_counts": null,
+        "meaning": "Recorded checks for the committed run; source truth beyond synthetic evidence is not asserted."
+      },
+      "lineage": {
+        "source_systems": [
+          "transport_costs",
+          "shipment_ops",
+          "reference_master"
+        ],
+        "raw": "Immutable manifested objects, identified by source and SHA-256 in file_receipts/evidence.",
+        "upstream_objects": [
+          "canonical_transportation_cost",
+          "canonical_shipment",
+          "dim_carrier",
+          "dim_country",
+          "dim_facility",
+          "dim_region",
+          "dim_route",
+          "dim_service_level",
+          "dim_date"
+        ],
+        "audit_objects": [
+          "evidence",
+          "resolution_decisions",
+          "publication_history",
+          "pipeline_runs"
+        ],
+        "downstream_consumers": [
+          "Operations analysts",
+          "Finance analysts",
+          "Downstream data engineers"
+        ]
+      },
+      "row_count": 1000,
+      "schema": [
+        {
+          "name": "cost_id",
+          "data_type": "VARCHAR",
+          "nullable": true,
+          "ordinal_position": 1
+        },
+        {
+          "name": "cost_canonical_id",
+          "data_type": "VARCHAR",
+          "nullable": true,
+          "ordinal_position": 2
+        },
+        {
+          "name": "shipment_id",
+          "data_type": "VARCHAR",
+          "nullable": true,
+          "ordinal_position": 3
+        },
+        {
+          "name": "carrier_id",
+          "data_type": "VARCHAR",
+          "nullable": true,
+          "ordinal_position": 4
+        },
+        {
+          "name": "amount_minor",
+          "data_type": "BIGINT",
+          "nullable": true,
+          "ordinal_position": 5
+        },
+        {
+          "name": "currency",
+          "data_type": "VARCHAR",
+          "nullable": true,
+          "ordinal_position": 6
+        },
+        {
+          "name": "cost_type",
+          "data_type": "VARCHAR",
+          "nullable": true,
+          "ordinal_position": 7
+        },
+        {
+          "name": "incurred_at",
+          "data_type": "TIMESTAMP",
+          "nullable": true,
+          "ordinal_position": 8
+        },
+        {
+          "name": "revision",
+          "data_type": "BIGINT",
+          "nullable": true,
+          "ordinal_position": 9
+        },
+        {
+          "name": "source_updated_at",
+          "data_type": "TIMESTAMP",
+          "nullable": true,
+          "ordinal_position": 10
+        },
+        {
+          "name": "is_deleted",
+          "data_type": "BOOLEAN",
+          "nullable": true,
+          "ordinal_position": 11
+        },
+        {
+          "name": "raw_hash",
+          "data_type": "VARCHAR",
+          "nullable": true,
+          "ordinal_position": 12
+        },
+        {
+          "name": "source_run_id",
+          "data_type": "VARCHAR",
+          "nullable": true,
+          "ordinal_position": 13
+        },
+        {
+          "name": "run_id",
+          "data_type": "VARCHAR",
+          "nullable": true,
+          "ordinal_position": 14
+        },
+        {
+          "name": "carrier_sk",
+          "data_type": "BIGINT",
+          "nullable": true,
+          "ordinal_position": 15
+        },
+        {
+          "name": "origin_facility_sk",
+          "data_type": "BIGINT",
+          "nullable": true,
+          "ordinal_position": 16
+        },
+        {
+          "name": "destination_facility_sk",
+          "data_type": "BIGINT",
+          "nullable": true,
+          "ordinal_position": 17
+        },
+        {
+          "name": "route_sk",
+          "data_type": "BIGINT",
+          "nullable": true,
+          "ordinal_position": 18
+        },
+        {
+          "name": "country_sk",
+          "data_type": "BIGINT",
+          "nullable": true,
+          "ordinal_position": 19
+        },
+        {
+          "name": "region_sk",
+          "data_type": "BIGINT",
+          "nullable": true,
+          "ordinal_position": 20
+        },
+        {
+          "name": "destination_region_sk",
+          "data_type": "BIGINT",
+          "nullable": true,
+          "ordinal_position": 21
+        },
+        {
+          "name": "origin_country_sk",
+          "data_type": "BIGINT",
+          "nullable": true,
+          "ordinal_position": 22
+        },
+        {
+          "name": "destination_country_sk",
+          "data_type": "BIGINT",
+          "nullable": true,
+          "ordinal_position": 23
+        },
+        {
+          "name": "service_level_sk",
+          "data_type": "BIGINT",
+          "nullable": true,
+          "ordinal_position": 24
+        },
+        {
+          "name": "incurred_date_sk",
+          "data_type": "INTEGER",
+          "nullable": true,
+          "ordinal_position": 25
+        }
+      ],
+      "example_sql": "SELECT currency,sum(amount_minor) AS transportation_amount_minor FROM fact_transportation_cost GROUP BY currency;"
+    },
+    {
+      "name": "ssot_shipments",
+      "object_type": "VIEW",
+      "description": "Analyst-facing active shipment state, milestones, readable references, and per-row quality status.",
+      "grain": "One active canonical shipment; withdrawn shipments remain in the fact and audit history.",
+      "declared_unique_key": [
+        "shipment_id"
+      ],
+      "key_enforcement": "Pipeline quality checks; this field does not assert a physical PRIMARY KEY constraint.",
+      "owner": "Logistics Data Platform",
+      "freshness": {
+        "mode": "complete-batch publication",
+        "published_batch_id": "batch002",
+        "published_ingest_sequence": 2,
+        "published_run_id": "5843e411-4fc2-428e-8ea8-c0800c56a5e2",
+        "published_at_utc": "2026-10-04T12:50:42.930542Z",
+        "description": "Freshness is the last committed input batch, not a running service SLA or source event time."
+      },
+      "quality": {
+        "publication_status": "PASSED",
+        "blocking_failures": [],
+        "warnings": [],
+        "row_status_counts": {
+          "PASSED": 999
+        },
+        "meaning": "Recorded checks for the committed run; source truth beyond synthetic evidence is not asserted."
+      },
+      "lineage": {
+        "source_systems": [
+          "shipment_ops",
+          "carrier_delivery",
+          "package_events",
+          "reference_master"
+        ],
+        "raw": "Immutable manifested objects, identified by source and SHA-256 in file_receipts/evidence.",
+        "upstream_objects": [
+          "fact_shipment",
+          "dim_carrier",
+          "dim_country",
+          "dim_facility",
+          "dim_region",
+          "dim_route",
+          "dim_service_level"
+        ],
+        "audit_objects": [
+          "evidence",
+          "resolution_decisions",
+          "publication_history",
+          "pipeline_runs"
+        ],
+        "downstream_consumers": [
+          "Operations analysts",
+          "Finance analysts",
+          "Downstream data engineers"
+        ]
+      },
+      "row_count": 999,
+      "schema": [
+        {
+          "name": "shipment_id",
+          "data_type": "VARCHAR",
+          "nullable": true,
+          "ordinal_position": 1
+        },
+        {
+          "name": "business_key",
+          "data_type": "VARCHAR",
+          "nullable": true,
+          "ordinal_position": 2
+        },
+        {
+          "name": "order_id",
+          "data_type": "VARCHAR",
+          "nullable": true,
+          "ordinal_position": 3
+        },
+        {
+          "name": "created_at",
+          "data_type": "TIMESTAMP",
+          "nullable": true,
+          "ordinal_position": 4
+        },
+        {
+          "name": "promised_at",
+          "data_type": "TIMESTAMP",
+          "nullable": true,
+          "ordinal_position": 5
+        },
+        {
+          "name": "actual_delivery_at",
+          "data_type": "TIMESTAMP",
+          "nullable": true,
+          "ordinal_position": 6
+        },
+        {
+          "name": "state",
+          "data_type": "VARCHAR",
+          "nullable": true,
+          "ordinal_position": 7
+        },
+        {
+          "name": "is_deleted",
+          "data_type": "BOOLEAN",
+          "nullable": true,
+          "ordinal_position": 8
+        },
+        {
+          "name": "package_count",
+          "data_type": "BIGINT",
+          "nullable": true,
+          "ordinal_position": 9
+        },
+        {
+          "name": "shipment_count",
+          "data_type": "BIGINT",
+          "nullable": true,
+          "ordinal_position": 10
+        },
+        {
+          "name": "state_source_system",
+          "data_type": "VARCHAR",
+          "nullable": true,
+          "ordinal_position": 11
+        },
+        {
+          "name": "state_observation_id",
+          "data_type": "VARCHAR",
+          "nullable": true,
+          "ordinal_position": 12
+        },
+        {
+          "name": "state_authority",
+          "data_type": "INTEGER",
+          "nullable": true,
+          "ordinal_position": 13
+        },
+        {
+          "name": "state_rule_id",
+          "data_type": "VARCHAR",
+          "nullable": true,
+          "ordinal_position": 14
+        },
+        {
+          "name": "carrier_id",
+          "data_type": "VARCHAR",
+          "nullable": true,
+          "ordinal_position": 15
+        },
+        {
+          "name": "origin_facility_id",
+          "data_type": "VARCHAR",
+          "nullable": true,
+          "ordinal_position": 16
+        },
+        {
+          "name": "destination_facility_id",
+          "data_type": "VARCHAR",
+          "nullable": true,
+          "ordinal_position": 17
+        },
+        {
+          "name": "route_id",
+          "data_type": "VARCHAR",
+          "nullable": true,
+          "ordinal_position": 18
+        },
+        {
+          "name": "country_id",
+          "data_type": "VARCHAR",
+          "nullable": true,
+          "ordinal_position": 19
+        },
+        {
+          "name": "service_level_id",
+          "data_type": "VARCHAR",
+          "nullable": true,
+          "ordinal_position": 20
+        },
+        {
+          "name": "carrier_sk",
+          "data_type": "BIGINT",
+          "nullable": true,
+          "ordinal_position": 21
+        },
+        {
+          "name": "origin_facility_sk",
+          "data_type": "BIGINT",
+          "nullable": true,
+          "ordinal_position": 22
+        },
+        {
+          "name": "destination_facility_sk",
+          "data_type": "BIGINT",
+          "nullable": true,
+          "ordinal_position": 23
+        },
+        {
+          "name": "route_sk",
+          "data_type": "BIGINT",
+          "nullable": true,
+          "ordinal_position": 24
+        },
+        {
+          "name": "country_sk",
+          "data_type": "BIGINT",
+          "nullable": true,
+          "ordinal_position": 25
+        },
+        {
+          "name": "region_sk",
+          "data_type": "BIGINT",
+          "nullable": true,
+          "ordinal_position": 26
+        },
+        {
+          "name": "destination_region_sk",
+          "data_type": "BIGINT",
+          "nullable": true,
+          "ordinal_position": 27
+        },
+        {
+          "name": "origin_country_sk",
+          "data_type": "BIGINT",
+          "nullable": true,
+          "ordinal_position": 28
+        },
+        {
+          "name": "destination_country_sk",
+          "data_type": "BIGINT",
+          "nullable": true,
+          "ordinal_position": 29
+        },
+        {
+          "name": "service_level_sk",
+          "data_type": "BIGINT",
+          "nullable": true,
+          "ordinal_position": 30
+        },
+        {
+          "name": "created_date_sk",
+          "data_type": "INTEGER",
+          "nullable": true,
+          "ordinal_position": 31
+        },
+        {
+          "name": "promised_date_sk",
+          "data_type": "INTEGER",
+          "nullable": true,
+          "ordinal_position": 32
+        },
+        {
+          "name": "delivered_date_sk",
+          "data_type": "INTEGER",
+          "nullable": true,
+          "ordinal_position": 33
+        },
+        {
+          "name": "raw_hash",
+          "data_type": "VARCHAR",
+          "nullable": true,
+          "ordinal_position": 34
+        },
+        {
+          "name": "run_id",
+          "data_type": "VARCHAR",
+          "nullable": true,
+          "ordinal_position": 35
+        },
+        {
+          "name": "carrier_name",
+          "data_type": "VARCHAR",
+          "nullable": true,
+          "ordinal_position": 36
+        },
+        {
+          "name": "origin_facility",
+          "data_type": "VARCHAR",
+          "nullable": true,
+          "ordinal_position": 37
+        },
+        {
+          "name": "destination_facility",
+          "data_type": "VARCHAR",
+          "nullable": true,
+          "ordinal_position": 38
+        },
+        {
+          "name": "route_name",
+          "data_type": "VARCHAR",
+          "nullable": true,
+          "ordinal_position": 39
+        },
+        {
+          "name": "country_name",
+          "data_type": "VARCHAR",
+          "nullable": true,
+          "ordinal_position": 40
+        },
+        {
+          "name": "origin_region",
+          "data_type": "VARCHAR",
+          "nullable": true,
+          "ordinal_position": 41
+        },
+        {
+          "name": "service_level_name",
+          "data_type": "VARCHAR",
+          "nullable": true,
+          "ordinal_position": 42
+        },
+        {
+          "name": "quality_status",
+          "data_type": "VARCHAR",
+          "nullable": true,
+          "ordinal_position": 43
+        },
+        {
+          "name": "product_owner",
+          "data_type": "VARCHAR",
+          "nullable": true,
+          "ordinal_position": 44
+        }
+      ],
+      "example_sql": "SELECT carrier_name,count(*) AS delivered_shipments FROM ssot_shipments WHERE state='delivered' GROUP BY carrier_name;"
+    },
+    {
+      "name": "ssot_delivery_events",
+      "object_type": "VIEW",
+      "description": "Analyst-facing source event observations, their recording delay, readable carrier, and quality status.",
+      "grain": "One current accepted namespaced source event observation, regardless of receipt lateness.",
+      "declared_unique_key": [
+        "event_canonical_id"
+      ],
+      "key_enforcement": "Pipeline quality checks; this field does not assert a physical PRIMARY KEY constraint.",
+      "owner": "Logistics Data Platform",
+      "freshness": {
+        "mode": "complete-batch publication",
+        "published_batch_id": "batch002",
+        "published_ingest_sequence": 2,
+        "published_run_id": "5843e411-4fc2-428e-8ea8-c0800c56a5e2",
+        "published_at_utc": "2026-10-04T12:50:42.930542Z",
+        "description": "Freshness is the last committed input batch, not a running service SLA or source event time."
+      },
+      "quality": {
+        "publication_status": "PASSED",
+        "blocking_failures": [],
+        "warnings": [],
+        "row_status_counts": {
+          "PASSED": 2001
+        },
+        "meaning": "Recorded checks for the committed run; source truth beyond synthetic evidence is not asserted."
+      },
+      "lineage": {
+        "source_systems": [
+          "carrier_delivery",
+          "package_events",
+          "shipment_ops",
+          "reference_master"
+        ],
+        "raw": "Immutable manifested objects, identified by source and SHA-256 in file_receipts/evidence.",
+        "upstream_objects": [
+          "fact_delivery_event",
+          "dim_carrier"
+        ],
+        "audit_objects": [
+          "evidence",
+          "resolution_decisions",
+          "publication_history",
+          "pipeline_runs"
+        ],
+        "downstream_consumers": [
+          "Operations analysts",
+          "Finance analysts",
+          "Downstream data engineers"
+        ]
+      },
+      "row_count": 2001,
+      "schema": [
+        {
+          "name": "source_system",
+          "data_type": "VARCHAR",
+          "nullable": true,
+          "ordinal_position": 1
+        },
+        {
+          "name": "event_id",
+          "data_type": "VARCHAR",
+          "nullable": true,
+          "ordinal_position": 2
+        },
+        {
+          "name": "event_canonical_id",
+          "data_type": "VARCHAR",
+          "nullable": true,
+          "ordinal_position": 3
+        },
+        {
+          "name": "shipment_id",
+          "data_type": "VARCHAR",
+          "nullable": true,
+          "ordinal_position": 4
+        },
+        {
+          "name": "package_id",
+          "data_type": "VARCHAR",
+          "nullable": true,
+          "ordinal_position": 5
+        },
+        {
+          "name": "carrier_id",
+          "data_type": "VARCHAR",
+          "nullable": true,
+          "ordinal_position": 6
+        },
+        {
+          "name": "state",
+          "data_type": "VARCHAR",
+          "nullable": true,
+          "ordinal_position": 7
+        },
+        {
+          "name": "occurred_at",
+          "data_type": "TIMESTAMP",
+          "nullable": true,
+          "ordinal_position": 8
+        },
+        {
+          "name": "source_updated_at",
+          "data_type": "TIMESTAMP",
+          "nullable": true,
+          "ordinal_position": 9
+        },
+        {
+          "name": "verified",
+          "data_type": "BOOLEAN",
+          "nullable": true,
+          "ordinal_position": 10
+        },
+        {
+          "name": "revision",
+          "data_type": "BIGINT",
+          "nullable": true,
+          "ordinal_position": 11
+        },
+        {
+          "name": "raw_hash",
+          "data_type": "VARCHAR",
+          "nullable": true,
+          "ordinal_position": 12
+        },
+        {
+          "name": "source_run_id",
+          "data_type": "VARCHAR",
+          "nullable": true,
+          "ordinal_position": 13
+        },
+        {
+          "name": "run_id",
+          "data_type": "VARCHAR",
+          "nullable": true,
+          "ordinal_position": 14
+        },
+        {
+          "name": "event_count",
+          "data_type": "BIGINT",
+          "nullable": true,
+          "ordinal_position": 15
+        },
+        {
+          "name": "source_recording_delay_seconds",
+          "data_type": "BIGINT",
+          "nullable": true,
+          "ordinal_position": 16
+        },
+        {
+          "name": "carrier_sk",
+          "data_type": "BIGINT",
+          "nullable": true,
+          "ordinal_position": 17
+        },
+        {
+          "name": "origin_facility_sk",
+          "data_type": "BIGINT",
+          "nullable": true,
+          "ordinal_position": 18
+        },
+        {
+          "name": "destination_facility_sk",
+          "data_type": "BIGINT",
+          "nullable": true,
+          "ordinal_position": 19
+        },
+        {
+          "name": "route_sk",
+          "data_type": "BIGINT",
+          "nullable": true,
+          "ordinal_position": 20
+        },
+        {
+          "name": "country_sk",
+          "data_type": "BIGINT",
+          "nullable": true,
+          "ordinal_position": 21
+        },
+        {
+          "name": "region_sk",
+          "data_type": "BIGINT",
+          "nullable": true,
+          "ordinal_position": 22
+        },
+        {
+          "name": "destination_region_sk",
+          "data_type": "BIGINT",
+          "nullable": true,
+          "ordinal_position": 23
+        },
+        {
+          "name": "origin_country_sk",
+          "data_type": "BIGINT",
+          "nullable": true,
+          "ordinal_position": 24
+        },
+        {
+          "name": "destination_country_sk",
+          "data_type": "BIGINT",
+          "nullable": true,
+          "ordinal_position": 25
+        },
+        {
+          "name": "service_level_sk",
+          "data_type": "BIGINT",
+          "nullable": true,
+          "ordinal_position": 26
+        },
+        {
+          "name": "event_date_sk",
+          "data_type": "INTEGER",
+          "nullable": true,
+          "ordinal_position": 27
+        },
+        {
+          "name": "carrier_name",
+          "data_type": "VARCHAR",
+          "nullable": true,
+          "ordinal_position": 28
+        },
+        {
+          "name": "quality_status",
+          "data_type": "VARCHAR",
+          "nullable": true,
+          "ordinal_position": 29
+        },
+        {
+          "name": "product_owner",
+          "data_type": "VARCHAR",
+          "nullable": true,
+          "ordinal_position": 30
+        }
+      ],
+      "example_sql": "SELECT source_system,count(*) AS observations,count(DISTINCT shipment_id) AS shipments FROM ssot_delivery_events GROUP BY source_system;"
+    },
+    {
+      "name": "ssot_transportation_costs",
+      "object_type": "VIEW",
+      "description": "Analyst-facing current EUR transportation postings with readable references and quality status.",
+      "grain": "One current accepted nondeleted cost posting; aggregate costs before joining one-to-many event/package facts.",
+      "declared_unique_key": [
+        "cost_canonical_id"
+      ],
+      "key_enforcement": "Pipeline quality checks; this field does not assert a physical PRIMARY KEY constraint.",
+      "owner": "Logistics Data Platform",
+      "freshness": {
+        "mode": "complete-batch publication",
+        "published_batch_id": "batch002",
+        "published_ingest_sequence": 2,
+        "published_run_id": "5843e411-4fc2-428e-8ea8-c0800c56a5e2",
+        "published_at_utc": "2026-10-04T12:50:42.930542Z",
+        "description": "Freshness is the last committed input batch, not a running service SLA or source event time."
+      },
+      "quality": {
+        "publication_status": "PASSED",
+        "blocking_failures": [],
+        "warnings": [],
+        "row_status_counts": {
+          "PASSED": 1000
+        },
+        "meaning": "Recorded checks for the committed run; source truth beyond synthetic evidence is not asserted."
+      },
+      "lineage": {
+        "source_systems": [
+          "transport_costs",
+          "shipment_ops",
+          "reference_master"
+        ],
+        "raw": "Immutable manifested objects, identified by source and SHA-256 in file_receipts/evidence.",
+        "upstream_objects": [
+          "fact_transportation_cost",
+          "dim_carrier",
+          "dim_route",
+          "dim_service_level"
+        ],
+        "audit_objects": [
+          "evidence",
+          "resolution_decisions",
+          "publication_history",
+          "pipeline_runs"
+        ],
+        "downstream_consumers": [
+          "Operations analysts",
+          "Finance analysts",
+          "Downstream data engineers"
+        ]
+      },
+      "row_count": 1000,
+      "schema": [
+        {
+          "name": "cost_id",
+          "data_type": "VARCHAR",
+          "nullable": true,
+          "ordinal_position": 1
+        },
+        {
+          "name": "cost_canonical_id",
+          "data_type": "VARCHAR",
+          "nullable": true,
+          "ordinal_position": 2
+        },
+        {
+          "name": "shipment_id",
+          "data_type": "VARCHAR",
+          "nullable": true,
+          "ordinal_position": 3
+        },
+        {
+          "name": "carrier_id",
+          "data_type": "VARCHAR",
+          "nullable": true,
+          "ordinal_position": 4
+        },
+        {
+          "name": "amount_minor",
+          "data_type": "BIGINT",
+          "nullable": true,
+          "ordinal_position": 5
+        },
+        {
+          "name": "currency",
+          "data_type": "VARCHAR",
+          "nullable": true,
+          "ordinal_position": 6
+        },
+        {
+          "name": "cost_type",
+          "data_type": "VARCHAR",
+          "nullable": true,
+          "ordinal_position": 7
+        },
+        {
+          "name": "incurred_at",
+          "data_type": "TIMESTAMP",
+          "nullable": true,
+          "ordinal_position": 8
+        },
+        {
+          "name": "revision",
+          "data_type": "BIGINT",
+          "nullable": true,
+          "ordinal_position": 9
+        },
+        {
+          "name": "source_updated_at",
+          "data_type": "TIMESTAMP",
+          "nullable": true,
+          "ordinal_position": 10
+        },
+        {
+          "name": "is_deleted",
+          "data_type": "BOOLEAN",
+          "nullable": true,
+          "ordinal_position": 11
+        },
+        {
+          "name": "raw_hash",
+          "data_type": "VARCHAR",
+          "nullable": true,
+          "ordinal_position": 12
+        },
+        {
+          "name": "source_run_id",
+          "data_type": "VARCHAR",
+          "nullable": true,
+          "ordinal_position": 13
+        },
+        {
+          "name": "run_id",
+          "data_type": "VARCHAR",
+          "nullable": true,
+          "ordinal_position": 14
+        },
+        {
+          "name": "carrier_sk",
+          "data_type": "BIGINT",
+          "nullable": true,
+          "ordinal_position": 15
+        },
+        {
+          "name": "origin_facility_sk",
+          "data_type": "BIGINT",
+          "nullable": true,
+          "ordinal_position": 16
+        },
+        {
+          "name": "destination_facility_sk",
+          "data_type": "BIGINT",
+          "nullable": true,
+          "ordinal_position": 17
+        },
+        {
+          "name": "route_sk",
+          "data_type": "BIGINT",
+          "nullable": true,
+          "ordinal_position": 18
+        },
+        {
+          "name": "country_sk",
+          "data_type": "BIGINT",
+          "nullable": true,
+          "ordinal_position": 19
+        },
+        {
+          "name": "region_sk",
+          "data_type": "BIGINT",
+          "nullable": true,
+          "ordinal_position": 20
+        },
+        {
+          "name": "destination_region_sk",
+          "data_type": "BIGINT",
+          "nullable": true,
+          "ordinal_position": 21
+        },
+        {
+          "name": "origin_country_sk",
+          "data_type": "BIGINT",
+          "nullable": true,
+          "ordinal_position": 22
+        },
+        {
+          "name": "destination_country_sk",
+          "data_type": "BIGINT",
+          "nullable": true,
+          "ordinal_position": 23
+        },
+        {
+          "name": "service_level_sk",
+          "data_type": "BIGINT",
+          "nullable": true,
+          "ordinal_position": 24
+        },
+        {
+          "name": "incurred_date_sk",
+          "data_type": "INTEGER",
+          "nullable": true,
+          "ordinal_position": 25
+        },
+        {
+          "name": "carrier_name",
+          "data_type": "VARCHAR",
+          "nullable": true,
+          "ordinal_position": 26
+        },
+        {
+          "name": "route_name",
+          "data_type": "VARCHAR",
+          "nullable": true,
+          "ordinal_position": 27
+        },
+        {
+          "name": "service_level_name",
+          "data_type": "VARCHAR",
+          "nullable": true,
+          "ordinal_position": 28
+        },
+        {
+          "name": "quality_status",
+          "data_type": "VARCHAR",
+          "nullable": true,
+          "ordinal_position": 29
+        },
+        {
+          "name": "product_owner",
+          "data_type": "VARCHAR",
+          "nullable": true,
+          "ordinal_position": 30
+        }
+      ],
+      "example_sql": "SELECT shipment_id,currency,sum(amount_minor) AS transportation_amount_minor FROM ssot_transportation_costs GROUP BY shipment_id,currency;"
+    },
+    {
+      "name": "dim_carrier",
+      "object_type": "BASE TABLE",
+      "description": "Historical carrier attribution with explicit surrogate keys.",
+      "grain": "One business-valid version per canonical carrier and effective interval; display corrections use Type 1. Includes surrogate-key-0 unknown member.",
+      "declared_unique_key": [
+        "carrier_sk"
+      ],
+      "key_enforcement": "Pipeline quality checks; this field does not assert a physical PRIMARY KEY constraint.",
+      "owner": "Reference Steward",
+      "freshness": {
+        "mode": "complete-batch publication",
+        "published_batch_id": "batch002",
+        "published_ingest_sequence": 2,
+        "published_run_id": "5843e411-4fc2-428e-8ea8-c0800c56a5e2",
+        "published_at_utc": "2026-10-04T12:50:42.930542Z",
+        "description": "Freshness is the last committed input batch, not a running service SLA or source event time."
+      },
+      "quality": {
+        "publication_status": "PASSED",
+        "blocking_failures": [],
+        "warnings": [],
+        "row_status_counts": null,
+        "meaning": "Recorded checks for the committed run; source truth beyond synthetic evidence is not asserted."
+      },
+      "lineage": {
+        "source_systems": [
+          "reference_master"
+        ],
+        "raw": "Immutable manifested objects, identified by source and SHA-256 in file_receipts/evidence.",
+        "upstream_objects": [
+          "evidence",
+          "dim_reference"
+        ],
+        "audit_objects": [
+          "evidence",
+          "resolution_decisions",
+          "publication_history",
+          "pipeline_runs"
+        ],
+        "downstream_consumers": [
+          "Operations analysts",
+          "Finance analysts",
+          "Downstream data engineers"
+        ]
+      },
+      "row_count": 4,
+      "schema": [
+        {
+          "name": "carrier_sk",
+          "data_type": "BIGINT",
+          "nullable": true,
+          "ordinal_position": 1
+        },
+        {
+          "name": "canonical_id",
+          "data_type": "VARCHAR",
+          "nullable": true,
+          "ordinal_position": 2
+        },
+        {
+          "name": "business_key",
+          "data_type": "VARCHAR",
+          "nullable": true,
+          "ordinal_position": 3
+        },
+        {
+          "name": "carrier_name",
+          "data_type": "VARCHAR",
+          "nullable": true,
+          "ordinal_position": 4
+        },
+        {
+          "name": "operating_status",
+          "data_type": "VARCHAR",
+          "nullable": true,
+          "ordinal_position": 5
+        },
+        {
+          "name": "default_service_id",
+          "data_type": "VARCHAR",
+          "nullable": true,
+          "ordinal_position": 6
+        },
+        {
+          "name": "effective_from",
+          "data_type": "TIMESTAMP",
+          "nullable": true,
+          "ordinal_position": 7
+        },
+        {
+          "name": "effective_to",
+          "data_type": "TIMESTAMP",
+          "nullable": true,
+          "ordinal_position": 8
+        },
+        {
+          "name": "is_current",
+          "data_type": "BOOLEAN",
+          "nullable": true,
+          "ordinal_position": 9
+        },
+        {
+          "name": "status",
+          "data_type": "VARCHAR",
+          "nullable": true,
+          "ordinal_position": 10
+        },
+        {
+          "name": "raw_hash",
+          "data_type": "VARCHAR",
+          "nullable": true,
+          "ordinal_position": 11
+        },
+        {
+          "name": "run_id",
+          "data_type": "VARCHAR",
+          "nullable": true,
+          "ordinal_position": 12
+        }
+      ],
+      "example_sql": "SELECT * FROM \"dim_carrier\" WHERE \"carrier_sk\"<>0 ORDER BY \"carrier_sk\";"
+    },
+    {
+      "name": "dim_facility",
+      "object_type": "BASE TABLE",
+      "description": "Historical facility attribution with explicit surrogate keys.",
+      "grain": "One business-valid version per canonical facility and effective interval; display corrections use Type 1. Includes surrogate-key-0 unknown member.",
+      "declared_unique_key": [
+        "facility_sk"
+      ],
+      "key_enforcement": "Pipeline quality checks; this field does not assert a physical PRIMARY KEY constraint.",
+      "owner": "Reference Steward",
+      "freshness": {
+        "mode": "complete-batch publication",
+        "published_batch_id": "batch002",
+        "published_ingest_sequence": 2,
+        "published_run_id": "5843e411-4fc2-428e-8ea8-c0800c56a5e2",
+        "published_at_utc": "2026-10-04T12:50:42.930542Z",
+        "description": "Freshness is the last committed input batch, not a running service SLA or source event time."
+      },
+      "quality": {
+        "publication_status": "PASSED",
+        "blocking_failures": [],
+        "warnings": [],
+        "row_status_counts": null,
+        "meaning": "Recorded checks for the committed run; source truth beyond synthetic evidence is not asserted."
+      },
+      "lineage": {
+        "source_systems": [
+          "reference_master"
+        ],
+        "raw": "Immutable manifested objects, identified by source and SHA-256 in file_receipts/evidence.",
+        "upstream_objects": [
+          "evidence",
+          "dim_reference"
+        ],
+        "audit_objects": [
+          "evidence",
+          "resolution_decisions",
+          "publication_history",
+          "pipeline_runs"
+        ],
+        "downstream_consumers": [
+          "Operations analysts",
+          "Finance analysts",
+          "Downstream data engineers"
+        ]
+      },
+      "row_count": 5,
+      "schema": [
+        {
+          "name": "facility_sk",
+          "data_type": "BIGINT",
+          "nullable": true,
+          "ordinal_position": 1
+        },
+        {
+          "name": "canonical_id",
+          "data_type": "VARCHAR",
+          "nullable": true,
+          "ordinal_position": 2
+        },
+        {
+          "name": "business_key",
+          "data_type": "VARCHAR",
+          "nullable": true,
+          "ordinal_position": 3
+        },
+        {
+          "name": "facility_name",
+          "data_type": "VARCHAR",
+          "nullable": true,
+          "ordinal_position": 4
+        },
+        {
+          "name": "country_id",
+          "data_type": "VARCHAR",
+          "nullable": true,
+          "ordinal_position": 5
+        },
+        {
+          "name": "region_id",
+          "data_type": "VARCHAR",
+          "nullable": true,
+          "ordinal_position": 6
+        },
+        {
+          "name": "operating_status",
+          "data_type": "VARCHAR",
+          "nullable": true,
+          "ordinal_position": 7
+        },
+        {
+          "name": "effective_from",
+          "data_type": "TIMESTAMP",
+          "nullable": true,
+          "ordinal_position": 8
+        },
+        {
+          "name": "effective_to",
+          "data_type": "TIMESTAMP",
+          "nullable": true,
+          "ordinal_position": 9
+        },
+        {
+          "name": "is_current",
+          "data_type": "BOOLEAN",
+          "nullable": true,
+          "ordinal_position": 10
+        },
+        {
+          "name": "status",
+          "data_type": "VARCHAR",
+          "nullable": true,
+          "ordinal_position": 11
+        },
+        {
+          "name": "raw_hash",
+          "data_type": "VARCHAR",
+          "nullable": true,
+          "ordinal_position": 12
+        },
+        {
+          "name": "run_id",
+          "data_type": "VARCHAR",
+          "nullable": true,
+          "ordinal_position": 13
+        }
+      ],
+      "example_sql": "SELECT * FROM \"dim_facility\" WHERE \"facility_sk\"<>0 ORDER BY \"facility_sk\";"
+    },
+    {
+      "name": "dim_route",
+      "object_type": "BASE TABLE",
+      "description": "Historical route attribution with explicit surrogate keys.",
+      "grain": "One business-valid version per canonical route and effective interval; display corrections use Type 1. Includes surrogate-key-0 unknown member.",
+      "declared_unique_key": [
+        "route_sk"
+      ],
+      "key_enforcement": "Pipeline quality checks; this field does not assert a physical PRIMARY KEY constraint.",
+      "owner": "Reference Steward",
+      "freshness": {
+        "mode": "complete-batch publication",
+        "published_batch_id": "batch002",
+        "published_ingest_sequence": 2,
+        "published_run_id": "5843e411-4fc2-428e-8ea8-c0800c56a5e2",
+        "published_at_utc": "2026-10-04T12:50:42.930542Z",
+        "description": "Freshness is the last committed input batch, not a running service SLA or source event time."
+      },
+      "quality": {
+        "publication_status": "PASSED",
+        "blocking_failures": [],
+        "warnings": [],
+        "row_status_counts": null,
+        "meaning": "Recorded checks for the committed run; source truth beyond synthetic evidence is not asserted."
+      },
+      "lineage": {
+        "source_systems": [
+          "reference_master"
+        ],
+        "raw": "Immutable manifested objects, identified by source and SHA-256 in file_receipts/evidence.",
+        "upstream_objects": [
+          "evidence",
+          "dim_reference"
+        ],
+        "audit_objects": [
+          "evidence",
+          "resolution_decisions",
+          "publication_history",
+          "pipeline_runs"
+        ],
+        "downstream_consumers": [
+          "Operations analysts",
+          "Finance analysts",
+          "Downstream data engineers"
+        ]
+      },
+      "row_count": 2,
+      "schema": [
+        {
+          "name": "route_sk",
+          "data_type": "BIGINT",
+          "nullable": true,
+          "ordinal_position": 1
+        },
+        {
+          "name": "canonical_id",
+          "data_type": "VARCHAR",
+          "nullable": true,
+          "ordinal_position": 2
+        },
+        {
+          "name": "business_key",
+          "data_type": "VARCHAR",
+          "nullable": true,
+          "ordinal_position": 3
+        },
+        {
+          "name": "route_name",
+          "data_type": "VARCHAR",
+          "nullable": true,
+          "ordinal_position": 4
+        },
+        {
+          "name": "origin_facility_id",
+          "data_type": "VARCHAR",
+          "nullable": true,
+          "ordinal_position": 5
+        },
+        {
+          "name": "destination_facility_id",
+          "data_type": "VARCHAR",
+          "nullable": true,
+          "ordinal_position": 6
+        },
+        {
+          "name": "distance_km",
+          "data_type": "DECIMAL(12,3)",
+          "nullable": true,
+          "ordinal_position": 7
+        },
+        {
+          "name": "operating_status",
+          "data_type": "VARCHAR",
+          "nullable": true,
+          "ordinal_position": 8
+        },
+        {
+          "name": "effective_from",
+          "data_type": "TIMESTAMP",
+          "nullable": true,
+          "ordinal_position": 9
+        },
+        {
+          "name": "effective_to",
+          "data_type": "TIMESTAMP",
+          "nullable": true,
+          "ordinal_position": 10
+        },
+        {
+          "name": "is_current",
+          "data_type": "BOOLEAN",
+          "nullable": true,
+          "ordinal_position": 11
+        },
+        {
+          "name": "status",
+          "data_type": "VARCHAR",
+          "nullable": true,
+          "ordinal_position": 12
+        },
+        {
+          "name": "raw_hash",
+          "data_type": "VARCHAR",
+          "nullable": true,
+          "ordinal_position": 13
+        },
+        {
+          "name": "run_id",
+          "data_type": "VARCHAR",
+          "nullable": true,
+          "ordinal_position": 14
+        }
+      ],
+      "example_sql": "SELECT * FROM \"dim_route\" WHERE \"route_sk\"<>0 ORDER BY \"route_sk\";"
+    },
+    {
+      "name": "dim_country",
+      "object_type": "BASE TABLE",
+      "description": "Historical country attribution with explicit surrogate keys.",
+      "grain": "One business-valid version per canonical country and effective interval; display corrections use Type 1. Includes surrogate-key-0 unknown member.",
+      "declared_unique_key": [
+        "country_sk"
+      ],
+      "key_enforcement": "Pipeline quality checks; this field does not assert a physical PRIMARY KEY constraint.",
+      "owner": "Reference Steward",
+      "freshness": {
+        "mode": "complete-batch publication",
+        "published_batch_id": "batch002",
+        "published_ingest_sequence": 2,
+        "published_run_id": "5843e411-4fc2-428e-8ea8-c0800c56a5e2",
+        "published_at_utc": "2026-10-04T12:50:42.930542Z",
+        "description": "Freshness is the last committed input batch, not a running service SLA or source event time."
+      },
+      "quality": {
+        "publication_status": "PASSED",
+        "blocking_failures": [],
+        "warnings": [],
+        "row_status_counts": null,
+        "meaning": "Recorded checks for the committed run; source truth beyond synthetic evidence is not asserted."
+      },
+      "lineage": {
+        "source_systems": [
+          "reference_master"
+        ],
+        "raw": "Immutable manifested objects, identified by source and SHA-256 in file_receipts/evidence.",
+        "upstream_objects": [
+          "evidence",
+          "dim_reference"
+        ],
+        "audit_objects": [
+          "evidence",
+          "resolution_decisions",
+          "publication_history",
+          "pipeline_runs"
+        ],
+        "downstream_consumers": [
+          "Operations analysts",
+          "Finance analysts",
+          "Downstream data engineers"
+        ]
+      },
+      "row_count": 5,
+      "schema": [
+        {
+          "name": "country_sk",
+          "data_type": "BIGINT",
+          "nullable": true,
+          "ordinal_position": 1
+        },
+        {
+          "name": "canonical_id",
+          "data_type": "VARCHAR",
+          "nullable": true,
+          "ordinal_position": 2
+        },
+        {
+          "name": "business_key",
+          "data_type": "VARCHAR",
+          "nullable": true,
+          "ordinal_position": 3
+        },
+        {
+          "name": "country_name",
+          "data_type": "VARCHAR",
+          "nullable": true,
+          "ordinal_position": 4
+        },
+        {
+          "name": "effective_from",
+          "data_type": "TIMESTAMP",
+          "nullable": true,
+          "ordinal_position": 5
+        },
+        {
+          "name": "effective_to",
+          "data_type": "TIMESTAMP",
+          "nullable": true,
+          "ordinal_position": 6
+        },
+        {
+          "name": "is_current",
+          "data_type": "BOOLEAN",
+          "nullable": true,
+          "ordinal_position": 7
+        },
+        {
+          "name": "status",
+          "data_type": "VARCHAR",
+          "nullable": true,
+          "ordinal_position": 8
+        },
+        {
+          "name": "raw_hash",
+          "data_type": "VARCHAR",
+          "nullable": true,
+          "ordinal_position": 9
+        },
+        {
+          "name": "run_id",
+          "data_type": "VARCHAR",
+          "nullable": true,
+          "ordinal_position": 10
+        }
+      ],
+      "example_sql": "SELECT * FROM \"dim_country\" WHERE \"country_sk\"<>0 ORDER BY \"country_sk\";"
+    },
+    {
+      "name": "dim_region",
+      "object_type": "BASE TABLE",
+      "description": "Historical region attribution with explicit surrogate keys.",
+      "grain": "One business-valid version per canonical region and effective interval; display corrections use Type 1. Includes surrogate-key-0 unknown member.",
+      "declared_unique_key": [
+        "region_sk"
+      ],
+      "key_enforcement": "Pipeline quality checks; this field does not assert a physical PRIMARY KEY constraint.",
+      "owner": "Reference Steward",
+      "freshness": {
+        "mode": "complete-batch publication",
+        "published_batch_id": "batch002",
+        "published_ingest_sequence": 2,
+        "published_run_id": "5843e411-4fc2-428e-8ea8-c0800c56a5e2",
+        "published_at_utc": "2026-10-04T12:50:42.930542Z",
+        "description": "Freshness is the last committed input batch, not a running service SLA or source event time."
+      },
+      "quality": {
+        "publication_status": "PASSED",
+        "blocking_failures": [],
+        "warnings": [],
+        "row_status_counts": null,
+        "meaning": "Recorded checks for the committed run; source truth beyond synthetic evidence is not asserted."
+      },
+      "lineage": {
+        "source_systems": [
+          "reference_master"
+        ],
+        "raw": "Immutable manifested objects, identified by source and SHA-256 in file_receipts/evidence.",
+        "upstream_objects": [
+          "evidence",
+          "dim_reference"
+        ],
+        "audit_objects": [
+          "evidence",
+          "resolution_decisions",
+          "publication_history",
+          "pipeline_runs"
+        ],
+        "downstream_consumers": [
+          "Operations analysts",
+          "Finance analysts",
+          "Downstream data engineers"
+        ]
+      },
+      "row_count": 3,
+      "schema": [
+        {
+          "name": "region_sk",
+          "data_type": "BIGINT",
+          "nullable": true,
+          "ordinal_position": 1
+        },
+        {
+          "name": "canonical_id",
+          "data_type": "VARCHAR",
+          "nullable": true,
+          "ordinal_position": 2
+        },
+        {
+          "name": "business_key",
+          "data_type": "VARCHAR",
+          "nullable": true,
+          "ordinal_position": 3
+        },
+        {
+          "name": "region_name",
+          "data_type": "VARCHAR",
+          "nullable": true,
+          "ordinal_position": 4
+        },
+        {
+          "name": "effective_from",
+          "data_type": "TIMESTAMP",
+          "nullable": true,
+          "ordinal_position": 5
+        },
+        {
+          "name": "effective_to",
+          "data_type": "TIMESTAMP",
+          "nullable": true,
+          "ordinal_position": 6
+        },
+        {
+          "name": "is_current",
+          "data_type": "BOOLEAN",
+          "nullable": true,
+          "ordinal_position": 7
+        },
+        {
+          "name": "status",
+          "data_type": "VARCHAR",
+          "nullable": true,
+          "ordinal_position": 8
+        },
+        {
+          "name": "raw_hash",
+          "data_type": "VARCHAR",
+          "nullable": true,
+          "ordinal_position": 9
+        },
+        {
+          "name": "run_id",
+          "data_type": "VARCHAR",
+          "nullable": true,
+          "ordinal_position": 10
+        }
+      ],
+      "example_sql": "SELECT * FROM \"dim_region\" WHERE \"region_sk\"<>0 ORDER BY \"region_sk\";"
+    },
+    {
+      "name": "dim_service_level",
+      "object_type": "BASE TABLE",
+      "description": "Historical service level attribution with explicit surrogate keys.",
+      "grain": "One business-valid version per canonical service_level and effective interval; display corrections use Type 1. Includes surrogate-key-0 unknown member.",
+      "declared_unique_key": [
+        "service_level_sk"
+      ],
+      "key_enforcement": "Pipeline quality checks; this field does not assert a physical PRIMARY KEY constraint.",
+      "owner": "Reference Steward",
+      "freshness": {
+        "mode": "complete-batch publication",
+        "published_batch_id": "batch002",
+        "published_ingest_sequence": 2,
+        "published_run_id": "5843e411-4fc2-428e-8ea8-c0800c56a5e2",
+        "published_at_utc": "2026-10-04T12:50:42.930542Z",
+        "description": "Freshness is the last committed input batch, not a running service SLA or source event time."
+      },
+      "quality": {
+        "publication_status": "PASSED",
+        "blocking_failures": [],
+        "warnings": [],
+        "row_status_counts": null,
+        "meaning": "Recorded checks for the committed run; source truth beyond synthetic evidence is not asserted."
+      },
+      "lineage": {
+        "source_systems": [
+          "reference_master"
+        ],
+        "raw": "Immutable manifested objects, identified by source and SHA-256 in file_receipts/evidence.",
+        "upstream_objects": [
+          "evidence",
+          "dim_reference"
+        ],
+        "audit_objects": [
+          "evidence",
+          "resolution_decisions",
+          "publication_history",
+          "pipeline_runs"
+        ],
+        "downstream_consumers": [
+          "Operations analysts",
+          "Finance analysts",
+          "Downstream data engineers"
+        ]
+      },
+      "row_count": 2,
+      "schema": [
+        {
+          "name": "service_level_sk",
+          "data_type": "BIGINT",
+          "nullable": true,
+          "ordinal_position": 1
+        },
+        {
+          "name": "canonical_id",
+          "data_type": "VARCHAR",
+          "nullable": true,
+          "ordinal_position": 2
+        },
+        {
+          "name": "business_key",
+          "data_type": "VARCHAR",
+          "nullable": true,
+          "ordinal_position": 3
+        },
+        {
+          "name": "service_level_name",
+          "data_type": "VARCHAR",
+          "nullable": true,
+          "ordinal_position": 4
+        },
+        {
+          "name": "target_business_days",
+          "data_type": "INTEGER",
+          "nullable": true,
+          "ordinal_position": 5
+        },
+        {
+          "name": "operating_status",
+          "data_type": "VARCHAR",
+          "nullable": true,
+          "ordinal_position": 6
+        },
+        {
+          "name": "effective_from",
+          "data_type": "TIMESTAMP",
+          "nullable": true,
+          "ordinal_position": 7
+        },
+        {
+          "name": "effective_to",
+          "data_type": "TIMESTAMP",
+          "nullable": true,
+          "ordinal_position": 8
+        },
+        {
+          "name": "is_current",
+          "data_type": "BOOLEAN",
+          "nullable": true,
+          "ordinal_position": 9
+        },
+        {
+          "name": "status",
+          "data_type": "VARCHAR",
+          "nullable": true,
+          "ordinal_position": 10
+        },
+        {
+          "name": "raw_hash",
+          "data_type": "VARCHAR",
+          "nullable": true,
+          "ordinal_position": 11
+        },
+        {
+          "name": "run_id",
+          "data_type": "VARCHAR",
+          "nullable": true,
+          "ordinal_position": 12
+        }
+      ],
+      "example_sql": "SELECT * FROM \"dim_service_level\" WHERE \"service_level_sk\"<>0 ORDER BY \"service_level_sk\";"
+    },
+    {
+      "name": "dim_date",
+      "object_type": "BASE TABLE",
+      "description": "Calendar dates derived from accepted fact business timestamps, plus unknown date key zero.",
+      "grain": "One calendar date; an additional surrogate-key-0 unknown member.",
+      "declared_unique_key": [
+        "date_sk"
+      ],
+      "key_enforcement": "Pipeline quality checks; this field does not assert a physical PRIMARY KEY constraint.",
+      "owner": "Logistics Data Platform",
+      "freshness": {
+        "mode": "complete-batch publication",
+        "published_batch_id": "batch002",
+        "published_ingest_sequence": 2,
+        "published_run_id": "5843e411-4fc2-428e-8ea8-c0800c56a5e2",
+        "published_at_utc": "2026-10-04T12:50:42.930542Z",
+        "description": "Freshness is the last committed input batch, not a running service SLA or source event time."
+      },
+      "quality": {
+        "publication_status": "PASSED",
+        "blocking_failures": [],
+        "warnings": [],
+        "row_status_counts": null,
+        "meaning": "Recorded checks for the committed run; source truth beyond synthetic evidence is not asserted."
+      },
+      "lineage": {
+        "source_systems": [
+          "shipment_ops",
+          "carrier_delivery",
+          "package_events",
+          "transport_costs"
+        ],
+        "raw": "Immutable manifested objects, identified by source and SHA-256 in file_receipts/evidence.",
+        "upstream_objects": [
+          "fact_shipment",
+          "fact_delivery_event",
+          "fact_transportation_cost"
+        ],
+        "audit_objects": [
+          "evidence",
+          "resolution_decisions",
+          "publication_history",
+          "pipeline_runs"
+        ],
+        "downstream_consumers": [
+          "Operations analysts",
+          "Finance analysts",
+          "Downstream data engineers"
+        ]
+      },
+      "row_count": 4,
+      "schema": [
+        {
+          "name": "date_sk",
+          "data_type": "INTEGER",
+          "nullable": true,
+          "ordinal_position": 1
+        },
+        {
+          "name": "full_date",
+          "data_type": "DATE",
+          "nullable": true,
+          "ordinal_position": 2
+        },
+        {
+          "name": "year_number",
+          "data_type": "INTEGER",
+          "nullable": true,
+          "ordinal_position": 3
+        },
+        {
+          "name": "quarter_number",
+          "data_type": "INTEGER",
+          "nullable": true,
+          "ordinal_position": 4
+        },
+        {
+          "name": "month_number",
+          "data_type": "INTEGER",
+          "nullable": true,
+          "ordinal_position": 5
+        },
+        {
+          "name": "iso_weekday",
+          "data_type": "INTEGER",
+          "nullable": true,
+          "ordinal_position": 6
+        },
+        {
+          "name": "is_weekend",
+          "data_type": "BOOLEAN",
+          "nullable": true,
+          "ordinal_position": 7
+        }
+      ],
+      "example_sql": "SELECT date_sk,full_date FROM dim_date WHERE date_sk<>0 ORDER BY full_date;"
+    },
+    {
+      "name": "carrier_reference",
+      "object_type": "VIEW",
+      "description": "Reusable authoritative carrier values with effective intervals, source provenance, and status.",
+      "grain": "One business-valid version per canonical carrier and effective interval; display corrections use Type 1. Excludes the unknown sentinel row.",
+      "declared_unique_key": [
+        "surrogate_key"
+      ],
+      "key_enforcement": "Pipeline quality checks; this field does not assert a physical PRIMARY KEY constraint.",
+      "owner": "Reference Steward",
+      "freshness": {
+        "mode": "complete-batch publication",
+        "published_batch_id": "batch002",
+        "published_ingest_sequence": 2,
+        "published_run_id": "5843e411-4fc2-428e-8ea8-c0800c56a5e2",
+        "published_at_utc": "2026-10-04T12:50:42.930542Z",
+        "description": "Freshness is the last committed input batch, not a running service SLA or source event time."
+      },
+      "quality": {
+        "publication_status": "PASSED",
+        "blocking_failures": [],
+        "warnings": [],
+        "row_status_counts": null,
+        "meaning": "Recorded checks for the committed run; source truth beyond synthetic evidence is not asserted."
+      },
+      "lineage": {
+        "source_systems": [
+          "reference_master"
+        ],
+        "raw": "Immutable manifested objects, identified by source and SHA-256 in file_receipts/evidence.",
+        "upstream_objects": [
+          "evidence",
+          "dim_reference"
+        ],
+        "audit_objects": [
+          "evidence",
+          "resolution_decisions",
+          "publication_history",
+          "pipeline_runs"
+        ],
+        "downstream_consumers": [
+          "Operations analysts",
+          "Finance analysts",
+          "Downstream data engineers"
+        ]
+      },
+      "row_count": 3,
+      "schema": [
+        {
+          "name": "entity_type",
+          "data_type": "VARCHAR",
+          "nullable": true,
+          "ordinal_position": 1
+        },
+        {
+          "name": "business_key",
+          "data_type": "VARCHAR",
+          "nullable": true,
+          "ordinal_position": 2
+        },
+        {
+          "name": "canonical_id",
+          "data_type": "VARCHAR",
+          "nullable": true,
+          "ordinal_position": 3
+        },
+        {
+          "name": "canonical_value",
+          "data_type": "VARCHAR",
+          "nullable": true,
+          "ordinal_position": 4
+        },
+        {
+          "name": "attributes",
+          "data_type": "JSON",
+          "nullable": true,
+          "ordinal_position": 5
+        },
+        {
+          "name": "effective_from",
+          "data_type": "TIMESTAMP",
+          "nullable": true,
+          "ordinal_position": 6
+        },
+        {
+          "name": "effective_to",
+          "data_type": "TIMESTAMP",
+          "nullable": true,
+          "ordinal_position": 7
+        },
+        {
+          "name": "surrogate_key",
+          "data_type": "BIGINT",
+          "nullable": true,
+          "ordinal_position": 8
+        },
+        {
+          "name": "is_current",
+          "data_type": "BOOLEAN",
+          "nullable": true,
+          "ordinal_position": 9
+        },
+        {
+          "name": "status",
+          "data_type": "VARCHAR",
+          "nullable": true,
+          "ordinal_position": 10
+        },
+        {
+          "name": "source_id",
+          "data_type": "VARCHAR",
+          "nullable": true,
+          "ordinal_position": 11
+        },
+        {
+          "name": "source_system",
+          "data_type": "VARCHAR",
+          "nullable": true,
+          "ordinal_position": 12
+        },
+        {
+          "name": "source_updated_at",
+          "data_type": "TIMESTAMP",
+          "nullable": true,
+          "ordinal_position": 13
+        },
+        {
+          "name": "modified_at",
+          "data_type": "TIMESTAMP",
+          "nullable": true,
+          "ordinal_position": 14
+        },
+        {
+          "name": "recorded_at",
+          "data_type": "TIMESTAMP",
+          "nullable": true,
+          "ordinal_position": 15
+        },
+        {
+          "name": "raw_hash",
+          "data_type": "VARCHAR",
+          "nullable": true,
+          "ordinal_position": 16
+        },
+        {
+          "name": "run_id",
+          "data_type": "VARCHAR",
+          "nullable": true,
+          "ordinal_position": 17
+        }
+      ],
+      "example_sql": "SELECT * FROM \"carrier_reference\" WHERE \"surrogate_key\"<>0 ORDER BY \"surrogate_key\";"
+    },
+    {
+      "name": "facility_reference",
+      "object_type": "VIEW",
+      "description": "Reusable authoritative facility values with effective intervals, source provenance, and status.",
+      "grain": "One business-valid version per canonical facility and effective interval; display corrections use Type 1. Excludes the unknown sentinel row.",
+      "declared_unique_key": [
+        "surrogate_key"
+      ],
+      "key_enforcement": "Pipeline quality checks; this field does not assert a physical PRIMARY KEY constraint.",
+      "owner": "Reference Steward",
+      "freshness": {
+        "mode": "complete-batch publication",
+        "published_batch_id": "batch002",
+        "published_ingest_sequence": 2,
+        "published_run_id": "5843e411-4fc2-428e-8ea8-c0800c56a5e2",
+        "published_at_utc": "2026-10-04T12:50:42.930542Z",
+        "description": "Freshness is the last committed input batch, not a running service SLA or source event time."
+      },
+      "quality": {
+        "publication_status": "PASSED",
+        "blocking_failures": [],
+        "warnings": [],
+        "row_status_counts": null,
+        "meaning": "Recorded checks for the committed run; source truth beyond synthetic evidence is not asserted."
+      },
+      "lineage": {
+        "source_systems": [
+          "reference_master"
+        ],
+        "raw": "Immutable manifested objects, identified by source and SHA-256 in file_receipts/evidence.",
+        "upstream_objects": [
+          "evidence",
+          "dim_reference"
+        ],
+        "audit_objects": [
+          "evidence",
+          "resolution_decisions",
+          "publication_history",
+          "pipeline_runs"
+        ],
+        "downstream_consumers": [
+          "Operations analysts",
+          "Finance analysts",
+          "Downstream data engineers"
+        ]
+      },
+      "row_count": 4,
+      "schema": [
+        {
+          "name": "entity_type",
+          "data_type": "VARCHAR",
+          "nullable": true,
+          "ordinal_position": 1
+        },
+        {
+          "name": "business_key",
+          "data_type": "VARCHAR",
+          "nullable": true,
+          "ordinal_position": 2
+        },
+        {
+          "name": "canonical_id",
+          "data_type": "VARCHAR",
+          "nullable": true,
+          "ordinal_position": 3
+        },
+        {
+          "name": "canonical_value",
+          "data_type": "VARCHAR",
+          "nullable": true,
+          "ordinal_position": 4
+        },
+        {
+          "name": "attributes",
+          "data_type": "JSON",
+          "nullable": true,
+          "ordinal_position": 5
+        },
+        {
+          "name": "effective_from",
+          "data_type": "TIMESTAMP",
+          "nullable": true,
+          "ordinal_position": 6
+        },
+        {
+          "name": "effective_to",
+          "data_type": "TIMESTAMP",
+          "nullable": true,
+          "ordinal_position": 7
+        },
+        {
+          "name": "surrogate_key",
+          "data_type": "BIGINT",
+          "nullable": true,
+          "ordinal_position": 8
+        },
+        {
+          "name": "is_current",
+          "data_type": "BOOLEAN",
+          "nullable": true,
+          "ordinal_position": 9
+        },
+        {
+          "name": "status",
+          "data_type": "VARCHAR",
+          "nullable": true,
+          "ordinal_position": 10
+        },
+        {
+          "name": "source_id",
+          "data_type": "VARCHAR",
+          "nullable": true,
+          "ordinal_position": 11
+        },
+        {
+          "name": "source_system",
+          "data_type": "VARCHAR",
+          "nullable": true,
+          "ordinal_position": 12
+        },
+        {
+          "name": "source_updated_at",
+          "data_type": "TIMESTAMP",
+          "nullable": true,
+          "ordinal_position": 13
+        },
+        {
+          "name": "modified_at",
+          "data_type": "TIMESTAMP",
+          "nullable": true,
+          "ordinal_position": 14
+        },
+        {
+          "name": "recorded_at",
+          "data_type": "TIMESTAMP",
+          "nullable": true,
+          "ordinal_position": 15
+        },
+        {
+          "name": "raw_hash",
+          "data_type": "VARCHAR",
+          "nullable": true,
+          "ordinal_position": 16
+        },
+        {
+          "name": "run_id",
+          "data_type": "VARCHAR",
+          "nullable": true,
+          "ordinal_position": 17
+        }
+      ],
+      "example_sql": "SELECT * FROM \"facility_reference\" WHERE \"surrogate_key\"<>0 ORDER BY \"surrogate_key\";"
+    },
+    {
+      "name": "route_reference",
+      "object_type": "VIEW",
+      "description": "Reusable authoritative route values with effective intervals, source provenance, and status.",
+      "grain": "One business-valid version per canonical route and effective interval; display corrections use Type 1. Excludes the unknown sentinel row.",
+      "declared_unique_key": [
+        "surrogate_key"
+      ],
+      "key_enforcement": "Pipeline quality checks; this field does not assert a physical PRIMARY KEY constraint.",
+      "owner": "Reference Steward",
+      "freshness": {
+        "mode": "complete-batch publication",
+        "published_batch_id": "batch002",
+        "published_ingest_sequence": 2,
+        "published_run_id": "5843e411-4fc2-428e-8ea8-c0800c56a5e2",
+        "published_at_utc": "2026-10-04T12:50:42.930542Z",
+        "description": "Freshness is the last committed input batch, not a running service SLA or source event time."
+      },
+      "quality": {
+        "publication_status": "PASSED",
+        "blocking_failures": [],
+        "warnings": [],
+        "row_status_counts": null,
+        "meaning": "Recorded checks for the committed run; source truth beyond synthetic evidence is not asserted."
+      },
+      "lineage": {
+        "source_systems": [
+          "reference_master"
+        ],
+        "raw": "Immutable manifested objects, identified by source and SHA-256 in file_receipts/evidence.",
+        "upstream_objects": [
+          "evidence",
+          "dim_reference"
+        ],
+        "audit_objects": [
+          "evidence",
+          "resolution_decisions",
+          "publication_history",
+          "pipeline_runs"
+        ],
+        "downstream_consumers": [
+          "Operations analysts",
+          "Finance analysts",
+          "Downstream data engineers"
+        ]
+      },
+      "row_count": 1,
+      "schema": [
+        {
+          "name": "entity_type",
+          "data_type": "VARCHAR",
+          "nullable": true,
+          "ordinal_position": 1
+        },
+        {
+          "name": "business_key",
+          "data_type": "VARCHAR",
+          "nullable": true,
+          "ordinal_position": 2
+        },
+        {
+          "name": "canonical_id",
+          "data_type": "VARCHAR",
+          "nullable": true,
+          "ordinal_position": 3
+        },
+        {
+          "name": "canonical_value",
+          "data_type": "VARCHAR",
+          "nullable": true,
+          "ordinal_position": 4
+        },
+        {
+          "name": "attributes",
+          "data_type": "JSON",
+          "nullable": true,
+          "ordinal_position": 5
+        },
+        {
+          "name": "effective_from",
+          "data_type": "TIMESTAMP",
+          "nullable": true,
+          "ordinal_position": 6
+        },
+        {
+          "name": "effective_to",
+          "data_type": "TIMESTAMP",
+          "nullable": true,
+          "ordinal_position": 7
+        },
+        {
+          "name": "surrogate_key",
+          "data_type": "BIGINT",
+          "nullable": true,
+          "ordinal_position": 8
+        },
+        {
+          "name": "is_current",
+          "data_type": "BOOLEAN",
+          "nullable": true,
+          "ordinal_position": 9
+        },
+        {
+          "name": "status",
+          "data_type": "VARCHAR",
+          "nullable": true,
+          "ordinal_position": 10
+        },
+        {
+          "name": "source_id",
+          "data_type": "VARCHAR",
+          "nullable": true,
+          "ordinal_position": 11
+        },
+        {
+          "name": "source_system",
+          "data_type": "VARCHAR",
+          "nullable": true,
+          "ordinal_position": 12
+        },
+        {
+          "name": "source_updated_at",
+          "data_type": "TIMESTAMP",
+          "nullable": true,
+          "ordinal_position": 13
+        },
+        {
+          "name": "modified_at",
+          "data_type": "TIMESTAMP",
+          "nullable": true,
+          "ordinal_position": 14
+        },
+        {
+          "name": "recorded_at",
+          "data_type": "TIMESTAMP",
+          "nullable": true,
+          "ordinal_position": 15
+        },
+        {
+          "name": "raw_hash",
+          "data_type": "VARCHAR",
+          "nullable": true,
+          "ordinal_position": 16
+        },
+        {
+          "name": "run_id",
+          "data_type": "VARCHAR",
+          "nullable": true,
+          "ordinal_position": 17
+        }
+      ],
+      "example_sql": "SELECT * FROM \"route_reference\" WHERE \"surrogate_key\"<>0 ORDER BY \"surrogate_key\";"
+    },
+    {
+      "name": "country_reference",
+      "object_type": "VIEW",
+      "description": "Reusable authoritative country values with effective intervals, source provenance, and status.",
+      "grain": "One business-valid version per canonical country and effective interval; display corrections use Type 1. Excludes the unknown sentinel row.",
+      "declared_unique_key": [
+        "surrogate_key"
+      ],
+      "key_enforcement": "Pipeline quality checks; this field does not assert a physical PRIMARY KEY constraint.",
+      "owner": "Reference Steward",
+      "freshness": {
+        "mode": "complete-batch publication",
+        "published_batch_id": "batch002",
+        "published_ingest_sequence": 2,
+        "published_run_id": "5843e411-4fc2-428e-8ea8-c0800c56a5e2",
+        "published_at_utc": "2026-10-04T12:50:42.930542Z",
+        "description": "Freshness is the last committed input batch, not a running service SLA or source event time."
+      },
+      "quality": {
+        "publication_status": "PASSED",
+        "blocking_failures": [],
+        "warnings": [],
+        "row_status_counts": null,
+        "meaning": "Recorded checks for the committed run; source truth beyond synthetic evidence is not asserted."
+      },
+      "lineage": {
+        "source_systems": [
+          "reference_master"
+        ],
+        "raw": "Immutable manifested objects, identified by source and SHA-256 in file_receipts/evidence.",
+        "upstream_objects": [
+          "evidence",
+          "dim_reference"
+        ],
+        "audit_objects": [
+          "evidence",
+          "resolution_decisions",
+          "publication_history",
+          "pipeline_runs"
+        ],
+        "downstream_consumers": [
+          "Operations analysts",
+          "Finance analysts",
+          "Downstream data engineers"
+        ]
+      },
+      "row_count": 4,
+      "schema": [
+        {
+          "name": "entity_type",
+          "data_type": "VARCHAR",
+          "nullable": true,
+          "ordinal_position": 1
+        },
+        {
+          "name": "business_key",
+          "data_type": "VARCHAR",
+          "nullable": true,
+          "ordinal_position": 2
+        },
+        {
+          "name": "canonical_id",
+          "data_type": "VARCHAR",
+          "nullable": true,
+          "ordinal_position": 3
+        },
+        {
+          "name": "canonical_value",
+          "data_type": "VARCHAR",
+          "nullable": true,
+          "ordinal_position": 4
+        },
+        {
+          "name": "attributes",
+          "data_type": "JSON",
+          "nullable": true,
+          "ordinal_position": 5
+        },
+        {
+          "name": "effective_from",
+          "data_type": "TIMESTAMP",
+          "nullable": true,
+          "ordinal_position": 6
+        },
+        {
+          "name": "effective_to",
+          "data_type": "TIMESTAMP",
+          "nullable": true,
+          "ordinal_position": 7
+        },
+        {
+          "name": "surrogate_key",
+          "data_type": "BIGINT",
+          "nullable": true,
+          "ordinal_position": 8
+        },
+        {
+          "name": "is_current",
+          "data_type": "BOOLEAN",
+          "nullable": true,
+          "ordinal_position": 9
+        },
+        {
+          "name": "status",
+          "data_type": "VARCHAR",
+          "nullable": true,
+          "ordinal_position": 10
+        },
+        {
+          "name": "source_id",
+          "data_type": "VARCHAR",
+          "nullable": true,
+          "ordinal_position": 11
+        },
+        {
+          "name": "source_system",
+          "data_type": "VARCHAR",
+          "nullable": true,
+          "ordinal_position": 12
+        },
+        {
+          "name": "source_updated_at",
+          "data_type": "TIMESTAMP",
+          "nullable": true,
+          "ordinal_position": 13
+        },
+        {
+          "name": "modified_at",
+          "data_type": "TIMESTAMP",
+          "nullable": true,
+          "ordinal_position": 14
+        },
+        {
+          "name": "recorded_at",
+          "data_type": "TIMESTAMP",
+          "nullable": true,
+          "ordinal_position": 15
+        },
+        {
+          "name": "raw_hash",
+          "data_type": "VARCHAR",
+          "nullable": true,
+          "ordinal_position": 16
+        },
+        {
+          "name": "run_id",
+          "data_type": "VARCHAR",
+          "nullable": true,
+          "ordinal_position": 17
+        }
+      ],
+      "example_sql": "SELECT * FROM \"country_reference\" WHERE \"surrogate_key\"<>0 ORDER BY \"surrogate_key\";"
+    },
+    {
+      "name": "region_reference",
+      "object_type": "VIEW",
+      "description": "Reusable authoritative region values with effective intervals, source provenance, and status.",
+      "grain": "One business-valid version per canonical region and effective interval; display corrections use Type 1. Excludes the unknown sentinel row.",
+      "declared_unique_key": [
+        "surrogate_key"
+      ],
+      "key_enforcement": "Pipeline quality checks; this field does not assert a physical PRIMARY KEY constraint.",
+      "owner": "Reference Steward",
+      "freshness": {
+        "mode": "complete-batch publication",
+        "published_batch_id": "batch002",
+        "published_ingest_sequence": 2,
+        "published_run_id": "5843e411-4fc2-428e-8ea8-c0800c56a5e2",
+        "published_at_utc": "2026-10-04T12:50:42.930542Z",
+        "description": "Freshness is the last committed input batch, not a running service SLA or source event time."
+      },
+      "quality": {
+        "publication_status": "PASSED",
+        "blocking_failures": [],
+        "warnings": [],
+        "row_status_counts": null,
+        "meaning": "Recorded checks for the committed run; source truth beyond synthetic evidence is not asserted."
+      },
+      "lineage": {
+        "source_systems": [
+          "reference_master"
+        ],
+        "raw": "Immutable manifested objects, identified by source and SHA-256 in file_receipts/evidence.",
+        "upstream_objects": [
+          "evidence",
+          "dim_reference"
+        ],
+        "audit_objects": [
+          "evidence",
+          "resolution_decisions",
+          "publication_history",
+          "pipeline_runs"
+        ],
+        "downstream_consumers": [
+          "Operations analysts",
+          "Finance analysts",
+          "Downstream data engineers"
+        ]
+      },
+      "row_count": 2,
+      "schema": [
+        {
+          "name": "entity_type",
+          "data_type": "VARCHAR",
+          "nullable": true,
+          "ordinal_position": 1
+        },
+        {
+          "name": "business_key",
+          "data_type": "VARCHAR",
+          "nullable": true,
+          "ordinal_position": 2
+        },
+        {
+          "name": "canonical_id",
+          "data_type": "VARCHAR",
+          "nullable": true,
+          "ordinal_position": 3
+        },
+        {
+          "name": "canonical_value",
+          "data_type": "VARCHAR",
+          "nullable": true,
+          "ordinal_position": 4
+        },
+        {
+          "name": "attributes",
+          "data_type": "JSON",
+          "nullable": true,
+          "ordinal_position": 5
+        },
+        {
+          "name": "effective_from",
+          "data_type": "TIMESTAMP",
+          "nullable": true,
+          "ordinal_position": 6
+        },
+        {
+          "name": "effective_to",
+          "data_type": "TIMESTAMP",
+          "nullable": true,
+          "ordinal_position": 7
+        },
+        {
+          "name": "surrogate_key",
+          "data_type": "BIGINT",
+          "nullable": true,
+          "ordinal_position": 8
+        },
+        {
+          "name": "is_current",
+          "data_type": "BOOLEAN",
+          "nullable": true,
+          "ordinal_position": 9
+        },
+        {
+          "name": "status",
+          "data_type": "VARCHAR",
+          "nullable": true,
+          "ordinal_position": 10
+        },
+        {
+          "name": "source_id",
+          "data_type": "VARCHAR",
+          "nullable": true,
+          "ordinal_position": 11
+        },
+        {
+          "name": "source_system",
+          "data_type": "VARCHAR",
+          "nullable": true,
+          "ordinal_position": 12
+        },
+        {
+          "name": "source_updated_at",
+          "data_type": "TIMESTAMP",
+          "nullable": true,
+          "ordinal_position": 13
+        },
+        {
+          "name": "modified_at",
+          "data_type": "TIMESTAMP",
+          "nullable": true,
+          "ordinal_position": 14
+        },
+        {
+          "name": "recorded_at",
+          "data_type": "TIMESTAMP",
+          "nullable": true,
+          "ordinal_position": 15
+        },
+        {
+          "name": "raw_hash",
+          "data_type": "VARCHAR",
+          "nullable": true,
+          "ordinal_position": 16
+        },
+        {
+          "name": "run_id",
+          "data_type": "VARCHAR",
+          "nullable": true,
+          "ordinal_position": 17
+        }
+      ],
+      "example_sql": "SELECT * FROM \"region_reference\" WHERE \"surrogate_key\"<>0 ORDER BY \"surrogate_key\";"
+    },
+    {
+      "name": "service_level_reference",
+      "object_type": "VIEW",
+      "description": "Reusable authoritative service level values with effective intervals, source provenance, and status.",
+      "grain": "One business-valid version per canonical service_level and effective interval; display corrections use Type 1. Excludes the unknown sentinel row.",
+      "declared_unique_key": [
+        "surrogate_key"
+      ],
+      "key_enforcement": "Pipeline quality checks; this field does not assert a physical PRIMARY KEY constraint.",
+      "owner": "Reference Steward",
+      "freshness": {
+        "mode": "complete-batch publication",
+        "published_batch_id": "batch002",
+        "published_ingest_sequence": 2,
+        "published_run_id": "5843e411-4fc2-428e-8ea8-c0800c56a5e2",
+        "published_at_utc": "2026-10-04T12:50:42.930542Z",
+        "description": "Freshness is the last committed input batch, not a running service SLA or source event time."
+      },
+      "quality": {
+        "publication_status": "PASSED",
+        "blocking_failures": [],
+        "warnings": [],
+        "row_status_counts": null,
+        "meaning": "Recorded checks for the committed run; source truth beyond synthetic evidence is not asserted."
+      },
+      "lineage": {
+        "source_systems": [
+          "reference_master"
+        ],
+        "raw": "Immutable manifested objects, identified by source and SHA-256 in file_receipts/evidence.",
+        "upstream_objects": [
+          "evidence",
+          "dim_reference"
+        ],
+        "audit_objects": [
+          "evidence",
+          "resolution_decisions",
+          "publication_history",
+          "pipeline_runs"
+        ],
+        "downstream_consumers": [
+          "Operations analysts",
+          "Finance analysts",
+          "Downstream data engineers"
+        ]
+      },
+      "row_count": 1,
+      "schema": [
+        {
+          "name": "entity_type",
+          "data_type": "VARCHAR",
+          "nullable": true,
+          "ordinal_position": 1
+        },
+        {
+          "name": "business_key",
+          "data_type": "VARCHAR",
+          "nullable": true,
+          "ordinal_position": 2
+        },
+        {
+          "name": "canonical_id",
+          "data_type": "VARCHAR",
+          "nullable": true,
+          "ordinal_position": 3
+        },
+        {
+          "name": "canonical_value",
+          "data_type": "VARCHAR",
+          "nullable": true,
+          "ordinal_position": 4
+        },
+        {
+          "name": "attributes",
+          "data_type": "JSON",
+          "nullable": true,
+          "ordinal_position": 5
+        },
+        {
+          "name": "effective_from",
+          "data_type": "TIMESTAMP",
+          "nullable": true,
+          "ordinal_position": 6
+        },
+        {
+          "name": "effective_to",
+          "data_type": "TIMESTAMP",
+          "nullable": true,
+          "ordinal_position": 7
+        },
+        {
+          "name": "surrogate_key",
+          "data_type": "BIGINT",
+          "nullable": true,
+          "ordinal_position": 8
+        },
+        {
+          "name": "is_current",
+          "data_type": "BOOLEAN",
+          "nullable": true,
+          "ordinal_position": 9
+        },
+        {
+          "name": "status",
+          "data_type": "VARCHAR",
+          "nullable": true,
+          "ordinal_position": 10
+        },
+        {
+          "name": "source_id",
+          "data_type": "VARCHAR",
+          "nullable": true,
+          "ordinal_position": 11
+        },
+        {
+          "name": "source_system",
+          "data_type": "VARCHAR",
+          "nullable": true,
+          "ordinal_position": 12
+        },
+        {
+          "name": "source_updated_at",
+          "data_type": "TIMESTAMP",
+          "nullable": true,
+          "ordinal_position": 13
+        },
+        {
+          "name": "modified_at",
+          "data_type": "TIMESTAMP",
+          "nullable": true,
+          "ordinal_position": 14
+        },
+        {
+          "name": "recorded_at",
+          "data_type": "TIMESTAMP",
+          "nullable": true,
+          "ordinal_position": 15
+        },
+        {
+          "name": "raw_hash",
+          "data_type": "VARCHAR",
+          "nullable": true,
+          "ordinal_position": 16
+        },
+        {
+          "name": "run_id",
+          "data_type": "VARCHAR",
+          "nullable": true,
+          "ordinal_position": 17
+        }
+      ],
+      "example_sql": "SELECT * FROM \"service_level_reference\" WHERE \"surrogate_key\"<>0 ORDER BY \"surrogate_key\";"
+    }
+  ]
+}

@@ -1,0 +1,88 @@
+{
+  "batch_id": "batch001",
+  "controls": {
+    "carrier_delivery": {
+      "files": 2,
+      "rows": 10
+    },
+    "package_events": {
+      "files": 1,
+      "rows": 5
+    },
+    "reference_master": {
+      "files": 1,
+      "rows": 68
+    },
+    "shipment_ops": {
+      "files": 1,
+      "rows": 16
+    },
+    "transport_costs": {
+      "amount_minor": {
+        "EUR": 19043
+      },
+      "files": 2,
+      "rows": 5
+    }
+  },
+  "created_at": "2026-01-01T00:00:00Z",
+  "files": [
+    {
+      "path": "shipment_ops-001.jsonl",
+      "rows": 16,
+      "schema_version": 1,
+      "sha256": "1021a1ae30e1c0817e6c93cd95459f5f4917c21357e411dcdbdb5bb587dfa807",
+      "source": "shipment_ops"
+    },
+    {
+      "path": "carrier_delivery-001.csv",
+      "rows": 5,
+      "schema_version": 1,
+      "sha256": "8572c52b01b2116b78d25187d4017a469187399368be20be613ebceb4c9d8c3b",
+      "source": "carrier_delivery"
+    },
+    {
+      "path": "package_events-001.jsonl",
+      "rows": 5,
+      "schema_version": 1,
+      "sha256": "ef795c21971bd3e7c0270f9b2613ca2564eeed0b417f907a4406312f62d56983",
+      "source": "package_events"
+    },
+    {
+      "path": "transport_costs-001.csv",
+      "rows": 3,
+      "schema_version": 1,
+      "sha256": "100b000f9e88e8a6d9bbb33afd02e339c16ad417740e1bb73b8c0e775724bae9",
+      "source": "transport_costs"
+    },
+    {
+      "path": "transport_costs-002.csv",
+      "rows": 2,
+      "schema_version": 1,
+      "sha256": "044f722ee1ef0183da5a1a33a368d809595f4671c299465f81651fe08279846d",
+      "source": "transport_costs"
+    },
+    {
+      "path": "reference_master-001.jsonl",
+      "rows": 68,
+      "schema_version": 1,
+      "sha256": "7f844d578a24f3a020dbaa7108f1e6f625941e463f9cbb7fd3788c3a60dd853d",
+      "source": "reference_master"
+    },
+    {
+      "path": "carrier_delivery-001-duplicate.csv",
+      "rows": 5,
+      "schema_version": 1,
+      "sha256": "8572c52b01b2116b78d25187d4017a469187399368be20be613ebceb4c9d8c3b",
+      "source": "carrier_delivery"
+    }
+  ],
+  "ingest_sequence": 1,
+  "required_sources": [
+    "shipment_ops",
+    "carrier_delivery",
+    "package_events",
+    "transport_costs",
+    "reference_master"
+  ]
+}

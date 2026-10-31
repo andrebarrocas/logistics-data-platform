@@ -1,0 +1,90 @@
+{
+  "engine": "DuckDB",
+  "engine_version": "1.4.1",
+  "execution_profile": "local-in-memory",
+  "measured_at": "2026-10-04T12:48:38.252921+00:00",
+  "machine": {
+    "os": "Darwin",
+    "architecture": "arm64",
+    "python": "3.11.14"
+  },
+  "rows": 1000000,
+  "threads": 4,
+  "memory_limit": "1GB",
+  "repetitions": 7,
+  "warmup": "one query and EXPLAIN ANALYZE per variant",
+  "trial_order": "alternating forward/reverse",
+  "generation": "i=0..rows-1; day=(i*7919)%365; cents=500+(i*104729)%20000",
+  "result": [
+    [
+      "Fictional carrier 0",
+      67152742,
+      6392
+    ],
+    [
+      "Fictional carrier 1",
+      67026512,
+      6393
+    ],
+    [
+      "Fictional carrier 2",
+      67057114,
+      6392
+    ]
+  ],
+  "variants": {
+    "unordered": {
+      "seconds": [
+        0.0009460829896852374,
+        0.0008703750208951533,
+        0.0008345409878529608,
+        0.0008190830121748149,
+        0.0008764159865677357,
+        0.0008118340047076344,
+        0.000817666994407773
+      ],
+      "result_sha256": "1533fc8cf3cb1afa5a3afcd1b7bb0f0458f5b23a298ac91435194cdfe11dfd91",
+      "table_rows": 1000000,
+      "median_seconds": 0.0008345409878529608,
+      "min_seconds": 0.0008118340047076344,
+      "max_seconds": 0.0009460829896852374
+    },
+    "date_sorted": {
+      "seconds": [
+        0.0005869999877177179,
+        0.0005697919987142086,
+        0.0005925000295974314,
+        0.0005721250199712813,
+        0.0006137919845059514,
+        0.0005633329856209457,
+        0.0005450420430861413
+      ],
+      "result_sha256": "1533fc8cf3cb1afa5a3afcd1b7bb0f0458f5b23a298ac91435194cdfe11dfd91",
+      "table_rows": 1000000,
+      "median_seconds": 0.0005721250199712813,
+      "min_seconds": 0.0005450420430861413,
+      "max_seconds": 0.0006137919845059514
+    },
+    "daily_preaggregation": {
+      "seconds": [
+        0.00032525003189221025,
+        0.0003012500237673521,
+        0.00028799998108297586,
+        0.00028558296617120504,
+        0.00029633304802700877,
+        0.00028604204999282956,
+        0.0002838340005837381
+      ],
+      "result_sha256": "1533fc8cf3cb1afa5a3afcd1b7bb0f0458f5b23a298ac91435194cdfe11dfd91",
+      "table_rows": 1095,
+      "median_seconds": 0.00028799998108297586,
+      "min_seconds": 0.0002838340005837381,
+      "max_seconds": 0.00032525003189221025
+    }
+  },
+  "limitations": [
+    "Local CPU/columnar timings only; no Redshift distribution, WLM, network or compression conclusions.",
+    "Warm in-memory workload; materialization build cost and refresh cost excluded from query timings.",
+    "Preaggregation is valid only for the specified additive measures and daily grain."
+  ]
+}

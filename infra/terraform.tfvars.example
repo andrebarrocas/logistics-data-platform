@@ -1,0 +1,14 @@
+# Supply existing private network resources; no credentials belong in this file.
+aws_region         = "eu-west-1"
+project_name       = "logistics-canonical"
+environment        = "portfolio"
+vpc_id             = "vpc-REPLACE"
+private_subnet_ids = ["subnet-REPLACE-A", "subnet-REPLACE-B", "subnet-REPLACE-C"]
+
+# Build the zip from the repository root before planning.
+glue_script_path  = "../jobs/normalize.py"
+glue_package_path = "../dist/logistics_platform.zip"
+
+# Paid usage guardrails, not monetary guarantees.
+redshift_base_capacity = 8
+monthly_rpu_hour_limit = 24

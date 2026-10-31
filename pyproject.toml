@@ -1,0 +1,51 @@
+[build-system]
+requires = ["setuptools>=78,<81", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "multi-carrier-logistics-platform"
+version = "1.0.0"
+description = "Auditable canonical logistics data platform using independently synthetic sources"
+readme = "README.md"
+requires-python = ">=3.11,<3.13"
+dependencies = ["duckdb==1.4.1", "numpy==2.2.6"]
+
+[project.optional-dependencies]
+dev = ["pytest==8.4.2", "ruff==0.13.2", "mypy==1.18.2", "sqlglot==27.27.0", "build==1.3.0"]
+aws = ["boto3==1.40.40"]
+spark = ["pyspark==3.5.4"]
+
+[project.urls]
+Repository = "https://github.com/andrebarrocas/logistics-data-platform"
+Documentation = "https://github.com/andrebarrocas/logistics-data-platform/blob/main/README.md"
+Issues = "https://github.com/andrebarrocas/logistics-data-platform/issues"
+
+[project.scripts]
+logistics = "logistics_platform.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.setuptools.package-data]
+logistics_platform = ["sql/*.sql", "spark_sql/*.sql"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+markers = ["spark: requires Spark 3.5.4 and Java 17", "cloud: mocked cloud contract tests"]
+
+[tool.ruff]
+target-version = "py311"
+line-length = 100
+
+[tool.ruff.lint]
+select = ["E4", "E7", "E9", "F", "I"]
+
+[tool.mypy]
+python_version = "3.11"
+check_untyped_defs = true
+ignore_missing_imports = true
+exclude = ["build", "dist"]
+
+[[tool.mypy.overrides]]
+module = ["pyspark.*", "boto3.*", "botocore.*", "duckdb.*"]
+follow_imports = "skip"

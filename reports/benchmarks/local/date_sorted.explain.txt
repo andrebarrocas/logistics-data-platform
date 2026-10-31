@@ -1,0 +1,89 @@
+┌─────────────────────────────────────┐
+│┌───────────────────────────────────┐│
+││    Query Profiling Information    ││
+│└───────────────────────────────────┘│
+└─────────────────────────────────────┘
+EXPLAIN ANALYZE SELECT c.carrier_name, sum(f.amount_minor)::BIGINT amount_minor,         count(*)::BIGINT shipments FROM events_sorted f JOIN carriers c USING(carrier_key)         WHERE service_date >= DATE '2025-06-01' AND service_date < DATE '2025-06-08'         GROUP BY c.carrier_name ORDER BY c.carrier_name
+┌────────────────────────────────────────────────┐
+│┌──────────────────────────────────────────────┐│
+││              Total Time: 0.0008s             ││
+│└──────────────────────────────────────────────┘│
+└────────────────────────────────────────────────┘
+┌───────────────────────────┐
+│           QUERY           │
+└─────────────┬─────────────┘
+┌─────────────┴─────────────┐
+│      EXPLAIN_ANALYZE      │
+│    ────────────────────   │
+│           0 rows          │
+│          (0.00s)          │
+└─────────────┬─────────────┘
+┌─────────────┴─────────────┐
+│          ORDER_BY         │
+│    ────────────────────   │
+│     c.carrier_name ASC    │
+│                           │
+│           3 rows          │
+│          (0.00s)          │
+└─────────────┬─────────────┘
+┌─────────────┴─────────────┐
+│         PROJECTION        │
+│    ────────────────────   │
+│        carrier_name       │
+│        amount_minor       │
+│         shipments         │
+│                           │
+│           3 rows          │
+│          (0.00s)          │
+└─────────────┬─────────────┘
+┌─────────────┴─────────────┐
+│       HASH_GROUP_BY       │
+│    ────────────────────   │
+│         Groups: #0        │
+│                           │
+│        Aggregates:        │
+│          sum(#1)          │
+│        count_star()       │
+│                           │
+│           3 rows          │
+│          (0.00s)          │
+└─────────────┬─────────────┘
+┌─────────────┴─────────────┐
+│         PROJECTION        │
+│    ────────────────────   │
+│        carrier_name       │
+│        amount_minor       │
+│                           │
+│        19,177 rows        │
+│          (0.00s)          │
+└─────────────┬─────────────┘
+┌─────────────┴─────────────┐
+│         HASH_JOIN         │
+│    ────────────────────   │
+│      Join Type: INNER     │
+│                           │
+│        Conditions:        ├──────────────┐
+│ carrier_key = carrier_key │              │
+│                           │              │
+│        19,177 rows        │              │
+│          (0.00s)          │              │
+└─────────────┬─────────────┘              │
+┌─────────────┴─────────────┐┌─────────────┴─────────────┐
+│         TABLE_SCAN        ││         TABLE_SCAN        │
+│    ────────────────────   ││    ────────────────────   │
+│    Table: events_sorted   ││      Table: carriers      │
+│   Type: Sequential Scan   ││   Type: Sequential Scan   │
+│                           ││                           │
+│        Projections:       ││        Projections:       │
+│        carrier_key        ││        carrier_key        │
+│        amount_minor       ││        carrier_name       │
+│                           ││                           │
+│          Filters:         ││                           │
+│ service_date>='2025-06-01'││                           │
+│  ::DATE AND service_date< ││                           │
+│     '2025-06-08'::DATE    ││                           │
+│                           ││                           │
+│        19,177 rows        ││           3 rows          │
+│          (0.00s)          ││          (0.00s)          │
+└───────────────────────────┘└───────────────────────────┘
+

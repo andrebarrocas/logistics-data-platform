@@ -1,0 +1,5 @@
+* text=auto eol=lf
+# Raw fixtures are byte-addressed by their manifests; never translate line endings.
+examples/input/** -text
+*.png binary
+*.zip binary

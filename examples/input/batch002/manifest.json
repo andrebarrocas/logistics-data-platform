@@ -1,0 +1,81 @@
+{
+  "batch_id": "batch002",
+  "controls": {
+    "carrier_delivery": {
+      "files": 1,
+      "rows": 1
+    },
+    "package_events": {
+      "files": 1,
+      "rows": 1
+    },
+    "reference_master": {
+      "files": 1,
+      "rows": 1
+    },
+    "shipment_ops": {
+      "files": 1,
+      "rows": 1
+    },
+    "transport_costs": {
+      "amount_minor": {
+        "EUR": 1334
+      },
+      "files": 2,
+      "rows": 1
+    }
+  },
+  "created_at": "2026-01-02T00:00:00Z",
+  "files": [
+    {
+      "path": "shipment_ops-001.jsonl",
+      "rows": 1,
+      "schema_version": 1,
+      "sha256": "93ad8957365b51d230127735e5cee1c1fca6aaaadb05e53096796e11786ce7fd",
+      "source": "shipment_ops"
+    },
+    {
+      "path": "carrier_delivery-001.csv",
+      "rows": 1,
+      "schema_version": 2,
+      "sha256": "6e3779cb83735a7e2bc1d5687a9d208d07bdf7d7529c9a112fba6e51bbd310f2",
+      "source": "carrier_delivery"
+    },
+    {
+      "path": "package_events-001.jsonl",
+      "rows": 1,
+      "schema_version": 1,
+      "sha256": "93773ca5279fd533a2de18542b040f3fc4d71f30b7bea9556713fd11a85557e1",
+      "source": "package_events"
+    },
+    {
+      "path": "transport_costs-001.csv",
+      "rows": 1,
+      "schema_version": 1,
+      "sha256": "c1e89a2c071b6e8f2a0dc1df41a1c364638eaeee7c3a4716c4a8cb46adb62b99",
+      "source": "transport_costs"
+    },
+    {
+      "path": "transport_costs-002.csv",
+      "rows": 0,
+      "schema_version": 1,
+      "sha256": "a64c7150b3ee1e654b639421470fcfd39b88c10e75b1f2db4849bfffe3a03798",
+      "source": "transport_costs"
+    },
+    {
+      "path": "reference_master-001.jsonl",
+      "rows": 1,
+      "schema_version": 1,
+      "sha256": "2abecdeda52a5ddd619fd123636194bf954007de10d85c1f726aceef4ce5519c",
+      "source": "reference_master"
+    }
+  ],
+  "ingest_sequence": 2,
+  "required_sources": [
+    "shipment_ops",
+    "carrier_delivery",
+    "package_events",
+    "transport_costs",
+    "reference_master"
+  ]
+}

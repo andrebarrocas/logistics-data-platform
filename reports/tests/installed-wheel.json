@@ -1,0 +1,18 @@
+{
+  "profile": "installed-wheel-with-checked-in-fixtures",
+  "statuses": [
+    "published",
+    "published",
+    "noop"
+  ],
+  "watermarks": [
+    1,
+    2,
+    2
+  ],
+  "counts": {
+    "fact_shipment": 5,
+    "fact_delivery_event": 11,
+    "fact_transportation_cost": 5
+  }
+}
